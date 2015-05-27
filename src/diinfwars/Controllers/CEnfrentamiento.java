@@ -15,13 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 
 /**
- *
+ * Controlador de la vista enfrentamiento
  * @author MonodetH
  */
 public class CEnfrentamiento implements ActionListener,MouseListener{
-    
+    /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
     
+    /**Constructor que instancia la vista*/
     public CEnfrentamiento(){
         this.v = new VEnfrentamiento(this,this);
     }

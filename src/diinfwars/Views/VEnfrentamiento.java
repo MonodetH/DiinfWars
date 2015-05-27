@@ -11,27 +11,33 @@ import javax.swing.JLabel;
 import javax.swing.JLayer;
 
 /**
- *
+ * Vista de la pantalla Enfrentamiento
  * @author MonodetH
+ * @see CEnfrentamiento
  */
 public class VEnfrentamiento extends javax.swing.JFrame {
-    // Atributos
-    /* MODO: 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar. */
-    private int modo = 0; 
+    /**MODO: 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar.*/
+    private int modo = 0;
+    /**Posición de la casilla seleccionada actualmente*/
     private int casillaSeleccionada[] = new int[2];
+    /**Matriz que contiene la representacion de las unidades*/
     private JLabel[][] matrizUnidad = new JLabel[9][20];
+    /**Matriz que contiene la representacion del rango de ataque o movimiento*/
     private JLabel[][] matrizRango = new JLabel[9][20];
+    /**Matriz que contiene la representacion de los terrenos*/
     private JLabel[][] matrizMapa = new JLabel[9][20];
     
     
-    /**
-     * Creates new form NewJFrame
-     */
+    /**Constructor de la vista sin listeners*/
     public VEnfrentamiento() {
         initComponents();
         init();
-        
     }
+    /**
+     * Constructor de la vista que recive dos listeners
+     * @param al Controlador como ActionListener
+     * @param ml Controlador como MouseListener
+     */
     public VEnfrentamiento(ActionListener al,MouseListener ml) {
         initComponents();
         init();
@@ -39,14 +45,33 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         agregarMouseListener(ml);
         this.setVisible(true);
     }
-    
-    
-    
+
+    /**
+     * Cambia la ventana de modo
+     * @param modo 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar.
+     * @see #setToggleOn(int)
+     * @see #modo
+     */
     public void setModo(int modo){if (this.modo == modo){this.modo =0;}else{this.modo=modo;setToggleOn(modo);}}
     public int getModo(){return this.modo;}
-    public void setCasillaSeleccionada(int i,int j){this.casillaSeleccionada[0]=i;this.casillaSeleccionada[1]=j;}
+    /**
+     * Guarda y activa la casilla seleccionada actual
+     * @param i Posicion fila
+     * @param j Posicion columna
+     */
+    public void setCasillaSeleccionada(int i,int j){
+        matrizUnidad[casillaSeleccionada[0]][casillaSeleccionada[1]].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        this.casillaSeleccionada[0]=i;
+        this.casillaSeleccionada[1]=j;
+        matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 0), 1, true));
+    }
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
+    /**
+     * Cambia visualmente los botones de seleccion de modo
+     * @param activado Modo activado
+     * @see #modo
+     */
     public void setToggleOn(int activado){
         this.botonMover.setSelected(false);
         this.botonAtacar.setSelected(false);
@@ -68,6 +93,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         }
     }
     
+    
     private void agregarActionListener(ActionListener al){
         this.botonAtacar.addActionListener(al);
         this.botonMover.addActionListener(al);
@@ -86,7 +112,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
     
     
-    
+    /**Inicializa los componentes que no fueron creados a través del editor de Netbeans*/
     private void init(){
         for (int i=0;i<9;i++){
             for (int j=0;j<20;j++){
@@ -98,11 +124,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                 capaMapa.add(matrizMapa[i][j]);
             }
         }
-        
-        
         // imprimir mapa
         matrizMapa[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TerrenoPlaceHolder.png")));
-        
     }
     
     /**
@@ -205,10 +228,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /** 
-     * 
-     */
-    
     /**
      * @param args the command line arguments
      */
