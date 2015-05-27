@@ -5,6 +5,8 @@
  */
 package diinfwars;
 
+import diinfwars.Controllers.CEnfrentamiento;
+
 /**
  *
  * @author MonodetH
@@ -16,7 +18,7 @@ public class DiinfWars {
      */
     public static void main(String[] args) {
         // TODO code application logic here 
-        
+        CEnfrentamiento ce = new CEnfrentamiento();
     }
     
 }
