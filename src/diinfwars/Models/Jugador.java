@@ -12,9 +12,15 @@ package diinfwars.Models;
 public class Jugador {
     // Atributos
     private String nombre;
-    private int victorias;
-    private int derrotas;
-    private int torneosGanados;
-    private int unidadesReclutadas;
+    private int victorias = 0;
+    private int derrotas = 0;
+    private int torneosGanados = 0;
+    private int unidadesReclutadas = 0;
+    
+    /**
+     * Constructor de jugador
+     * @param nombre String que contiene el nombre del jugador
+     */
+    public Jugador(String nombre){this.nombre=nombre;}
     
 }

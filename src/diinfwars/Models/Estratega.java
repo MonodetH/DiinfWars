@@ -17,4 +17,9 @@ public class Estratega {
     private ArrayList<Unidad> unidades;
     private int asCooldown;
     
+    public Estratega(int oroInicial){
+        oro = oroInicial;
+        unidades.add(new Profesor());
+        asCooldown = 11;
+    }
 }

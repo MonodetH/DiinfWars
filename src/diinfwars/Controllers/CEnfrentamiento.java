@@ -5,6 +5,9 @@
  */
 package diinfwars.Controllers;
 
+import diinfwars.Models.Batalla;
+import diinfwars.Models.Jugador;
+import diinfwars.Models.Mapa;
 import diinfwars.Views.VEnfrentamiento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,9 +24,24 @@ import javax.swing.JToggleButton;
 public class CEnfrentamiento implements ActionListener,MouseListener{
     /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
+    /**Jugador asociado*/
+    private Jugador jugador1,jugador2;
+    /**Mapa en el que se hará la batalla*/
+    private Mapa mapa;
+    
     
     /**Constructor que instancia la vista*/
     public CEnfrentamiento(){
+        /*Esto se hace en CPreEnfrentamiento*/
+        Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
+        Mapa mapa1 = new Mapa(0);
+        /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
+        Batalla batalla = new Batalla(jug1,jug2,mapa1,5,10,10);
+        
+        
+        /*Aqui empieza este controlador*/
+        
+        
         this.v = new VEnfrentamiento(this,this);
     }
 

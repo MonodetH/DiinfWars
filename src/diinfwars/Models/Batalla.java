@@ -17,4 +17,20 @@ public class Batalla {
     private Estratega estratega1;
     private Estratega estratega2;
     
+    /**
+     * Constructor de batalla
+     * @param j1 Jugagor 1
+     * @param j2 Jugador 2
+     * @param m Mapa preseteado o aleatorio
+     * @param orok Oro dado por cada kiosco
+     * @param oroi1 Oro inicial del jugador 1
+     * @param oroi2 Oro inicial del jugador 2
+     */
+    public Batalla(Jugador j1,Jugador j2,Mapa m,int orok,int oroi1, int oroi2){
+        mapa = m;
+        jugador1 = j1;
+        jugador2 = j2;
+        estratega1 = new Estratega(oroi1);
+        estratega2 = new Estratega(oroi2);
+    }
 }
