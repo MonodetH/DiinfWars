@@ -14,11 +14,13 @@ import java.util.ArrayList;
 public class Estratega {
     // Atributos
     private int oro;
-    private ArrayList<Unidad> unidades;
+    private ArrayList<Unidad> unidades = new ArrayList<Unidad>();
+    private int asTactico = 0;
     private int asCooldown;
     
-    public Estratega(int oroInicial){
+    public Estratega(int oroInicial,int as){
         oro = oroInicial;
+        asTactico = as;
         unidades.add(new Profesor());
         asCooldown = 11;
     }

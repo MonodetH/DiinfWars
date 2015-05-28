@@ -30,7 +30,7 @@ public class Batalla {
         mapa = m;
         jugador1 = j1;
         jugador2 = j2;
-        estratega1 = new Estratega(oroi1);
-        estratega2 = new Estratega(oroi2);
+        estratega1 = new Estratega(oroi1,1);
+        estratega2 = new Estratega(oroi2,1);
     }
 }
