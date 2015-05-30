@@ -47,18 +47,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.v = new VEnfrentamiento(this,this);
-        v.setTerreno(crearMatrizTerreno());
-    }
-
-    private String[][] crearMatrizTerreno(){
-        Casilla[][] matrizCasillas = mapa.getCasillas();
-        String[][] retorno = new String[9][20];
-        for(int i=0;i<9;i++){
-            for(int j=0;j<20;j++){
-                retorno[i][j] = matrizCasillas[i][j].getSprite();
-            }
-        }
-        return retorno;
+        v.setTerreno(mapa.terrenoToString());
     }
     
     @Override

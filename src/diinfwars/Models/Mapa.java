@@ -36,4 +36,22 @@ public class Mapa {
     public Casilla[][] getCasillas(){
         return this.capaCasillas;
     }
+    public String[][] terrenoToString(){
+        String[][] retorno = new String[9][20];
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                retorno[i][j] = capaCasillas[i][j].getSprite();
+            }
+        }
+        return retorno;
+    }
+    public String[][] unidadesToString(){
+        String[][] retorno = new String[9][20];
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                retorno[i][j] = capaCasillas[i][j].getUnidad().getSprite();
+            }
+        }
+        return retorno;
+    }
 }

@@ -10,5 +10,6 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Profesor extends Unidad{
-    
+    public static int sCosto = 9999;
+    public static String sRutaSprite = "/images/unidadPlaceholder.png";
 }

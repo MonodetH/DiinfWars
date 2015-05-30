@@ -56,6 +56,10 @@ public abstract class Casilla {
         }
     }
     
+    public Unidad getUnidad(){
+        return this.unidad;
+    }
+    
     public Unidad popUnidad(){
         Unidad respuesta = this.unidad;
         this.unidad = null;
@@ -65,5 +69,7 @@ public abstract class Casilla {
     public String getSprite(){
         return this.rutaSprite;
     }
+    
+    
     
 }

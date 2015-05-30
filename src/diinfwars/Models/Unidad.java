@@ -12,22 +12,30 @@ import java.util.ArrayList;
  * @author MonodetH
  */
 public abstract class Unidad {
-    // Atributos    
-    private int hp;
-    private int hpMax;
-    private int estamina;
-    private int nivel;
-    private int experiencia;
-    private int movimiento;
-    private float criticalMiss;
-    private ArrayList<Ataque> ataques = new ArrayList<Ataque>();
-    private ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
-    private int mantencion;
-    
-    // Static
-    public static int costo;
-    public static String rutaSprite;
+    // ATRIBUTOS   
+    protected int hp;
+    protected int hpMax;
+    protected int estamina=100;
+    protected int nivel = 1;
+    protected int experiencia = 0;
+    protected int movimiento;
+    protected int criticalMiss = 5;
+    protected ArrayList<Ataque> ataques = new ArrayList<Ataque>();
+    protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
+    protected int mantencion;
+    protected int costo;
+    protected String rutaSprite;
     
     
+    // CONSTRUCTORES
+    
+    
+    // METODOS ABSTRACTOS (distintos en cada unidad)
+    
+    
+    // METODOS GENERALES (heredables)
+    public String getSprite(){
+        return this.rutaSprite;
+    }
     
 }
