@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author MonodetH
  */
 public abstract class Unidad {
-    // Atributos
+    // Atributos    
     private int hp;
     private int hpMax;
     private int estamina;
@@ -20,10 +20,14 @@ public abstract class Unidad {
     private int experiencia;
     private int movimiento;
     private float criticalMiss;
-    private ArrayList<Ataque> ataques;
-    private ArrayList<ModificadorAtributo> modificadores;
+    private ArrayList<Ataque> ataques = new ArrayList<Ataque>();
+    private ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
     private int mantencion;
+    
     // Static
     public static int costo;
+    public static String rutaSprite;
+    
+    
     
 }

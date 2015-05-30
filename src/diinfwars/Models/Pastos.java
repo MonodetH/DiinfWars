@@ -11,4 +11,13 @@ package diinfwars.Models;
  */
 public class Pastos extends Casilla{
     
+    /*
+     * Deberia utilizar los constructores de la clase padre Casilla
+     */
+    
+    @Override
+    protected void setDefaults() {
+        this.defensa = 40;
+        this.rutaSprite = "/images/spritePasto.jpg";
+    }
 }

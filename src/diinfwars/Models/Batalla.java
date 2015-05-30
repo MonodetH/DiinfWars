@@ -33,4 +33,8 @@ public class Batalla {
         estratega1 = new Estratega(oroi1,1);
         estratega2 = new Estratega(oroi2,1);
     }
+    
+    public Mapa getMapa(){
+        return mapa;
+    }
 }

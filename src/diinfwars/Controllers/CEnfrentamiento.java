@@ -6,6 +6,7 @@
 package diinfwars.Controllers;
 
 import diinfwars.Models.Batalla;
+import diinfwars.Models.Casilla;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Views.VEnfrentamiento;
@@ -28,23 +29,38 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     private Jugador jugador1,jugador2;
     /**Mapa en el que se hará la batalla*/
     private Mapa mapa;
+    /**Datos de la batalla*/
+    private Batalla batalla;
     
     
     /**Constructor que instancia la vista*/
     public CEnfrentamiento(){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
-        Mapa mapa1 = new Mapa(0);
+        Mapa mapa1 = new Mapa(1);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
-        Batalla batalla = new Batalla(jug1,jug2,mapa1,5,10,10);
+        Batalla datosBatalla = new Batalla(jug1,jug2,mapa1,5,10,10);
+        
         
         
         /*Aqui empieza este controlador*/
-        
-        
+        this.batalla = datosBatalla;
+        this.mapa = batalla.getMapa();
         this.v = new VEnfrentamiento(this,this);
+        v.setTerreno(crearMatrizTerreno());
     }
 
+    private String[][] crearMatrizTerreno(){
+        Casilla[][] matrizCasillas = mapa.getCasillas();
+        String[][] retorno = new String[9][20];
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                retorno[i][j] = matrizCasillas[i][j].getSprite();
+            }
+        }
+        return retorno;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();

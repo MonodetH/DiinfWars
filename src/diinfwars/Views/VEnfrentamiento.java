@@ -16,6 +16,7 @@ import javax.swing.JLayer;
  * @see CEnfrentamiento
  */
 public class VEnfrentamiento extends javax.swing.JFrame {
+    // ATRIBUTOS
     /**MODO: 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar.*/
     private int modo = 0;
     /**Posición de la casilla seleccionada actualmente*/
@@ -29,7 +30,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     /**Jugador activo*/
     private int jActivo = 1;
     
-    
+    // CONSTRUCTORES
     /**Constructor de la vista sin listeners*/
     public VEnfrentamiento() {
         initComponents();
@@ -48,6 +49,17 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    // Metodos
+    public void setTerreno(String[][] casillas){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                matrizMapa[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(casillas[i][j])));
+            }
+        }
+    }
+    
+    
+    // GETS Y SETS
     /**
      * Cambia la ventana de modo
      * @param modo 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar.
@@ -65,7 +77,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         matrizUnidad[casillaSeleccionada[0]][casillaSeleccionada[1]].setBorder(javax.swing.BorderFactory.createEmptyBorder());
         this.casillaSeleccionada[0]=i;
         this.casillaSeleccionada[1]=j;
-        matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 0), 1, true));
+        matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(250, 245, 0), 1, true));
     }
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
@@ -119,6 +131,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         for (int i=0;i<9;i++){
             for (int j=0;j<20;j++){
                 matrizMapa[i][j]= new JLabel();
+                matrizMapa[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(150, 150, 150), 1, true));
                 matrizRango[i][j]= new JLabel();
                 matrizUnidad[i][j]= new JLabel();
                 capaUnidad.add(matrizUnidad[i][j]);
@@ -127,7 +140,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             }
         }
         // imprimir mapa
-        matrizMapa[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TerrenoPlaceHolder.png")));
+        //matrizMapa[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TerrenoPlaceHolder.png")));
     }
     
     /**
@@ -221,6 +234,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         botonFinalizarTurno.setText("Finalizar Turno");
         botonFinalizarTurno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonFinalizarTurno.setMargin(new java.awt.Insets(2, 2, 2, 2));
         getContentPane().add(botonFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 110, 120));
 
         botonRendirse.setText("Rendirse");
