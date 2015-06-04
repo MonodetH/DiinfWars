@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
+import javax.swing.JPanel;
 
 /**
  * Vista de la pantalla Enfrentamiento
@@ -24,7 +25,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     /**Matriz que contiene la representacion de las unidades*/
     private JLabel[][] matrizUnidad = new JLabel[9][20];
     /**Matriz que contiene la representacion del rango de ataque o movimiento*/
-    private JLabel[][] matrizRango = new JLabel[9][20];
+    private JPanel[][] matrizRango = new JPanel[9][20];
     /**Matriz que contiene la representacion de los terrenos*/
     private JLabel[][] matrizMapa = new JLabel[9][20];
     /**Jugador activo*/
@@ -50,13 +51,46 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
 
     // Metodos
-    public void setTerreno(String[][] casillas){
+    public void dibujarTerreno(String[][] casillas){
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
                 matrizMapa[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(casillas[i][j])));
             }
         }
     }
+    
+    public void dibujarUnidades(String[][] unidades){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                matrizUnidad[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(unidades[i][j])));
+            }
+        }
+    }
+    
+    public void dibujarRango(boolean[][] rango){
+        // Ocultar rango        
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                matrizRango[i][j].setBackground(new java.awt.Color(0, 0, 0, 0));
+                System.out.println(String.valueOf(i)+" "+String.valueOf(j));
+            }
+        }
+        if (this.modo == 0){return;} // Si solo se quiere ocultar el rango, la funcion termina aqui
+        java.awt.Color color;
+        if (this.modo == 1){color = new java.awt.Color(50, 50, 255, 80);}
+        else if (this.modo == 2 || this.modo == 3){color = new java.awt.Color(255, 50, 50, 80);}
+        else{color = new java.awt.Color(50, 255, 50, 80);}
+        
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(rango[i][j]){
+                    matrizRango[i][j].setBackground(color);
+                }
+            }
+        }        
+    }
+    
+    
     
     
     // GETS Y SETS
@@ -132,7 +166,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             for (int j=0;j<20;j++){
                 matrizMapa[i][j]= new JLabel();
                 matrizMapa[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(150, 150, 150), 1, true));
-                matrizRango[i][j]= new JLabel();
+                matrizRango[i][j]= new JPanel();
+                matrizRango[i][j].setBackground(new java.awt.Color(0, 0, 0, 0));
                 matrizUnidad[i][j]= new JLabel();
                 capaUnidad.add(matrizUnidad[i][j]);
                 capaRango.add(matrizRango[i][j]);

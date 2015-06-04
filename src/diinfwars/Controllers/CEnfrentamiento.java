@@ -47,7 +47,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.v = new VEnfrentamiento(this,this);
-        v.setTerreno(mapa.terrenoToString());
+        v.dibujarTerreno(mapa.terrenoToString());
     }
     
     @Override
@@ -59,10 +59,30 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             // cambio de modo
-            if(boton.getText() == "Mover"){v.setModo(1);}
-            else if(boton.getText() == "Atacar"){v.setModo(2);}
-            else if(boton.getText() == "As Táctico"){v.setModo(3);}
-            else if(boton.getText() == "Reclutar"){v.setModo(4);}
+            if(boton.getText() == "Mover"){
+                v.setModo(1);
+                int[] casillaActual = v.getCasillaSeleccionada();
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                v.dibujarRango(rango);
+            }
+            else if(boton.getText() == "Atacar"){
+                v.setModo(2);
+                int[] casillaActual = v.getCasillaSeleccionada();
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                v.dibujarRango(rango);
+            }
+            else if(boton.getText() == "As Táctico"){
+                v.setModo(3);
+                int[] casillaActual = v.getCasillaSeleccionada();
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                v.dibujarRango(rango);
+            }
+            else if(boton.getText() == "Reclutar"){
+                v.setModo(4);
+                int[] casillaActual = v.getCasillaSeleccionada();
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                v.dibujarRango(rango);
+            }
         }else{
             System.out.println("Otro");
         }
@@ -71,7 +91,6 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Label clickeada");
         JLabel source = (JLabel) e.getSource();
         int i=0, j=0;
         for(int x=0;x<9;x++){
@@ -82,8 +101,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 }
             }
         }
-        System.out.println(String.valueOf(i)+" "+String.valueOf(j));
+        
         this.v.setCasillaSeleccionada(i,j);
+        v.dibujarRango(mapa.getRango(v.getModo(), i, j));
     }
 
     @Override

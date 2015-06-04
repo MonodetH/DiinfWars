@@ -54,4 +54,18 @@ public class Mapa {
         }
         return retorno;
     }
+    
+    public boolean[][] getRango(int modo,int fila,int col){
+        if(modo == 0){return new boolean[9][20];} //esto dejalo asi
+        
+        //para esto recomiendo usar un metodo privado por modo, para no mezclar todo el codigo
+        boolean[][] retorno = new boolean[9][20];
+        retorno[1][1]=true;
+        retorno[1][3]=true;
+        retorno[2][1]=true;
+        retorno[2][2]=true;
+        retorno[2][3]=true;
+        
+        return retorno;
+    }
 }
