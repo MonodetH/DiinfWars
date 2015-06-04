@@ -34,7 +34,7 @@ public class Batalla {
         estratega2 = new Estratega(oroi2,1);
     }
     
-    public Mapa getMapa(){
-        return mapa;
-    }
+    public Mapa getMapa(){return mapa;}
+    public Jugador getJugador1(){return this.jugador1;}
+    public Jugador getJugador2(){return this.jugador2;}
 }

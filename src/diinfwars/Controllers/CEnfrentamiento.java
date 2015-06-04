@@ -46,16 +46,26 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         /*Aqui empieza este controlador*/
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
+        this.jugador1 = batalla.getJugador1();
+        this.jugador2 = batalla.getJugador2();
         this.v = new VEnfrentamiento(this,this);
+        v.setLabel2(jugador1.getNombre());
         v.dibujarTerreno(mapa.terrenoToString());
+        
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if( source instanceof JButton){
+            JButton boton = (JButton) e.getSource();
             // finalizar turno o rendirse
-            System.out.println("Button");
+            if(boton.getText() == "Finalizar Turno"){
+                String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();
+                v.toggleJugador(nombreJugador);
+                v.setModo(0);
+                v.dibujarRango(new boolean[9][20]);
+            }
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             // cambio de modo
@@ -79,8 +89,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
             else if(boton.getText() == "Reclutar"){
                 v.setModo(4);
-                int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                boolean[][] rango;
+                rango = mapa.getRango(v.getModo(),4,(v.getJugador() == 1)?0:19);
                 v.dibujarRango(rango);
             }
         }else{

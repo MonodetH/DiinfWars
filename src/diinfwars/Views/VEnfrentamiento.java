@@ -72,7 +72,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
                 matrizRango[i][j].setBackground(new java.awt.Color(0, 0, 0, 0));
-                System.out.println(String.valueOf(i)+" "+String.valueOf(j));
             }
         }
         if (this.modo == 0){return;} // Si solo se quiere ocultar el rango, la funcion termina aqui
@@ -114,6 +113,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(250, 245, 0), 1, true));
     }
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
+    public int getJugador(){return this.jActivo;}
+    public void toggleJugador(String nombre){
+        if(this.jActivo == 1){this.jActivo=2;}
+        else{this.jActivo=1;}
+        setLabel2(nombre);
+    }
+    public void setLabel1(String str){this.jLabel1.setText(str);}
+    public void setLabel2(String str){this.jLabel2.setText(str);}
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
     /**
      * Cambia visualmente los botones de seleccion de modo
@@ -175,7 +182,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             }
         }
         // imprimir mapa
-        //matrizMapa[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TerrenoPlaceHolder.png")));
+        matrizUnidad[2][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SpriteAlumnoAzul.png")));
     }
     
     /**

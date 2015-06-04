@@ -59,12 +59,23 @@ public class Mapa {
         if(modo == 0){return new boolean[9][20];} //esto dejalo asi
         
         //para esto recomiendo usar un metodo privado por modo, para no mezclar todo el codigo
+        if (modo == 4){return rangoReclutar(col);}
         boolean[][] retorno = new boolean[9][20];
         retorno[1][1]=true;
         retorno[1][3]=true;
         retorno[2][1]=true;
         retorno[2][2]=true;
         retorno[2][3]=true;
+        
+        return retorno;
+    }
+
+    private boolean[][] rangoReclutar(int columna) {
+        boolean[][] retorno = new boolean[9][20];
+        retorno[2][columna]=true;
+        retorno[3][columna]=true;
+        retorno[5][columna]=true;
+        retorno[6][columna]=true;
         
         return retorno;
     }
