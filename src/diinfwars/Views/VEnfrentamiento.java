@@ -47,7 +47,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         init();
         agregarActionListener(al);
         agregarMouseListener(ml);
-        this.setVisible(true);
     }
 
     // Metodos

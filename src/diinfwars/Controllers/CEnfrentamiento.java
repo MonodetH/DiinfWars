@@ -49,14 +49,21 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.jugador1 = batalla.getJugador1();
         this.jugador2 = batalla.getJugador2();
         this.v = new VEnfrentamiento(this,this);
+        this.run();
         v.setLabel2(jugador1.getNombre());
         v.dibujarTerreno(mapa.terrenoToString());
         
     }
     
+    public void run(){
+        this.v.setVisible(true);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        
+        // En caso de que sean botones
         if( source instanceof JButton){
             JButton boton = (JButton) e.getSource();
             // finalizar turno o rendirse
@@ -66,42 +73,46 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 v.setModo(0);
                 v.dibujarRango(new boolean[9][20]);
             }
+        // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             // cambio de modo
             if(boton.getText() == "Mover"){
                 v.setModo(1);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "Atacar"){
                 v.setModo(2);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "As Táctico"){
                 v.setModo(3);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1]);
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "Reclutar"){
                 v.setModo(4);
-                boolean[][] rango;
-                rango = mapa.getRango(v.getModo(),4,(v.getJugador() == 1)?0:19);
+                int[] casillaActual = v.getCasillaSeleccionada();
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
                 v.dibujarRango(rango);
             }
+        // En caso de que sea una accion no implementada
         }else{
             System.out.println("Otro");
         }
         
     }
-    
+
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         JLabel source = (JLabel) e.getSource();
+        
+        // Obtener posicion seleccionada
         int i=0, j=0;
         for(int x=0;x<9;x++){
             for(int y=0;y<20;y++){
@@ -112,29 +123,22 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
         }
         
+        // Actualizar Casilla seleccionada y matriz de rango
         this.v.setCasillaSeleccionada(i,j);
-        v.dibujarRango(mapa.getRango(v.getModo(), i, j));
+        v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador()));
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        ///throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void mouseClicked(MouseEvent e) {}
+    
+    @Override
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void mouseExited(MouseEvent e) {}
     
     public static void main(String[] args){
         new CEnfrentamiento();
