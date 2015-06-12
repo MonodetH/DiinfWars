@@ -20,6 +20,6 @@ public class Profesor extends Unidad{
 
     @Override
     protected void setDefaults(int equipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }
