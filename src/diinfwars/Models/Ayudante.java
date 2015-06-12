@@ -10,5 +10,16 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Ayudante extends Unidad{
-    
+    public static int sCosto = 9999;
+    public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
+    public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
+
+    public Ayudante(int equipo) {
+        super(equipo);
+    }
+
+    @Override
+    protected void setDefaults(int equipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
