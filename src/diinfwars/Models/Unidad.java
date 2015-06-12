@@ -28,6 +28,12 @@ public abstract class Unidad {
     
     
     // CONSTRUCTORES
+    public Unidad(){
+        // se crea una naturaleza y se agrega a modificadores
+        modificadores.add(new ModificadorAtributo());
+        
+        
+    }
     
     
     // METODOS ABSTRACTOS (distintos en cada unidad)

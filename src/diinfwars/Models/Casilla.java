@@ -18,6 +18,8 @@ public abstract class Casilla {
     protected int parte = 1;
     protected boolean habilitada = true;
     protected String rutaSprite;
+    protected String habEntrada = "";
+    protected String habPersistente = "";
     
     
     // Static
@@ -44,7 +46,7 @@ public abstract class Casilla {
     
     // Metodos abstractos que deben ser implementados por los hijos
     protected abstract void setDefaults();
-    //public abstract void usarHabilidad();
+    
     
     //Metodos genericos que serán heredados
     public boolean setUnidad(Unidad unidad){
@@ -66,10 +68,8 @@ public abstract class Casilla {
         return respuesta;
     }
     
-    public String getSprite(){
-        return this.rutaSprite;
-    }
-    
-    
+    public String getSprite(){return this.rutaSprite;}
+    public String getHabilidadEntrada(){return this.habEntrada;}
+    public String getHabilidadPersistente(){return this.habPersistente;}
     
 }

@@ -24,4 +24,24 @@ public class Estratega {
         unidades.add(new Profesor());
         asCooldown = 11;
     }
+    
+    public Unidad reclutar(String tipoUnidad){
+        Unidad nuevaUnidad;
+        
+        switch (tipoUnidad){
+            case "Alumno":
+                nuevaUnidad = new Alumno();
+                break;
+            default:
+                nuevaUnidad = null;
+                break;
+        }
+        
+        return nuevaUnidad;
+    }
+    
+    public Unidad getProfesor(){
+        Unidad candidato = unidades.get(0);
+        return (candidato instanceof Profesor)?candidato:null; // si candidato es profesor lo retorna, sino null
+    }
 }

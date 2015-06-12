@@ -37,6 +37,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         initComponents();
         init();
     }
+    
     /**
      * Constructor de la vista que recive dos listeners
      * @param al Controlador como ActionListener

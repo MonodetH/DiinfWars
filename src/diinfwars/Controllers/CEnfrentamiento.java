@@ -48,7 +48,6 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
         this.jugador2 = batalla.getJugador2();
-        this.v = new VEnfrentamiento(this,this);
         this.run();
         v.setLabel2(jugador1.getNombre());
         v.dibujarTerreno(mapa.terrenoToString());
@@ -56,6 +55,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     }
     
     public void run(){
+        if (this.v == null){this.v = new VEnfrentamiento(this,this);}
         this.v.setVisible(true);
     }
     
