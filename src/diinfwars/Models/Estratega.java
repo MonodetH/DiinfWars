@@ -19,12 +19,23 @@ public class Estratega {
     private int asTactico = 0;
     private int asCooldown;
     
-    public Estratega(int equipo,int oroInicial,int as){
+    /**
+     * Costructor de la clase Estratega
+     * @param equipo Equipo al cual lidera: 1: equipo azul, 2: equipo rojo
+     * @param oroInicial
+     * @param as As tactico que se ha helegido. valor entero
+     * @param puntosCorto Puntos de ataque asignados al rango corto de profesor
+     * @param puntosMedio Puntos asignados al rango medio de profesor
+     * @param naturalezaProfesor1 Nombre de una naturaleza del profesor
+     * @param naturalezaProfesor2 Nombre de una naturaleza del profesor
+     */
+    public Estratega(int equipo,int oroInicial,int as,int puntosCorto,int puntosMedio,String naturalezaProfesor1, String naturalezaProfesor2){
         this.equipo = equipo;
         oro = oroInicial;
         asTactico = as;
-        unidades.add(new Profesor(equipo));
         asCooldown = 11;
+        
+        unidades.add(new Profesor(equipo,puntosCorto,puntosMedio,naturalezaProfesor1,naturalezaProfesor2));
     }
     
     /**

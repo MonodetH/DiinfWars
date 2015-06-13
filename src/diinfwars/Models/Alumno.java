@@ -21,18 +21,19 @@ public class Alumno extends Unidad{
     @Override
     protected void setDefaults(int equipo) {
         // ATRIBUTOS
+        this.equipo = equipo;
         this.hp = 40;
         this.hpMax = 40;
         this.movimiento = 4;
         this.mantencion = 3;
         this.costo = 6;
+
+        this.rutaSprite = (equipo == 1)? Alumno.sRutaSprite1:Alumno.sRutaSprite2;
         
         /*
-            Aqui depende del equipo al que pertenezca si se utilizará el sprite
-            azul o rojo.
-            CAMBIAR LA RUTA DEL ROJO (SEGUNDO STRING) CUANDO SE TENGA EL SPRITE
+            La naturaleza se agrega en el constructor de unidad, asi que ya no
+            es necesario agregar una denuevo.
         */
-        this.rutaSprite = (equipo == 1)? "/images/spriteAlumnoAzul.jpg":"/images/unidadPlaceholder.png";
         
         // ATAQUES
         this.ataques.add(new Ataque(4,3,2));

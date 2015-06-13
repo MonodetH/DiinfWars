@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class Unidad {
     // ATRIBUTOS   
+    protected int equipo;
     protected int hp;
     protected int hpMax;
     protected int estamina=100;
@@ -28,12 +29,22 @@ public abstract class Unidad {
     
     
     // CONSTRUCTORES
+    public Unidad(){}
     public Unidad(int equipo){
         setDefaults(equipo);
         // se crea una naturaleza y se agrega a modificadores
         modificadores.add(new ModificadorAtributo());
-        
     }
+    
+    /**
+     * Constructor de unidad, Usada solo por profesor.
+     * @param equipo
+     * @param puntosCorto
+     * @param puntosMedio
+     * @param naturaleza1
+     * @param naturaleza2 
+     */
+    public Unidad(int equipo,int puntosCorto,int puntosMedio,String naturaleza1,String naturaleza2){}
     
     
     // METODOS ABSTRACTOS (distintos en cada unidad)

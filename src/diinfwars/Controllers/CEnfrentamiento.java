@@ -6,7 +6,6 @@
 package diinfwars.Controllers;
 
 import diinfwars.Models.Batalla;
-import diinfwars.Models.Casilla;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Views.VEnfrentamiento;
@@ -39,7 +38,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
         Mapa mapa1 = new Mapa(1);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
-        Batalla datosBatalla = new Batalla(jug1,jug2,mapa1,5,10,10);
+        Batalla datosBatalla = new Batalla(mapa1,5,jug1,10,1,2,3,"Estudioso","Deportista",jug2,10,1,3,2,"Estudioso","Deportista");
+        
         
         
         

@@ -17,6 +17,22 @@ public class Profesor extends Unidad{
     public Profesor(int equipo) {
         super(equipo);
     }
+    
+
+    public Profesor(int equipo,int puntosCorto,int puntosMedio,String naturaleza1,String naturaleza2){
+        setDefaults(equipo);
+        
+        // Naturalezas
+        /*
+            AGREGAR NATURALEZAS SEGUN CORRESPONDA
+        */
+        modificadores.add(new ModificadorAtributo());
+        modificadores.add(new ModificadorAtributo());
+        
+        //Ataques
+        ataques.add(new Ataque(puntosCorto,2,1));
+        ataques.add(new Ataque(puntosMedio,3,2));
+    }
 
     @Override
     protected void setDefaults(int equipo) {
