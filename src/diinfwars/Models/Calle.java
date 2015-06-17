@@ -9,11 +9,12 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class Calle extends Casilla{
+public class Calle extends Casilla {
 
     @Override
     protected void setDefaults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defensa = 0;
+        this.rutaSprite = "/images/spritePasto.jpg";
     }
     
 }

@@ -13,7 +13,8 @@ public class EAO extends Casilla {
 
     @Override
     protected void setDefaults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defensa = 50;
+        this.rutaSprite = "/images/spritePasto.jpg";
     }
     
 }

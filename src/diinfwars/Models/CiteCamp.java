@@ -9,6 +9,12 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class CiteCamp {
+public class CiteCamp extends Casilla {
+    
+    @Override
+    protected void setDefaults() {
+        this.defensa = 50;
+        this.rutaSprite = "/images/spritePasto.jpg";
+    }
     
 }

@@ -9,18 +9,30 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class CoordinadorAyudantes extends Unidad{
-    public static int sCosto = 9999;
+public class CoordinadorAyudantes extends Unidad {
+    public static int sCosto = 10;
     public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
     public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
 
     public CoordinadorAyudantes(int equipo) {
         super(equipo);
     }
-
+    
     @Override
     protected void setDefaults(int equipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // ATRIBUTOS
+        this.equipo = equipo;
+        this.hp = 35;
+        this.hpMax = 35;
+        this.movimiento = 2;
+        this.mantencion = 5;
+        this.costo = 10;
+
+        this.rutaSprite = (equipo == 1)? CoordinadorAyudantes.sRutaSprite1:CoordinadorAyudantes.sRutaSprite2;
+        
+                // ATAQUES
+        this.ataques.add(new Ataque(6,3,3));
+        this.ataques.add(new Ataque(2,2,1));
     }
     
 }

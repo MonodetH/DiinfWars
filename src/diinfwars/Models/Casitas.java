@@ -9,11 +9,12 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class Casitas extends Casilla{
+public class Casitas extends Casilla {
 
     @Override
     protected void setDefaults() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defensa = 40;
+        this.rutaSprite = "/images/spritePasto.jpg";
     }
     
 }

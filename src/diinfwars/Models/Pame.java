@@ -9,18 +9,29 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class Pame extends Unidad{
-    public static int sCosto = 9999;
+public class Pame extends Unidad {
+    public static int sCosto = 12;
     public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
     public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
 
     public Pame(int equipo) {
         super(equipo);
     }
-
+    
     @Override
     protected void setDefaults(int equipo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // ATRIBUTOS
+        this.equipo = equipo;
+        this.hp = 30;
+        this.hpMax = 30;
+        this.movimiento = 4;
+        this.mantencion = 6;
+        this.costo = 12;
+
+        this.rutaSprite = (equipo == 1)? Pame.sRutaSprite1:Pame.sRutaSprite2;
+        
+                // ATAQUES
+        this.ataques.add(new Ataque(3,4,2));
     }
     
 }

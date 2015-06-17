@@ -56,4 +56,8 @@ public abstract class Unidad {
         return this.equipo;
     }
     
+    public int getMovimientos(){
+        return this.movimiento;
+    }
+    
 }

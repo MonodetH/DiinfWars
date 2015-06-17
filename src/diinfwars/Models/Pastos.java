@@ -9,7 +9,7 @@ package diinfwars.Models;
  *
  * @author MonodetH
  */
-public class Pastos extends Casilla{
+public class Pastos extends Casilla {
     
     /*
      * Deberia utilizar los constructores de la clase padre Casilla
@@ -20,4 +20,5 @@ public class Pastos extends Casilla{
         this.defensa = 40;
         this.rutaSprite = "/images/spritePasto.jpg";
     }
+    
 }

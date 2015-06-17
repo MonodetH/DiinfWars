@@ -104,8 +104,40 @@ public class Mapa {
      * @return Una matriz de 9x20 con el rango valido para cierto modo
      */
     public boolean[][] getRango(int modo,int fila,int col,int jugador){
-        // Si el modo es 0, se devuelve una matriz de false.
-        if(modo == 0){return new boolean[9][20];}
+//        // Si el modo es 0, se devuelve una matriz de false.
+//        if(modo == 0){return new boolean[9][20];}
+//        
+//        if(modo == 2){return new boolean[9][20];}
+//        int movimientos = matrizCasillas[fila][col].getUnidad().getMovimientos();
+//        boolean[][] retorno = new boolean[9][20];
+//        
+//        switch(movimientos)
+//        {
+//            case 1:
+//                int[] arreglo = {0,1,0};
+//                int filaInicial = fila - movimientos;
+//                int filaCambio = filaInicial;
+//                int filaFinal = fila + movimientos;
+//                int variableUno = Math.abs(filaInicial - filaCambio);
+//                int variableDos = arreglo[variableUno];
+//                
+//                int variableTres,colCambio,colFinal;
+//                while (filaCambio<=filaFinal)
+//                {
+//                    variableTres = -variableDos;
+//                    colCambio = col + variableTres;
+//                    colFinal = col + variableDos;
+//                    while (colCambio<=colFinal)
+//                    {
+//                        retorno[filaCambio][colCambio]=true;
+//                        colCambio+=1;
+//                    } 
+//                       
+//                    filaCambio+=1;
+//                }
+//                break;
+            
+        
         
         /*
             Para esto recomiendo usar un metodo privado por modo, para no mezclar todo el codigo.
