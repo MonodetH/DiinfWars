@@ -26,6 +26,9 @@ public class Profesor extends Unidad {
         /*
             AGREGAR NATURALEZAS SEGUN CORRESPONDA
         */
+        if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista"){
+            modificadores.add(new ModificadorAtributo("movimiento",1,-1));
+        }
         modificadores.add(new ModificadorAtributo());
         modificadores.add(new ModificadorAtributo());
         

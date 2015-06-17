@@ -18,6 +18,18 @@ public class ModificadorAtributo {
      * Constructor que genera una naturaleza al azar
      */
     public ModificadorAtributo(){
+        int aleatorio = 3;
+        if (aleatorio ==3){ // Deportista
+            this.atributo = "movimiento";
+            this.modificacion = 1;
+            this.turnosRestantes = -1;
+        }else if(aleatorio == 4){ // Estudioso
+            this.atributo = "ataque";
+            this.modificacion = 1;
+            this.turnosRestantes = -1;
+        }
+        
+        
         /*
             IMPLEMENTAR
         */

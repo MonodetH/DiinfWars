@@ -11,6 +11,16 @@ package diinfwars.Models;
  */
 public class Sherwood extends Casilla {
 
+    public Sherwood(){
+        super();
+    }
+    public Sherwood(boolean isHabilitada){
+        super(isHabilitada);
+    }
+    public Sherwood(boolean isHorizontal, int parte){
+        super(isHorizontal,parte);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 100;
