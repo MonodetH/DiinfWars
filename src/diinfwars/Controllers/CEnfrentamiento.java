@@ -8,11 +8,13 @@ package diinfwars.Controllers;
 import diinfwars.Models.Batalla;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
+import diinfwars.Models.Unidad;
 import diinfwars.Views.VEnfrentamiento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
@@ -30,6 +32,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     private Mapa mapa;
     /**Datos de la batalla*/
     private Batalla batalla;
+    
+    private ArrayList<Unidad> uMovidas = new ArrayList<Unidad>();
+    private ArrayList<Unidad> uAtacantes = new ArrayList<Unidad>();
+    
     
     
     /**Constructor que instancia la vista*/
@@ -51,6 +57,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.run();
         v.setLabel2(jugador1.getNombre());
         v.dibujarTerreno(mapa.terrenoToString());
+        v.dibujarUnidades(mapa.unidadesToString());
         
     }
     
@@ -72,6 +79,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 v.toggleJugador(nombreJugador);
                 v.setModo(0);
                 v.dibujarRango(new boolean[9][20]);
+                
+                // se reinician las listas de movidos y atacantes
+                uMovidas.clear();
+                uAtacantes.clear();
             }
         // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
@@ -120,6 +131,17 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                     i=x;
                     j=y;
                 }
+            }
+        }
+        
+        if(v.getModo() == 1){
+            int[] posInicial = v.getCasillaSeleccionada();
+            Unidad uSeleccionada = mapa.getUnidad(posInicial[0], posInicial[1]);
+            if(uSeleccionada != null && v.enRango(i, j) && v.getJugador() == uSeleccionada.getEquipo() && !uMovidas.contains(uSeleccionada)){
+                if (mapa.moverUnidad(posInicial[0], posInicial[1], i, j)){
+                    uMovidas.add(uSeleccionada);
+                }
+                v.dibujarUnidades(mapa.unidadesToString());
             }
         }
         

@@ -62,7 +62,11 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public void dibujarUnidades(String[][] unidades){
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
-                matrizUnidad[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(unidades[i][j])));
+                if(unidades[i][j] != null){
+                    matrizUnidad[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(unidades[i][j])));
+                }else{
+                    matrizUnidad[i][j].setIcon(null);
+                }
             }
         }
     }
@@ -147,6 +151,17 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                 break;
         }
     }
+    
+    public boolean existeUnidad(int fila,int col){
+        return !(matrizUnidad[fila][col].getIcon() == null);
+    }
+    public boolean enRango(int fila, int col){
+        if (matrizRango[fila][col].getBackground().equals(new java.awt.Color(0, 0, 0, 0))){
+            return false;
+        }
+        return true;
+    }
+    
     
     
     private void agregarActionListener(ActionListener al){

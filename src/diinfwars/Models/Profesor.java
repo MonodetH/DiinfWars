@@ -36,6 +36,14 @@ public class Profesor extends Unidad{
 
     @Override
     protected void setDefaults(int equipo) {
-        
+        // ATRIBUTOS
+        this.equipo = equipo;
+        this.hp = 40;
+        this.hpMax = 40;
+        this.movimiento = 4;
+        this.mantencion = 3;
+        this.costo = 6;
+
+        this.rutaSprite = (equipo == 1)? Profesor.sRutaSprite1:Profesor.sRutaSprite2;
     }
 }

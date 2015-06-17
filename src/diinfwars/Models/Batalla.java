@@ -46,6 +46,10 @@ public class Batalla {
         estratega1 = new Estratega(1,oroInicialJ1,asJ1,ptosCortoJ1,ptosMedioJ1,natur1J1,natur2J1);
         estratega2 = new Estratega(2,oroInicialJ2,asJ2,ptosCortoJ2,ptosMedioJ2,natur1J2,natur2J2);
         
+        // se ubican los profesores
+        mapa.ubicarUnidad(estratega1.getProfesor(),4,0);
+        mapa.ubicarUnidad(estratega2.getProfesor(),4,19);
+        
         this.oroKiosco = oroKiosco;
     }
     

@@ -36,14 +36,7 @@ public abstract class Unidad {
         modificadores.add(new ModificadorAtributo());
     }
     
-    /**
-     * Constructor de unidad, Usada solo por profesor.
-     * @param equipo
-     * @param puntosCorto
-     * @param puntosMedio
-     * @param naturaleza1
-     * @param naturaleza2 
-     */
+    /**Constructor de unidad, Usada solo por profesor.*/
     public Unidad(int equipo,int puntosCorto,int puntosMedio,String naturaleza1,String naturaleza2){}
     
     
@@ -57,6 +50,10 @@ public abstract class Unidad {
     // METODOS GENERALES (heredables)
     public String getSprite(){
         return this.rutaSprite;
+    }
+
+    public int getEquipo() {
+        return this.equipo;
     }
     
 }

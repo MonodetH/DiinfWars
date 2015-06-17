@@ -52,10 +52,11 @@ public abstract class Casilla {
     public boolean setUnidad(Unidad unidad){
         if (this.unidad == null){
             this.unidad = unidad;
-            return true;
-        }else{
-            return false;
+            if (this.unidad != null){
+                return true;
+            }
         }
+            return false;
     }
     
     public Unidad getUnidad(){

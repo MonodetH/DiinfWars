@@ -11,7 +11,7 @@ package diinfwars.Models;
  */
 public class Mapa {
     // Atributos
-    private Casilla[][] capaCasillas = new Casilla[9][20];
+    private Casilla[][] matrizCasillas = new Casilla[9][20];
     //private boolean[][] capaRango = new boolean[9][20];
     
     /**
@@ -22,7 +22,7 @@ public class Mapa {
         if (pred == 1){
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
-                    capaCasillas[i][j] = new Pastos();
+                    matrizCasillas[i][j] = new Pastos();
                 }
             }
         }
@@ -41,16 +41,23 @@ public class Mapa {
      * @see Casilla#setUnidad(diinfwars.Models.Unidad) 
      */
     public boolean moverUnidad(int filaInicial, int colInicial,int filaFinal,int colFinal){
-        
-        /*
-            DEBE SER IMPLEMENTADA!
-        */
-        
-        return true;
+        Unidad unidad = matrizCasillas[filaInicial][colInicial].popUnidad();
+        if (matrizCasillas[filaFinal][colFinal].setUnidad(unidad)){ //trata de reubicar la unidad
+            return true;
+        }else{
+            matrizCasillas[filaInicial][colInicial].setUnidad(unidad); // la devuelve a su posicion inicial
+        }
+        return false;
+    }
+    
+    public boolean ubicarUnidad(Unidad unidad,int fila,int col){
+        matrizCasillas[fila][col].setUnidad(unidad); //trata de ubicar la unidad
+        if (matrizCasillas[fila][col].getUnidad()!= null){return true;}
+        return false;
     }
     
     /**Retorna la matriz de casillas*/
-    public Casilla[][] getCasillas(){return this.capaCasillas;}
+    public Casilla[][] getCasillas(){return this.matrizCasillas;}
     
     /**
      * Esta funcion genera una matriz de 9x20 con la direccion a los sprites
@@ -61,7 +68,7 @@ public class Mapa {
         String[][] retorno = new String[9][20];
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
-                retorno[i][j] = capaCasillas[i][j].getSprite();
+                retorno[i][j] = matrizCasillas[i][j].getSprite();
             }
         }
         return retorno;
@@ -76,7 +83,11 @@ public class Mapa {
         String[][] retorno = new String[9][20];
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
-                retorno[i][j] = capaCasillas[i][j].getUnidad().getSprite();
+                if(matrizCasillas[i][j].getUnidad() != null){
+                    retorno[i][j] = matrizCasillas[i][j].getUnidad().getSprite();
+                }else{
+                    retorno[i][j] = null;
+                }
             }
         }
         return retorno;
@@ -136,5 +147,9 @@ public class Mapa {
         retorno[6][columna]=true;
         
         return retorno;
+    }
+
+    public Unidad getUnidad(int fila, int col) {
+        return matrizCasillas[fila][col].getUnidad();
     }
 }
