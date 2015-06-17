@@ -6,6 +6,7 @@
 package diinfwars.Controllers;
 
 import diinfwars.Models.Batalla;
+import diinfwars.Models.Estratega;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Models.Unidad;
@@ -28,6 +29,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     private VEnfrentamiento v;
     /**Jugador asociado*/
     private Jugador jugador1,jugador2;
+    /**Estrategas por jugador*/
+    private Estratega estratega1,estratega2;
     /**Mapa en el que se hará la batalla*/
     private Mapa mapa;
     /**Datos de la batalla*/
@@ -54,6 +57,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
         this.jugador2 = batalla.getJugador2();
+        this.estratega1 = batalla.getEstratega1();
+        this.estratega2 = batalla.getEstratega2();
         this.run();
         v.setLabel2(jugador1.getNombre());
         v.dibujarTerreno(mapa.terrenoToString());
@@ -84,6 +89,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 uMovidas.clear();
                 uAtacantes.clear();
             }
+            
         // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
@@ -111,6 +117,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 int[] casillaActual = v.getCasillaSeleccionada();
                 boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
                 v.dibujarRango(rango);
+                int oroJugador = (v.getJugador() == 1)?estratega1.getOro():estratega1.getOro();
+                v.mostrarMenuReclutar(oroJugador);
             }
         // En caso de que sea una accion no implementada
         }else{
@@ -134,7 +142,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
         }
         
-        if(v.getModo() == 1){
+        if(v.getModo() == 1){ // modo mover
             int[] posInicial = v.getCasillaSeleccionada();
             Unidad uSeleccionada = mapa.getUnidad(posInicial[0], posInicial[1]);
             if(uSeleccionada != null && v.enRango(i, j) && v.getJugador() == uSeleccionada.getEquipo() && !uMovidas.contains(uSeleccionada)){
@@ -143,6 +151,12 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 }
                 v.dibujarUnidades(mapa.unidadesToString());
             }
+        }else if(v.getModo() == 2){ // modo atacar
+            
+        }else if(v.getModo() == 3){ // modo as tactico
+            // aqui depende de cada as
+        }else if(v.getModo() == 4){ // modo reclutar
+            // CREO QUE NO SE HACE NADA AQUI
         }
         
         // Actualizar Casilla seleccionada y matriz de rango

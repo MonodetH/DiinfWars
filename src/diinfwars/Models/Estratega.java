@@ -72,4 +72,6 @@ public class Estratega {
         Unidad candidato = unidades.get(0);
         return (candidato instanceof Profesor)?candidato:null; // si candidato es profesor lo retorna, sino null
     }
+    
+    public int getOro(){return this.oro;}
 }

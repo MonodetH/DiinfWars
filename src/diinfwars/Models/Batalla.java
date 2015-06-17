@@ -56,5 +56,7 @@ public class Batalla {
     public Mapa getMapa(){return mapa;}
     public Jugador getJugador1(){return this.jugador1;}
     public Jugador getJugador2(){return this.jugador2;}
+    public Estratega getEstratega1(){return this.estratega1;}
+    public Estratega getEstratega2(){return this.estratega2;}
     public int getOroKiosco(){return this.oroKiosco;}
 }

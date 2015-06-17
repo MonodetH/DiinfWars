@@ -162,6 +162,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         return true;
     }
     
+    public void mostrarMenuReclutar(int oro) {
+        
+    }
     
     
     private void agregarActionListener(ActionListener al){
@@ -213,7 +216,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         capaMapa = new javax.swing.JPanel();
         capaRango = new javax.swing.JPanel();
         capaUnidad = new javax.swing.JPanel();
-        panelInfo = new javax.swing.JPanel();
+        Info = new javax.swing.JLayeredPane();
+        infoReclutar = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        bReclutarAlumno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         botonMover = new javax.swing.JToggleButton();
@@ -225,6 +233,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DIInfWars - Enfrentamiento");
+        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
         setFocusableWindowState(false);
@@ -253,21 +262,64 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         getContentPane().add(Tablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 300));
 
-        panelInfo.setBackground(new java.awt.Color(255, 255, 255));
-        panelInfo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        Info.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        javax.swing.GroupLayout panelInfoLayout = new javax.swing.GroupLayout(panelInfo);
-        panelInfo.setLayout(panelInfoLayout);
-        panelInfoLayout.setHorizontalGroup(
-            panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+        infoReclutar.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setText("Alumno");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/spriteAlumnoAzul.png"))); // NOI18N
+
+        jLabel5.setText("Costo: 3");
+
+        bReclutarAlumno.setText("Reclutar");
+
+        javax.swing.GroupLayout infoReclutarLayout = new javax.swing.GroupLayout(infoReclutar);
+        infoReclutar.setLayout(infoReclutarLayout);
+        infoReclutarLayout.setHorizontalGroup(
+            infoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoReclutarLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bReclutarAlumno)
+                .addContainerGap(425, Short.MAX_VALUE))
         );
-        panelInfoLayout.setVerticalGroup(
-            panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 236, Short.MAX_VALUE)
+        infoReclutarLayout.setVerticalGroup(
+            infoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoReclutarLayout.createSequentialGroup()
+                .addGroup(infoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoReclutarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(infoReclutarLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3))
+                    .addGroup(infoReclutarLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(infoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(bReclutarAlumno))))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 660, 240));
+        javax.swing.GroupLayout InfoLayout = new javax.swing.GroupLayout(Info);
+        Info.setLayout(InfoLayout);
+        InfoLayout.setHorizontalGroup(
+            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(infoReclutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        InfoLayout.setVerticalGroup(
+            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(infoReclutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        Info.setLayer(infoReclutar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 660, 240));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Turno de");
@@ -338,7 +390,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane Info;
     private javax.swing.JLayeredPane Tablero;
+    private javax.swing.JButton bReclutarAlumno;
     private javax.swing.JToggleButton botonAsTactico;
     private javax.swing.JToggleButton botonAtacar;
     private javax.swing.JButton botonFinalizarTurno;
@@ -348,8 +402,13 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel capaMapa;
     private javax.swing.JPanel capaRango;
     private javax.swing.JPanel capaUnidad;
+    private javax.swing.JPanel infoReclutar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel panelInfo;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
+    
 }
