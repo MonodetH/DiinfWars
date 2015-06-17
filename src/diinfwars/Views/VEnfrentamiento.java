@@ -7,6 +7,7 @@ package diinfwars.Views;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
@@ -63,6 +64,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
                 if(unidades[i][j] != null){
+                    System.out.println(unidades[i][j]);
                     matrizUnidad[i][j].setIcon(new javax.swing.ImageIcon(getClass().getResource(unidades[i][j])));
                 }else{
                     matrizUnidad[i][j].setIcon(null);
@@ -126,6 +128,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public void setLabel1(String str){this.jLabel1.setText(str);}
     public void setLabel2(String str){this.jLabel2.setText(str);}
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
+    public JButton getReclutarAlumno(){return this.bReclutarAlumno;}
     /**
      * Cambia visualmente los botones de seleccion de modo
      * @param activado Modo activado
@@ -174,6 +177,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.botonReclutar.addActionListener(al);
         this.botonFinalizarTurno.addActionListener(al);
         this.botonRendirse.addActionListener(al);
+        this.bReclutarAlumno.addActionListener(al);
     }
     
     private void agregarMouseListener(MouseListener ml){
@@ -200,7 +204,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             }
         }
         // imprimir mapa
-        matrizUnidad[2][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SpriteAlumnoAzul.png")));
+        //matrizUnidad[2][3].setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SpriteAlumnoAzul.png")));
     }
     
     /**

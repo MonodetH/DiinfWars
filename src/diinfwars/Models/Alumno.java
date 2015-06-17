@@ -11,7 +11,7 @@ package diinfwars.Models;
  */
 public class Alumno extends Unidad {
     public static int sCosto = 6;
-    public static String sRutaSprite1 = "/images/spriteAlumnoAzul.jpg";
+    public static String sRutaSprite1 = "/images/spriteAlumnoAzul.png";
     public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
 
     public Alumno(int equipo) {

@@ -90,6 +90,17 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 uAtacantes.clear();
             }
             
+            if(boton == v.getReclutarAlumno()){
+                System.out.println("yeah!");
+                int[] pos = v.getCasillaSeleccionada();
+                if(v.getModo() == 4 && v.enRango(pos[0], pos[1])){
+                    Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
+                    Unidad unidad = estratega.reclutar("Alumno");
+                    mapa.ubicarUnidad(unidad,pos[0], pos[1]);
+                    v.dibujarUnidades(mapa.unidadesToString());
+                }
+            }
+            
         // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
