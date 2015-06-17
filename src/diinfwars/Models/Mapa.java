@@ -18,19 +18,20 @@ public class Mapa {
      * Constructor de mapa
      * @param pred mapa seleccionado: 0 = Aleatorio, 1 = Predet1, 2 = Predet2, 3 = Predet3 
      */
-    public Mapa(int pred){
-        String[][] mapa1 = new String[9][20];
-        mapa1 = 
-        
+    public Mapa(int pred){        
         if (pred == 1){
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
                     matrizCasillas[i][j] = new Pastos();
                 }
             }
-        }else if(pred == 2){
-            matrizCasillas[0][0] = new Sherwood()
         }
+        /*
+        else if(pred == 2){
+            matrizCasillas[0][0] = new Sherwood(false);
+            matrizCasillas[0][1] = new Laboratorio(true,1);
+        }
+        */
     }
     
     /**
