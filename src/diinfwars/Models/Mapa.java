@@ -110,11 +110,65 @@ public class Mapa {
      * @return Una matriz de 9x20 con el rango valido para cierto modo
      */
     public boolean[][] getRango(int modo,int fila,int col,int jugador){
-        /*
-            Para esto recomiendo usar un metodo privado por modo, para no mezclar todo el codigo.
-            Se muestra como funciona esto para el modo 4, se debe terminar de implementar este
-            y ademas implementar el de los demas modos.
-        */
+//        
+//        if (modo == 2){return rangoAtaque();
+//       
+//            if (rango == 1){
+//                int filaCambio = fila-1; 
+//                int filaFinal = fila+1;
+//                while (filaCambio<=filaFinal){
+//                    int colCambio = col-1;
+//                    int colFinal = col+1;
+//                    while (colCambio<=colFinal){
+//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
+//                            colCambio+=1;
+//                        }
+//                        else{
+//                            retorno[filaCambio][colCambio]=true;
+//                            colCambio+=1;
+//                        }
+//                    }
+//                    filaCambio+=1;           
+//                }
+//            }
+//            else if (rango == 2){
+//                int filaCambio = fila-2;
+//                int filaFinal = fila+2;
+//                while (filaCambio<=filaFinal){
+//                    int colCambio = col-2;
+//                    int colFinal = col+2;
+//                    while (colCambio<=colFinal){
+//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
+//                            colCambio+=1;
+//                        }
+//                        else{
+//                            retorno[filaCambio][colCambio]=true;
+//                            colCambio+=1;
+//                        }
+//                    }
+//                    filaCambio+=1;
+//                }
+//            }   
+//            else if (rango == 3){
+//                int filaCambio = fila-3;
+//                int filaFinal = fila+3;
+//                while (filaCambio<=filaFinal){
+//                    int colCambio = col-3;
+//                    int colFinal = col+3;
+//                    while (colCambio<=colFinal){
+//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
+//                            colCambio+=1;
+//                        }
+//                        else{
+//                            retorno[filaCambio][colCambio]=true;
+//                            colCambio+=1;
+//                        }
+//                    }
+//                    filaCambio+=1;
+//                }
+//            }
+//        }
+                   
         if (modo == 4){return rangoReclutar(jugador);}
         boolean[][] retorno = new boolean[9][20];
         retorno[1][1]=true;
