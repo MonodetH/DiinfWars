@@ -107,69 +107,17 @@ public class Mapa {
      * @param fila La fila de la posicion inicial desde donde se calcula el rango
      * @param col La columna de la posicion inicial desde donde se calcula el rango
      * @param jugador El jugador que gatilla la peticion
+     * @param rango El rango pedido (1=corto;2=medio;3=largo)
      * @return Una matriz de 9x20 con el rango valido para cierto modo
      */
-    public boolean[][] getRango(int modo,int fila,int col,int jugador){
-//        
-//        if (modo == 2){return rangoAtaque();
-//       
-//            if (rango == 1){
-//                int filaCambio = fila-1; 
-//                int filaFinal = fila+1;
-//                while (filaCambio<=filaFinal){
-//                    int colCambio = col-1;
-//                    int colFinal = col+1;
-//                    while (colCambio<=colFinal){
-//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
-//                            colCambio+=1;
-//                        }
-//                        else{
-//                            retorno[filaCambio][colCambio]=true;
-//                            colCambio+=1;
-//                        }
-//                    }
-//                    filaCambio+=1;           
-//                }
-//            }
-//            else if (rango == 2){
-//                int filaCambio = fila-2;
-//                int filaFinal = fila+2;
-//                while (filaCambio<=filaFinal){
-//                    int colCambio = col-2;
-//                    int colFinal = col+2;
-//                    while (colCambio<=colFinal){
-//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
-//                            colCambio+=1;
-//                        }
-//                        else{
-//                            retorno[filaCambio][colCambio]=true;
-//                            colCambio+=1;
-//                        }
-//                    }
-//                    filaCambio+=1;
-//                }
-//            }   
-//            else if (rango == 3){
-//                int filaCambio = fila-3;
-//                int filaFinal = fila+3;
-//                while (filaCambio<=filaFinal){
-//                    int colCambio = col-3;
-//                    int colFinal = col+3;
-//                    while (colCambio<=colFinal){
-//                        if (filaCambio<0 || filaCambio>9 || colCambio<0 || colCambio>18){
-//                            colCambio+=1;
-//                        }
-//                        else{
-//                            retorno[filaCambio][colCambio]=true;
-//                            colCambio+=1;
-//                        }
-//                    }
-//                    filaCambio+=1;
-//                }
-//            }
-//        }
-                   
-        if (modo == 4){return rangoReclutar(jugador);}
+    public boolean[][] getRango(int modo,int fila,int col,int jugador,int rango){
+        /*
+            Para esto recomiendo usar un metodo privado por modo, para no mezclar todo el codigo.
+            Se muestra como funciona esto para el modo 4, se debe terminar de implementar este
+            y ademas implementar el de los demas modos.
+        */
+        if (modo == 2){return rangoAtaque(fila,col,rango);}
+        else if (modo == 4){return rangoReclutar(jugador);}
         boolean[][] retorno = new boolean[9][20];
         retorno[1][1]=true;
         retorno[1][3]=true;
@@ -185,24 +133,27 @@ public class Mapa {
      * @param jugador El jugador que gatilla la peticion (los valores son 1 o 2)
      * @return Matriz de 9x20 con rango valido
      */
-    private boolean[][] rangoReclutar(int jugador) {
-        /*
-            Comentario de ayuda (borrar cuando ya no se necesite):
-            -Dependiendo de cual jugador pida el rango, las posiciones pueden ser
-            en el laboratorio de profesor 1 o 2 (en cada extremo).
-            -Se debe comprobar que en cada posicion no exista ya una unidad, para
-            asi no tener problemas ubicando una unidad sobre otra
-        
-            -A esta funcion solo le falta la comprobacion!
-        */
-        
+    private boolean[][] rangoReclutar(int jugador) {        
         boolean[][] retorno = new boolean[9][20];
         int columna = (jugador == 1)?0:19;
-        retorno[2][columna]=true;
-        retorno[3][columna]=true;
-        retorno[5][columna]=true;
-        retorno[6][columna]=true;
-        
+        if (matrizCasillas[2][columna].getUnidad() == null){retorno[2][columna]=true;}
+        if (matrizCasillas[3][columna].getUnidad() == null){retorno[3][columna]=true;}
+        if (matrizCasillas[5][columna].getUnidad() == null){retorno[5][columna]=true;}
+        if (matrizCasillas[6][columna].getUnidad() == null){retorno[6][columna]=true;}
+        return retorno;
+    }
+    
+    private boolean[][] rangoAtaque(int fila,int col, int rango){
+        boolean[][] retorno = new boolean[9][20];
+        if(matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
+            if(rango == 1){
+                //corto
+            }else if (rango == 2){
+                //medio
+            }else if (rango == 3){
+                // rango largo
+            }
+        }
         return retorno;
     }
 
