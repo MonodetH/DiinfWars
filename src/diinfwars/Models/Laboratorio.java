@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class Laboratorio extends Casilla {
 
+    public Laboratorio() {
+        super();
+    }
+    public Laboratorio(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Laboratorio(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Laboratorio(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 70;

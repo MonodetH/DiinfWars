@@ -10,7 +10,7 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Batalla {
-    // Atributos
+    // ATRIBUTOS
     private Mapa mapa;
     private Jugador jugador1;
     private Jugador jugador2;
@@ -37,16 +37,16 @@ public class Batalla {
      * @param natur1J2 Una de las dos naturalezas del profesor de jugador2
      * @param natur2J2 Una de las dos naturalezas del profesor de jugador2
      */
-    public Batalla(Mapa m,int oroKiosco,
-            Jugador j1,int oroInicialJ1,int asJ1,int ptosCortoJ1,int ptosMedioJ1,String natur1J1,String natur2J1,
-            Jugador j2,int oroInicialJ2,int asJ2,int ptosCortoJ2,int ptosMedioJ2,String natur1J2,String natur2J2){
+    public Batalla(Mapa m, int oroKiosco,
+            Jugador j1, int oroInicialJ1, int asJ1, int ptosCortoJ1, int ptosMedioJ1, String natur1J1, String natur2J1, 
+            Jugador j2, int oroInicialJ2, int asJ2, int ptosCortoJ2, int ptosMedioJ2, String natur1J2, String natur2J2){
         mapa = m;
         jugador1 = j1;
         jugador2 = j2;
-        estratega1 = new Estratega(1,oroInicialJ1,asJ1,ptosCortoJ1,ptosMedioJ1,natur1J1,natur2J1);
-        estratega2 = new Estratega(2,oroInicialJ2,asJ2,ptosCortoJ2,ptosMedioJ2,natur1J2,natur2J2);
+        estratega1 = new Estratega(1, oroInicialJ1, asJ1, ptosCortoJ1, ptosMedioJ1, natur1J1, natur2J1);
+        estratega2 = new Estratega(2, oroInicialJ2, asJ2, ptosCortoJ2, ptosMedioJ2, natur1J2, natur2J2);
         
-        // se ubican los profesores
+        // Se ubican los profesores
         mapa.ubicarUnidad(estratega1.getProfesor(),4,0);
         mapa.ubicarUnidad(estratega2.getProfesor(),4,19);
         

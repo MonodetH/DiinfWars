@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class Kiosco extends Casilla {
 
+    public Kiosco() {
+        super();
+    }
+    public Kiosco(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Kiosco(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Kiosco(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 60;

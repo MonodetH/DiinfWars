@@ -17,7 +17,7 @@ public abstract class Unidad {
     protected int equipo;
     protected int hp;
     protected int hpMax;
-    protected int estamina=100;
+    protected int estamina = 100;
     protected int nivel = 1;
     protected int experiencia = 0;
     protected int movimiento;
@@ -33,15 +33,15 @@ public abstract class Unidad {
     public Unidad(){}
     public Unidad(int equipo){
         setDefaults(equipo);
-        // se crea una naturaleza y se agrega a modificadores
+        // Se crea una naturaleza y se agrega a modificadores
         modificadores.add(new ModificadorAtributo());
     }
     
     /**Constructor de unidad, Usada solo por profesor.*/
-    public Unidad(int equipo,int puntosCorto,int puntosMedio,String naturaleza1,String naturaleza2){}
+    public Unidad(int equipo, int puntosCorto, int puntosMedio, String naturaleza1, String naturaleza2){}
     
     
-    // METODOS ABSTRACTOS (distintos en cada unidad)
+    // METODOS ABSTRACTOS (Distintos en cada unidad)
     /**
      * Setea los valores iniciales correspondiente a cada unidad
      * @param equipo El equipo al cual pertenece la unidad: 1 = equipo azul; 2 = equipo rojo

@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class Casitas extends Casilla {
 
+    public Casitas() {
+        super();
+    }
+    public Casitas(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Casitas(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Casitas(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 40;

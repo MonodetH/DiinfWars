@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class Calle extends Casilla {
 
+    public Calle() {
+        super();
+    }
+    public Calle(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Calle(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Calle(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 0;
