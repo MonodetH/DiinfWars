@@ -11,8 +11,8 @@ package diinfwars.Models;
  */
 public class Profesor extends Unidad {
     public static int sCosto = 0;
-    public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
-    public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
+    public static String sRutaSprite1 = "/images/SpriteProfesor.gif";
+    public static String sRutaSprite2 = "/images/SpriteProfesor.gif";
 
     public Profesor(int equipo) {
         super(equipo);

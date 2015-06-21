@@ -11,8 +11,8 @@ package diinfwars.Models;
  */
 public class CoordinadorAyudantes extends Unidad {
     public static int sCosto = 10;
-    public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
-    public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
+    public static String sRutaSprite1 = "/images/SpriteCoordinador.png";
+    public static String sRutaSprite2 = "/images/SpriteCoordinador2.png";
 
     public CoordinadorAyudantes(int equipo) {
         super(equipo);

@@ -11,8 +11,8 @@ package diinfwars.Models;
  */
 public class AlumnoNivelSuperior extends Unidad {
     public static int sCosto = 8;
-    public static String sRutaSprite1 = "/images/unidadPlaceholder.png";
-    public static String sRutaSprite2 = "/images/unidadPlaceholder.png";
+    public static String sRutaSprite1 = "/images/SpriteSuperior.png";
+    public static String sRutaSprite2 = "/images/SpriteSuperior2.png";
 
     public AlumnoNivelSuperior(int equipo) {
         super(equipo);
