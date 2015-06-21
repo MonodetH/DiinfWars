@@ -6,6 +6,7 @@
 package diinfwars.Models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -48,6 +49,16 @@ public abstract class Unidad {
     protected abstract void setDefaults(int equipo);
     
     // METODOS GENERALES (heredables)
+    public boolean tieneRango(int rango){
+        Iterator<Ataque> iterador = ataques.iterator();
+        while(iterador.hasNext()){
+            if(iterador.next().getRango() == 3){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public String getSprite(){
         return this.rutaSprite;
     }
@@ -59,5 +70,6 @@ public abstract class Unidad {
     public int getMovimientos(){
         return this.movimiento;
     }
+    
     
 }
