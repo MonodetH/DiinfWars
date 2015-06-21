@@ -30,7 +30,7 @@ public class Pame extends Unidad {
 
         this.rutaSprite = (equipo == 1)? Pame.sRutaSprite1:Pame.sRutaSprite2;
         
-                // ATAQUES
+        // ATAQUES
         this.ataques.add(new Ataque(3,4,2));
     }
     

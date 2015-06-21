@@ -18,21 +18,54 @@ public class ModificadorAtributo {
      * Constructor que genera una naturaleza al azar
      */
     public ModificadorAtributo(){
-        int aleatorio = 3;
-        if (aleatorio ==3){ // Deportista
-            this.atributo = "movimiento";
-            this.modificacion = 1;
+        // Math.random() del 0.0 al 1.0 excluido el 1.0
+        // Math.random()*7 del 0.0 al 7.0 excluido el 7.0
+        // Math.random()*7+1 del 1.0 al 8.0 excluido el 8.0 
+        // Math.floor devuelve el entero del valor random.
+        int aleatorio = (int) Math.floor(Math.random()*7+1);
+ 
+        if (aleatorio == 1)
+        { // Carretero, modifica cantidad de golpes
+            this.atributo = "cantidadGolpes";
+            this.modificacion = -1;
             this.turnosRestantes = -1;
-        }else if(aleatorio == 4){ // Estudioso
-            this.atributo = "ataque";
+        }
+        else if (aleatorio == 2)
+        { // Estudioso, modifica el daño
+            this.atributo = "dano";
             this.modificacion = 1;
             this.turnosRestantes = -1;
         }
-        
-        
-        /*
-            IMPLEMENTAR
-        */
+        else if (aleatorio == 3)
+        { // Incoherente, modifica cantidad de golpes
+            this.atributo = "cantidadGolpes";
+            this.modificacion = 1;
+            this.turnosRestantes = -1;
+        }
+        else if (aleatorio == 4)
+        { // Normal, no modifica nada
+            this.atributo = "";
+            this.modificacion = 0;
+            this.turnosRestantes = -1;
+        }
+        else if (aleatorio == 5)
+        { // Deportista, modifica cantidad de movimientos
+            this.atributo = "movimiento";
+            this.modificacion = 1;
+            this.turnosRestantes = -1;
+        }
+        else if (aleatorio == 6)
+        { // Deprimido, modifica el daño
+            this.atributo = "dano";
+            this.modificacion = -1;
+            this.turnosRestantes = -1;
+        }
+        else if (aleatorio == 7)
+        { // Tortuga, modifica cantidad de movimientos
+            this.atributo = "movimiento";
+            this.modificacion = -1;
+            this.turnosRestantes = -1;
+        }
     }
     
     /**

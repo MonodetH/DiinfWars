@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class CiteCamp extends Casilla {
     
+    public CiteCamp() {
+        super();
+    }
+    public CiteCamp(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public CiteCamp(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public CiteCamp(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 50;

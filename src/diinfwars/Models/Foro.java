@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class Foro extends Casilla {
 
+    public Foro() {
+        super();
+    }
+    public Foro(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Foro(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Foro(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 30;

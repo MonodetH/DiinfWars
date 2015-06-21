@@ -10,10 +10,19 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Pastos extends Casilla {
-    
-    /*
-     * Deberia utilizar los constructores de la clase padre Casilla
-     */
+
+    public Pastos() {
+        super();
+    }
+    public Pastos(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public Pastos(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public Pastos(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
     
     @Override
     protected void setDefaults() {

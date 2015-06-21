@@ -10,19 +10,19 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Ataque {
-    // Atributos
+    // ATRIBUTOS
     private int dano;
-    /**1 = Corto ;2 = Medio; 3 = Largo*/
+    /** 1 = Corto; 2 = Medio; 3 = Largo*/
     private int rango;
     private int cantidadGolpes;
     
     /**
      * Constructor Ataque
-     * @param dano daño base
+     * @param dano Daño base
      * @param cantidadGolpes Cantidad de golpes 
-     * @param rango rango de ataque: 1 = Corto ;2 = Medio; 3 = Largo
+     * @param rango Rango de ataque: 1 = Corto; 2 = Medio; 3 = Largo
      */
-    public Ataque(int dano,int cantidadGolpes,int rango){
+    public Ataque(int dano, int cantidadGolpes, int rango){
         this.dano = dano;
         this.rango = rango;
         this.cantidadGolpes = cantidadGolpes;

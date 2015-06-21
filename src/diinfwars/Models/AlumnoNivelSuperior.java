@@ -30,7 +30,7 @@ public class AlumnoNivelSuperior extends Unidad {
 
         this.rutaSprite = (equipo == 1)? AlumnoNivelSuperior.sRutaSprite1:AlumnoNivelSuperior.sRutaSprite2;
         
-                // ATAQUES
+        // ATAQUES
         this.ataques.add(new Ataque(2,2,1));
         this.ataques.add(new Ataque(1,3,2));
         this.ataques.add(new Ataque(1,2,3));

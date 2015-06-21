@@ -11,6 +11,19 @@ package diinfwars.Models;
  */
 public class EAO extends Casilla {
 
+    public EAO() {
+        super();
+    }
+    public EAO(boolean isHabilitada) {
+        super(isHabilitada);
+    }
+    public EAO(boolean isHorizontal, int parte) {
+        super(isHorizontal,parte);
+    }
+    public EAO(boolean isHorizontal, int parte, boolean isHabilitada) {
+        super(isHorizontal,parte,isHabilitada);
+    }
+    
     @Override
     protected void setDefaults() {
         this.defensa = 50;

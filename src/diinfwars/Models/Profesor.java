@@ -19,20 +19,31 @@ public class Profesor extends Unidad {
     }
     
     
-    public Profesor(int equipo,int puntosCorto,int puntosMedio,String naturaleza1,String naturaleza2){
+    public Profesor(int equipo, int puntosCorto, int puntosMedio, String naturaleza1, String naturaleza2){
         setDefaults(equipo);
         
-        // Naturalezas
-        /*
-            AGREGAR NATURALEZAS SEGUN CORRESPONDA
-        */
-        if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista"){
+        // NATURALEZAS
+        if (naturaleza1 == "Estudioso" || naturaleza2 == "Estudioso")
+        {
+            modificadores.add(new ModificadorAtributo("dano",1,-1));
+        }
+        else if (naturaleza1 == "Normal" || naturaleza2 == "Normal")
+        {
+            modificadores.add(new ModificadorAtributo("",0,-1));
+        }
+        else if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista")
+        {
             modificadores.add(new ModificadorAtributo("movimiento",1,-1));
         }
+        else if (naturaleza1 == "Incoherente" || naturaleza2 == "Incoherente")
+        {
+            modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
+        }
+        
         modificadores.add(new ModificadorAtributo());
         modificadores.add(new ModificadorAtributo());
         
-        //Ataques
+        // ATAQUES 
         ataques.add(new Ataque(puntosCorto,2,1));
         ataques.add(new Ataque(puntosMedio,3,2));
     }
