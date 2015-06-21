@@ -91,13 +91,14 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
             
             if(boton == v.getReclutarAlumno()){
-                System.out.println("yeah!");
                 int[] pos = v.getCasillaSeleccionada();
                 if(v.getModo() == 4 && v.enRango(pos[0], pos[1])){
                     Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
                     Unidad unidad = estratega.reclutar("Alumno");
                     mapa.ubicarUnidad(unidad,pos[0], pos[1]);
                     v.dibujarUnidades(mapa.unidadesToString());
+                    boolean[][] rango = mapa.getRango(v.getModo(),pos[0],pos[1],v.getJugador(),1);
+                    v.dibujarRango(rango);
                 }
             }
             
@@ -108,25 +109,25 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             if(boton.getText() == "Mover"){
                 v.setModo(1);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "Atacar"){
                 v.setModo(2);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "As Táctico"){
                 v.setModo(3);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "Reclutar"){
                 v.setModo(4);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador());
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
                 v.dibujarRango(rango);
                 int oroJugador = (v.getJugador() == 1)?estratega1.getOro():estratega1.getOro();
                 v.mostrarMenuReclutar(oroJugador);
@@ -172,7 +173,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         
         // Actualizar Casilla seleccionada y matriz de rango
         this.v.setCasillaSeleccionada(i,j);
-        v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador()));
+        v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador(),1));
     }
 
     @Override
