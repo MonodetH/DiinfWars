@@ -28,7 +28,8 @@ public class CoordinadorAyudantes extends Unidad {
         this.mantencion = 5;
         this.costo = 10;
 
-        this.rutaSprite = (equipo == 1)? CoordinadorAyudantes.sRutaSprite1:CoordinadorAyudantes.sRutaSprite2;
+        this.rutaSprite1 = CoordinadorAyudantes.sRutaSprite1;
+        this.rutaSprite2 = CoordinadorAyudantes.sRutaSprite2;
         
         // ATAQUES
         this.ataques.add(new Ataque(6,3,3));

@@ -28,7 +28,8 @@ public class Alumno extends Unidad {
         this.mantencion = 3;
         this.costo = 6;
 
-        this.rutaSprite = (equipo == 1)? Alumno.sRutaSprite1:Alumno.sRutaSprite2;
+        this.rutaSprite1 = Alumno.sRutaSprite1;
+        this.rutaSprite2 = Alumno.sRutaSprite2;
         
         /*
             La naturaleza se agrega en el constructor de unidad, asi que ya no

@@ -28,7 +28,8 @@ public class Cachorro extends Unidad {
         this.mantencion = 1;
         this.costo = 4;
 
-        this.rutaSprite = (equipo == 1)? Cachorro.sRutaSprite1:Cachorro.sRutaSprite2;
+        this.rutaSprite1 = Cachorro.sRutaSprite1;
+        this.rutaSprite2 = Cachorro.sRutaSprite2;
         
         // ATAQUES
         this.ataques.add(new Ataque(1,2,1));

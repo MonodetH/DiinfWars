@@ -28,7 +28,8 @@ public class Pame extends Unidad {
         this.mantencion = 6;
         this.costo = 12;
 
-        this.rutaSprite = (equipo == 1)? Pame.sRutaSprite1:Pame.sRutaSprite2;
+        this.rutaSprite1 = Pame.sRutaSprite1;
+        this.rutaSprite2 = Pame.sRutaSprite2;
         
         // ATAQUES
         this.ataques.add(new Ataque(3,4,2));

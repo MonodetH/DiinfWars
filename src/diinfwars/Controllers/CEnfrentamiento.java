@@ -45,7 +45,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     public CEnfrentamiento(){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
-        Mapa mapa1 = new Mapa(1);
+        Mapa mapa1 = new Mapa(2);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,10,1,2,3,"Estudioso","Deportista",jug2,10,1,3,2,"Estudioso","Deportista");
         
@@ -90,11 +90,20 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 uAtacantes.clear();
             }
             
-            if(boton == v.getReclutarAlumno()){
+            
+            if(boton.getParent() == v.getPanelReclutar()){
+                String tipoUnidad = "Cachorro";
+                if(boton == v.getReclutarCachorro()){tipoUnidad = "Cachorro";}
+                else if(boton == v.getReclutarAlumno()){tipoUnidad = "Alumno";}
+                else if(boton == v.getReclutarSuperior()){tipoUnidad = "AlumnoNivelSuperior";}
+                else if(boton == v.getReclutarAyudante()){tipoUnidad = "Ayudante";}
+                else if(boton == v.getReclutarCoordinador()){tipoUnidad = "CoordinadorAyudantes";}
+                else if(boton == v.getReclutarPame()){tipoUnidad = "Pame";}
+                
                 int[] pos = v.getCasillaSeleccionada();
                 if(v.getModo() == 4 && v.enRango(pos[0], pos[1])){
                     Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
-                    Unidad unidad = estratega.reclutar("Alumno");
+                    Unidad unidad = estratega.reclutar(tipoUnidad);
                     mapa.ubicarUnidad(unidad,pos[0], pos[1]);
                     v.dibujarUnidades(mapa.unidadesToString());
                     boolean[][] rango = mapa.getRango(v.getModo(),pos[0],pos[1],v.getJugador(),1);
@@ -115,7 +124,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             else if(boton.getText() == "Atacar"){
                 v.setModo(2);
                 int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
+                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),2);
                 v.dibujarRango(rango);
             }
             else if(boton.getText() == "As Táctico"){

@@ -29,7 +29,7 @@ public class Profesor extends Unidad {
         }
         else if (naturaleza1 == "Normal" || naturaleza2 == "Normal")
         {
-            modificadores.add(new ModificadorAtributo("",0,-1));
+            // No existe modificacion
         }
         else if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista")
         {
@@ -40,8 +40,10 @@ public class Profesor extends Unidad {
             modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
         }
         
-        modificadores.add(new ModificadorAtributo());
-        modificadores.add(new ModificadorAtributo());
+        if(naturaleza1 == naturaleza2){
+            modificadores.add(new ModificadorAtributo());
+        }
+
         
         // ATAQUES 
         ataques.add(new Ataque(puntosCorto,2,1));
@@ -58,7 +60,8 @@ public class Profesor extends Unidad {
         this.mantencion = 0;
         this.costo = 0;
 
-        this.rutaSprite = (equipo == 1)? Profesor.sRutaSprite1:Profesor.sRutaSprite2;
+        this.rutaSprite1 = Profesor.sRutaSprite1;
+        this.rutaSprite2 = Profesor.sRutaSprite2;
     }
     
 }

@@ -11,8 +11,8 @@ package diinfwars.Models;
  */
 public class AlumnoNivelSuperior extends Unidad {
     public static int sCosto = 8;
-    public static String sRutaSprite1 = "/images/SpriteSuperior.png";
-    public static String sRutaSprite2 = "/images/SpriteSuperior2.png";
+    public static String sRutaSprite1 = "/images/SpriteAlumnoSuperior.png";
+    public static String sRutaSprite2 = "/images/SpriteAlumnoSuperior2.png";
 
     public AlumnoNivelSuperior(int equipo) {
         super(equipo);
@@ -28,7 +28,8 @@ public class AlumnoNivelSuperior extends Unidad {
         this.mantencion = 4;
         this.costo = 8;
 
-        this.rutaSprite = (equipo == 1)? AlumnoNivelSuperior.sRutaSprite1:AlumnoNivelSuperior.sRutaSprite2;
+        this.rutaSprite1 = AlumnoNivelSuperior.sRutaSprite1;
+        this.rutaSprite2 = AlumnoNivelSuperior.sRutaSprite2;
         
         // ATAQUES
         this.ataques.add(new Ataque(2,2,1));

@@ -46,13 +46,24 @@ public class Estratega {
     public Unidad reclutar(String tipoUnidad){
         Unidad nuevaUnidad;
         
-        /* 
-            Se DEBE implementar un case por cada tipo de unidad mas un default
-            que lo deje en null
-        */
         switch (tipoUnidad){
             case "Alumno":
                 nuevaUnidad = new Alumno(equipo);
+                break;
+            case "AlumnoNivelSuperior":
+                nuevaUnidad = new AlumnoNivelSuperior(equipo);
+                break;
+            case "Ayudante":
+                nuevaUnidad = new Ayudante(equipo);
+                break;
+            case "Cachorro":
+                nuevaUnidad = new Cachorro(equipo);
+                break;
+            case "CoordinadorAyudantes":
+                nuevaUnidad = new CoordinadorAyudantes(equipo);
+                break;
+            case "Pame":
+                nuevaUnidad = new Pame(equipo);
                 break;
             default:
                 nuevaUnidad = null;
