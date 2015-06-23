@@ -26,7 +26,7 @@ public class Calle extends Casilla {
     
     @Override
     protected void setDefaults() {
-        this.defensa = 0;
+        this.defensa = 20;
         this.rutaSprite = "/images/spritePasto.jpg";
     }
     

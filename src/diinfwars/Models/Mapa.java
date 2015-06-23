@@ -174,7 +174,7 @@ public class Mapa {
         for(int i = 0;i<9;i++){
             for(int j = 0;j<20;j++){
                 if (matrizCasillas[i][j] == null){
-                    matrizCasillas[i][j] = new Pastos();
+                    matrizCasillas[i][j] = new Calle();
                 }
             }
         }
