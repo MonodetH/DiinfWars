@@ -170,7 +170,7 @@ public class Mapa {
             matrizCasillas[8][19] = new Sherwood(false);
         }
         
-        //Se rellena las casillas vacias con pastos
+        //Se rellena las casillas vacias con Calles
         for(int i = 0;i<9;i++){
             for(int j = 0;j<20;j++){
                 if (matrizCasillas[i][j] == null){
@@ -262,16 +262,7 @@ public class Mapa {
             Se muestra como funciona esto para el modo 4, se debe terminar de implementar este
             y ademas implementar el de los demas modos.
         */
-        if (modo == 1){
-            boolean[][] retorno = new boolean[9][20];
-            retorno[1][1]=true;
-            retorno[1][3]=true;
-            retorno[2][1]=true;
-            retorno[2][2]=true;
-            retorno[2][3]=true;
-
-            return retorno;
-        }
+        if (modo == 1){return rangoMover(fila,col);}
         else if (modo == 2){return rangoAtaque(fila,col,rango);}
         else if (modo == 3){
             boolean[][] retorno = new boolean[9][20];
@@ -288,6 +279,33 @@ public class Mapa {
         return new boolean[9][20];
     }
 
+    private boolean[][] rangoMover(int fila, int col) {
+        boolean[][] retorno = new boolean[9][20];
+        if (matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].isHabilitada()){
+            int[][] preRango = new int[9][20];
+            preRangoMover(preRango,fila,col,matrizCasillas[fila][col].getUnidad().getMovimientos());
+            
+            for(int i=0;i<9;i++){
+                for(int j=0;j<20;j++){
+                    if(preRango[i][j]>0){
+                        retorno[i][j] = true;
+                    }
+                }
+            }
+        }
+        return retorno;
+    }
+    private void preRangoMover(int[][] matrizRango, int fila,int col,int movimientos){
+        if(movimientos > 0 && movimientos+1 > matrizRango[fila][col] && matrizCasillas[fila][col].isHabilitada()){
+            matrizRango[fila][col] = movimientos+1;
+            
+            if(fila-1 >= 0){preRangoMover(matrizRango,fila-1,col,movimientos-1);} // Arriba
+            if(col+1 < 20){preRangoMover(matrizRango,fila,col+1,movimientos-1);} // Derecha
+            if(fila+1 < 9){preRangoMover(matrizRango,fila+1,col,movimientos-1);} // Abajo
+            if(col-1 >= 0){preRangoMover(matrizRango,fila,col-1,movimientos-1);} // Izquierda
+        }
+    }
+    
     /**
      * Esta funcion retorna el rango para el modo reclutar. 
      * @param jugador El jugador que gatilla la peticion (los valores son 1 o 2)

@@ -28,6 +28,7 @@ public class Sherwood extends Casilla {
     protected void setDefaults() {
         this.defensa = 100;
         this.rutaSprite = "/images/Sherwood.jpg";
+        this.habilitada = false;
     }
     
 }
