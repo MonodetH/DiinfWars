@@ -27,7 +27,7 @@ public class Laboratorio extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 70;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Laboratorio.jpg";
     }
     
 }

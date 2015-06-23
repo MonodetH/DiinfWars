@@ -10,7 +10,7 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public class Mapa {
-    // Atributos
+    // ATRIBUTOS
     private Casilla[][] matrizCasillas = new Casilla[9][20];
     //private boolean[][] capaRango = new boolean[9][20];
     
@@ -18,7 +18,7 @@ public class Mapa {
      * Constructor de mapa
      * @param pred mapa seleccionado: 0 = Aleatorio, 1 = Predet1, 2 = Predet2, 3 = Predet3 
      */
-    public Mapa(int pred){        
+    public Mapa(int pred){
         if (pred == 1){
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
@@ -26,14 +26,151 @@ public class Mapa {
                 }
             }
         }
-        /*
-        else if(pred == 2){
+        if(pred == 2){
+            matrizCasillas[2][0] = new Laboratorio(false,1,true);
+            matrizCasillas[3][0] = new Laboratorio(false,2,true);
+            matrizCasillas[4][0] = new Laboratorio(false,3,true);
+            matrizCasillas[5][0] = new Laboratorio(false,4,true);
+            matrizCasillas[6][0] = new Laboratorio(false,5,true);
+            matrizCasillas[2][19] = new Laboratorio(false,1,true);
+            matrizCasillas[3][19] = new Laboratorio(false,2,true);
+            matrizCasillas[4][19] = new Laboratorio(false,3,true);
+            matrizCasillas[5][19] = new Laboratorio(false,4,true);
+            matrizCasillas[6][19] = new Laboratorio(false,5,true);
             matrizCasillas[0][0] = new Sherwood(false);
-            matrizCasillas[0][1] = new Laboratorio(true,1);
+            matrizCasillas[0][19] = new Sherwood(false);
+            matrizCasillas[1][0] = new Sherwood(false);
+            matrizCasillas[1][8] = new Sherwood(false);
+            matrizCasillas[1][12] = new Foro(true,1,true);
+            matrizCasillas[1][17] = new Sherwood(false);
+            matrizCasillas[1][19] = new Sherwood(false);
+            matrizCasillas[3][2] = new Kiosco(true,1,true); 
+            matrizCasillas[3][3] = new Kiosco(true,2,true);
+            matrizCasillas[3][7] = new Pastos(true,1,true);
+            matrizCasillas[3][9] = new Laboratorio(false,1,true);
+            matrizCasillas[3][10] = new Laboratorio(false,2,true);
+            matrizCasillas[3][12] = new Casitas(true,1,true);
+            matrizCasillas[3][16] = new Kiosco(true,1,true);
+            matrizCasillas[3][17] = new Kiosco(true,2,true);
+            matrizCasillas[4][2] = new Kiosco(true,3,true);
+            matrizCasillas[4][3] = new Kiosco(true,4,true);
+            matrizCasillas[4][9] = new Laboratorio(true,3,true);
+            matrizCasillas[4][10] = new Laboratorio(true,4,true);
+            matrizCasillas[4][16] = new Kiosco(true,3,true);
+            matrizCasillas[4][17] = new Kiosco(true,4,true);
+            matrizCasillas[5][9] = new Laboratorio(true,5,true);
+            matrizCasillas[5][10] = new Laboratorio(true,6,true);
+            matrizCasillas[5][12] = new CiteCamp(true,1,true);
+            matrizCasillas[6][16] = new EAO(true,1,true);
+            matrizCasillas[6][17] = new EAO(true,2,true);
+            matrizCasillas[7][0] = new Sherwood(false);
+            matrizCasillas[7][2] = new Diinf(true,1,true); 
+            matrizCasillas[7][5] = new Sherwood(false);
+            matrizCasillas[7][14] = new Sherwood(false);
+            matrizCasillas[7][16] = new EAO(true,3,true);
+            matrizCasillas[7][17] = new EAO(true,4,true);
+            matrizCasillas[7][19] = new Sherwood(false);
+            matrizCasillas[8][0] = new Sherwood(false);
+            matrizCasillas[8][19] = new Sherwood(false);         
         }
-        */
-    }
-    
+     
+        else if(pred == 3){
+            matrizCasillas[2][0] = new Laboratorio(false,1,true);
+            matrizCasillas[3][0] = new Laboratorio(false,2,true);
+            matrizCasillas[4][0] = new Laboratorio(false,3,true);
+            matrizCasillas[5][0] = new Laboratorio(false,4,true);
+            matrizCasillas[6][0] = new Laboratorio(false,5,true);
+            matrizCasillas[2][19] = new Laboratorio(false,1,true);
+            matrizCasillas[3][19] = new Laboratorio(false,2,true);
+            matrizCasillas[4][19] = new Laboratorio(false,3,true);
+            matrizCasillas[5][19] = new Laboratorio(false,4,true);
+            matrizCasillas[6][19] = new Laboratorio(false,5,true);
+            matrizCasillas[0][0] = new Sherwood(false);
+            matrizCasillas[0][8] = new Laboratorio(true,1,true);
+            matrizCasillas[0][9] = new Laboratorio(true,2,true);
+            matrizCasillas[0][10] = new Laboratorio(true,3,true);
+            matrizCasillas[0][19] = new Sherwood(false);
+            matrizCasillas[1][0] = new Sherwood(false);
+            matrizCasillas[1][5] = new Sherwood(false);
+            matrizCasillas[1][8] = new Laboratorio(true,4,true);
+            matrizCasillas[1][9] = new Laboratorio(true,5,true);
+            matrizCasillas[1][10] = new Laboratorio(true,6,true);
+            matrizCasillas[1][13] = new Sherwood(false);
+            matrizCasillas[1][19] = new Sherwood(false);
+            matrizCasillas[2][16] = new Casitas(true,1,true);
+            matrizCasillas[3][2] = new Kiosco(true,1,true);
+            matrizCasillas[3][3] = new Kiosco(true,2,true);
+            matrizCasillas[3][9] = new Pastos(true,1,true);
+            matrizCasillas[3][16] = new Kiosco(true,1,true);
+            matrizCasillas[3][17] = new Kiosco(true,2,true);
+            matrizCasillas[4][2] = new Kiosco(true,3,true);
+            matrizCasillas[4][3] = new Kiosco(true,4,true);
+            matrizCasillas[4][16] = new Kiosco(true,3,true);
+            matrizCasillas[4][17] = new Kiosco(true,4,true);
+            matrizCasillas[6][5] = new Sherwood(false);
+            matrizCasillas[6][9] = new Foro(true,1,true);
+            matrizCasillas[6][13] = new Sherwood(false);
+            matrizCasillas[6][16] = new Diinf(true,1,true);
+            matrizCasillas[7][0] = new Sherwood(false);
+            matrizCasillas[7][6] = new CiteCamp(true,1,true);
+            matrizCasillas[7][11] = new EAO(true,1,true);
+            matrizCasillas[7][12] = new EAO(true,2,true);
+            matrizCasillas[7][19] = new Sherwood(false);
+            matrizCasillas[8][0] = new Sherwood(false);
+            matrizCasillas[8][11] = new EAO(true,3,true);
+            matrizCasillas[8][12] = new EAO(true,4,true);
+            matrizCasillas[8][19] = new Sherwood(false);
+        }
+        
+        else if(pred == 4){
+            matrizCasillas[2][0] = new Laboratorio(false,1,true);
+            matrizCasillas[3][0] = new Laboratorio(false,2,true);
+            matrizCasillas[4][0] = new Laboratorio(false,3,true);
+            matrizCasillas[5][0] = new Laboratorio(false,4,true);
+            matrizCasillas[6][0] = new Laboratorio(false,5,true);
+            matrizCasillas[2][19] = new Laboratorio(false,1,true);
+            matrizCasillas[3][19] = new Laboratorio(false,2,true);
+            matrizCasillas[4][19] = new Laboratorio(false,3,true);
+            matrizCasillas[5][19] = new Laboratorio(false,4,true);
+            matrizCasillas[6][19] = new Laboratorio(false,5,true);
+            matrizCasillas[0][0] = new Sherwood(false);
+            matrizCasillas[0][2] = new Kiosco(true,1,true);
+            matrizCasillas[0][3] = new Kiosco(true,2,true);
+            matrizCasillas[0][9] = new Pastos(true,1,true);
+            matrizCasillas[0][15] = new Kiosco(true,1,true);
+            matrizCasillas[0][16] = new Kiosco(true,2,true);
+            matrizCasillas[0][19] = new Sherwood(false);
+            matrizCasillas[1][0] = new Sherwood(false);
+            matrizCasillas[1][2] = new Kiosco(true,3,true);
+            matrizCasillas[1][3] = new Kiosco(true,4,true);
+            matrizCasillas[1][15] = new Kiosco(true,3,true);
+            matrizCasillas[1][16] = new Kiosco(true,4,true);
+            matrizCasillas[1][19] = new Sherwood(false);
+            matrizCasillas[2][8] = new Sherwood(false);
+            matrizCasillas[3][4] = new Casitas(true,1,true);
+            matrizCasillas[3][13] = new Diinf(true,1,true);
+            matrizCasillas[5][6] = new Sherwood(false);
+            matrizCasillas[5][10] = new Sherwood(false);
+            matrizCasillas[5][14] = new Sherwood(false);
+            matrizCasillas[7][0] = new Sherwood(false);
+            matrizCasillas[7][6] = new EAO(true,1,true);
+            matrizCasillas[7][7] = new EAO(true,2,true);
+            matrizCasillas[7][9] = new Laboratorio(true,1,true);
+            matrizCasillas[7][10] = new Laboratorio(true,2,true);
+            matrizCasillas[7][11] = new Laboratorio(true,3,true);
+            matrizCasillas[7][13] = new Foro(true,1,true);
+            matrizCasillas[7][16] = new CiteCamp(true,1,true);
+            matrizCasillas[7][19] = new Sherwood(false);
+            matrizCasillas[8][0] = new Sherwood(false);
+            matrizCasillas[8][6] = new EAO(true,3,true);
+            matrizCasillas[8][7] = new EAO(true,4,true);
+            matrizCasillas[8][9] = new Laboratorio(true,4,true);
+            matrizCasillas[8][10] = new Laboratorio(true,5,true);
+            matrizCasillas[8][11] = new Laboratorio(true,6,true);
+            matrizCasillas[8][19] = new Sherwood(false);
+        }        
+    }        
+
     /**
      * Esta funcion toma una unidad de una casilla inicial y la reubica en una
      * casilla final
@@ -116,8 +253,8 @@ public class Mapa {
             Se muestra como funciona esto para el modo 4, se debe terminar de implementar este
             y ademas implementar el de los demas modos.
         */
-        if (modo == 2){return rangoAtaque(fila,col,rango);}
-        else if (modo == 4){return rangoReclutar(jugador);}
+        
+        if (modo == 4){return rangoReclutar(jugador);}
         boolean[][] retorno = new boolean[9][20];
         retorno[1][1]=true;
         retorno[1][3]=true;
@@ -147,16 +284,65 @@ public class Mapa {
         boolean[][] retorno = new boolean[9][20];
         if(matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
             if(rango == 1){
-                //corto
-            }else if (rango == 2){
-                //medio
-            }else if (rango == 3){
-                // rango largo
+                int filaCambio = fila-1; 
+                int filaFinal = fila+1;
+                while (filaCambio<=filaFinal){
+                    int colCambio = col-1;
+                    int colFinal = col+1;
+                    while (colCambio<=colFinal){
+                        if (filaCambio<0 || filaCambio>8 || colCambio<0 || colCambio>19){
+                            colCambio+=1;
+                        }
+                        else{
+                            retorno[filaCambio][colCambio]=true;
+                            colCambio+=1;
+                        }
+                    }
+                    filaCambio+=1;           
+                }
+            }
+            // Rango Medio
+            else if (rango == 2){
+                int filaCambio = fila-2;
+                int filaFinal = fila+2;
+                while (filaCambio<=filaFinal){
+                    int colCambio = col-2;
+                    int colFinal = col+2;
+                    while (colCambio<=colFinal){
+                        if (filaCambio<0 || filaCambio>8 || colCambio<0 || colCambio>19){
+                            colCambio+=1;
+                        }
+                        else{
+                            retorno[filaCambio][colCambio]=true;
+                            colCambio+=1;
+                        }
+                    }
+                    filaCambio+=1;
+                }
+            }  
+            // Rango Largo
+            else if (rango == 3){
+                int filaCambio = fila-3;
+                int filaFinal = fila+3;
+                while (filaCambio<=filaFinal){
+                    int colCambio = col-3;
+                    int colFinal = col+3;
+                    while (colCambio<=colFinal){
+                        if (filaCambio<0 || filaCambio>8 || colCambio<0 || colCambio>19){
+                            colCambio+=1;
+                        }
+                        else{
+                            retorno[filaCambio][colCambio]=true;
+                            colCambio+=1;
+                        }
+                    }
+                    filaCambio+=1;
+                }
             }
         }
         return retorno;
     }
-
+        
     public Unidad getUnidad(int fila, int col) {
         return matrizCasillas[fila][col].getUnidad();
     }
