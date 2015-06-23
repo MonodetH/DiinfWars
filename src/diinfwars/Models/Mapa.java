@@ -145,7 +145,7 @@ public class Mapa {
     
     private boolean[][] rangoAtaque(int fila,int col, int rango){
         boolean[][] retorno = new boolean[9][20];
-        if(matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
+        if(matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
             if(rango == 1){
                 //corto
             }else if (rango == 2){
