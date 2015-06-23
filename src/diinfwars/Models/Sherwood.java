@@ -27,7 +27,7 @@ public class Sherwood extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 100;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Sherwood.jpg";
     }
     
 }

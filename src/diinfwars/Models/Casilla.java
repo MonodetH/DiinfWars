@@ -10,7 +10,7 @@ package diinfwars.Models;
  * @author MonodetH
  */
 public abstract class Casilla {
-    // Atributos
+    // ATRIBUTOS
     protected int defensa;
     protected Unidad unidad = null;
     protected Estratega dueno = null;
@@ -24,7 +24,7 @@ public abstract class Casilla {
     
     // Static
     
-    // Constructores
+    // CONSTRUCTORES
     public Casilla(){
         setDefaults();
     }

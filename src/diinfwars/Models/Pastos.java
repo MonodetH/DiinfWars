@@ -27,7 +27,7 @@ public class Pastos extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 40;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Pastos.jpg";
     }
     
 }
