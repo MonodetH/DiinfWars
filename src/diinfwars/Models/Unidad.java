@@ -26,7 +26,11 @@ public abstract class Unidad {
     protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
     protected int mantencion;
     protected int costo;
-    protected String rutaSprite;
+    protected boolean isDead = false;
+    protected String rutaSprite1;
+    protected String rutaSprite2;
+    protected String rutaSpriteMuerto1 = "/images/Tumba1.png";
+    protected String rutaSpriteMuerto2 = "/images/Tumba2.png";
     
     
     // CONSTRUCTORES
@@ -52,7 +56,7 @@ public abstract class Unidad {
     public boolean tieneRango(int rango){
         Iterator<Ataque> iterador = ataques.iterator();
         while(iterador.hasNext()){
-            if(iterador.next().getRango() == 3){
+            if(iterador.next().getRango() == rango){
                 return true;
             }
         }
@@ -60,7 +64,18 @@ public abstract class Unidad {
     }
     
     public String getSprite(){
-        return this.rutaSprite;
+        if(!isDead){
+            if (equipo == 1){
+                return this.rutaSprite1;
+            }
+            return this.rutaSprite2;
+        }else{
+            if (equipo == 1){
+                return this.rutaSpriteMuerto1;
+            }
+            return this.rutaSpriteMuerto2;
+        }
+        
     }
 
     public int getEquipo() {

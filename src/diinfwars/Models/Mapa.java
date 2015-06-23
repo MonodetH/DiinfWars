@@ -168,7 +168,16 @@ public class Mapa {
             matrizCasillas[8][10] = new Laboratorio(true,5,true);
             matrizCasillas[8][11] = new Laboratorio(true,6,true);
             matrizCasillas[8][19] = new Sherwood(false);
-        }        
+        }
+        
+        //Se rellena las casillas vacias con pastos
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<20;j++){
+                if (matrizCasillas[i][j] == null){
+                    matrizCasillas[i][j] = new Pastos();
+                }
+            }
+        }
     }        
 
     /**
@@ -253,16 +262,30 @@ public class Mapa {
             Se muestra como funciona esto para el modo 4, se debe terminar de implementar este
             y ademas implementar el de los demas modos.
         */
+        if (modo == 1){
+            boolean[][] retorno = new boolean[9][20];
+            retorno[1][1]=true;
+            retorno[1][3]=true;
+            retorno[2][1]=true;
+            retorno[2][2]=true;
+            retorno[2][3]=true;
+
+            return retorno;
+        }
+        else if (modo == 2){return rangoAtaque(fila,col,rango);}
+        else if (modo == 3){
+            boolean[][] retorno = new boolean[9][20];
+            retorno[1][1]=true;
+            retorno[1][3]=true;
+            retorno[2][1]=true;
+            retorno[2][2]=true;
+            retorno[2][3]=true;
+
+            return retorno;
+            }
+        else if (modo == 4){return rangoReclutar(jugador);}
         
-        if (modo == 4){return rangoReclutar(jugador);}
-        boolean[][] retorno = new boolean[9][20];
-        retorno[1][1]=true;
-        retorno[1][3]=true;
-        retorno[2][1]=true;
-        retorno[2][2]=true;
-        retorno[2][3]=true;
-        
-        return retorno;
+        return new boolean[9][20];
     }
 
     /**
@@ -273,6 +296,12 @@ public class Mapa {
     private boolean[][] rangoReclutar(int jugador) {        
         boolean[][] retorno = new boolean[9][20];
         int columna = (jugador == 1)?0:19;
+
+        // Si no existe profesor en el trono
+        if (!(matrizCasillas[4][columna].getUnidad() instanceof Profesor)){
+            return retorno;
+        }
+
         if (matrizCasillas[2][columna].getUnidad() == null){retorno[2][columna]=true;}
         if (matrizCasillas[3][columna].getUnidad() == null){retorno[3][columna]=true;}
         if (matrizCasillas[5][columna].getUnidad() == null){retorno[5][columna]=true;}
