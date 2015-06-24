@@ -49,6 +49,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public VEnfrentamiento(ActionListener al,MouseListener ml) {
         initComponents();
         init();
+        setModo(0);
         agregarActionListener(al);
         agregarMouseListener(ml);
     }
@@ -106,7 +107,22 @@ public class VEnfrentamiento extends javax.swing.JFrame {
      * @see #setToggleOn(int)
      * @see #modo
      */
-    public void setModo(int modo){if (this.modo == modo){this.modo =0;}else{this.modo=modo;setToggleOn(modo);}}
+    public void setModo(int modo){
+        this.capaAsTactico.setVisible(false);
+        this.capaAtacar.setVisible(false);
+        this.capaMover.setVisible(false);
+        this.capaReclutar.setVisible(false);
+        
+        if (this.modo == modo || modo == 0){this.modo =0;setToggleOn(0);}
+        else{
+            if(modo == 1){this.capaMover.setVisible(true);}
+            else if (modo == 2){this.capaAtacar.setVisible(true);}
+            else if (modo == 3){this.capaAsTactico.setVisible(true);}
+            else{this.capaReclutar.setVisible(true);}
+            this.modo=modo;
+            setToggleOn(modo);
+        }
+    }
     public int getModo(){return this.modo;}
     /**
      * Guarda y activa la casilla seleccionada actual
@@ -230,11 +246,34 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         Tablero = new javax.swing.JLayeredPane();
         capaMapa = new javax.swing.JPanel();
         capaRango = new javax.swing.JPanel();
         capaUnidad = new javax.swing.JPanel();
         Info = new javax.swing.JLayeredPane();
+        capaDefault = new javax.swing.JPanel();
+        panelInfoDefault = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        panelDefault = new javax.swing.JPanel();
+        capaMover = new javax.swing.JPanel();
+        panelInfoMover = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        panelMover = new javax.swing.JPanel();
+        capaAtacar = new javax.swing.JPanel();
+        panelInfoAtacar = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        panelAtacar = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        capaAsTactico = new javax.swing.JPanel();
+        panelInfoAs = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        panelAs = new javax.swing.JPanel();
+        capaReclutar = new javax.swing.JPanel();
+        panelInfoReclutar = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         panelReclutar = new javax.swing.JPanel();
         bReclutarCachorro = new javax.swing.JButton();
         bReclutarAlumno = new javax.swing.JButton();
@@ -260,8 +299,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        panelInfoReclutar = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         botonMover = new javax.swing.JToggleButton();
@@ -302,16 +339,270 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         getContentPane().add(Tablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 300));
 
-        Info.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        Info.setOpaque(true);
+        Info.setPreferredSize(new java.awt.Dimension(660, 250));
+        Info.setLayout(new javax.swing.OverlayLayout(Info));
+
+        capaDefault.setLayout(new javax.swing.BoxLayout(capaDefault, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelInfoDefault.setBackground(new java.awt.Color(255, 255, 255));
+        panelInfoDefault.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelInfoDefault.setAutoscrolls(true);
+        panelInfoDefault.setMinimumSize(new java.awt.Dimension(320, 250));
+        panelInfoDefault.setPreferredSize(new java.awt.Dimension(320, 250));
+
+        jLabel4.setText("Informacion");
+
+        javax.swing.GroupLayout panelInfoDefaultLayout = new javax.swing.GroupLayout(panelInfoDefault);
+        panelInfoDefault.setLayout(panelInfoDefaultLayout);
+        panelInfoDefaultLayout.setHorizontalGroup(
+            panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoDefaultLayout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addComponent(jLabel4)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        panelInfoDefaultLayout.setVerticalGroup(
+            panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoDefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+
+        capaDefault.add(panelInfoDefault);
+
+        panelDefault.setBackground(new java.awt.Color(255, 255, 255));
+        panelDefault.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelDefault.setPreferredSize(new java.awt.Dimension(340, 250));
+
+        javax.swing.GroupLayout panelDefaultLayout = new javax.swing.GroupLayout(panelDefault);
+        panelDefault.setLayout(panelDefaultLayout);
+        panelDefaultLayout.setHorizontalGroup(
+            panelDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+        panelDefaultLayout.setVerticalGroup(
+            panelDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+
+        capaDefault.add(panelDefault);
+
+        Info.add(capaDefault);
+
+        capaMover.setBackground(new java.awt.Color(255, 255, 255));
+        capaMover.setPreferredSize(new java.awt.Dimension(660, 250));
+        capaMover.setLayout(new javax.swing.BoxLayout(capaMover, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelInfoMover.setBackground(new java.awt.Color(255, 255, 255));
+        panelInfoMover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelInfoMover.setAutoscrolls(true);
+        panelInfoMover.setMinimumSize(new java.awt.Dimension(320, 250));
+        panelInfoMover.setPreferredSize(new java.awt.Dimension(320, 250));
+
+        jLabel5.setText("Informacion");
+
+        javax.swing.GroupLayout panelInfoMoverLayout = new javax.swing.GroupLayout(panelInfoMover);
+        panelInfoMover.setLayout(panelInfoMoverLayout);
+        panelInfoMoverLayout.setHorizontalGroup(
+            panelInfoMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoMoverLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(jLabel5)
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        panelInfoMoverLayout.setVerticalGroup(
+            panelInfoMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoMoverLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+
+        capaMover.add(panelInfoMover);
+
+        panelMover.setBackground(new java.awt.Color(255, 255, 255));
+        panelMover.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelMover.setPreferredSize(new java.awt.Dimension(340, 250));
+
+        javax.swing.GroupLayout panelMoverLayout = new javax.swing.GroupLayout(panelMover);
+        panelMover.setLayout(panelMoverLayout);
+        panelMoverLayout.setHorizontalGroup(
+            panelMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+        panelMoverLayout.setVerticalGroup(
+            panelMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+
+        capaMover.add(panelMover);
+
+        Info.add(capaMover);
+        Info.setLayer(capaMover, 1);
+
+        capaAtacar.setLayout(new javax.swing.BoxLayout(capaAtacar, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelInfoAtacar.setBackground(new java.awt.Color(255, 255, 255));
+        panelInfoAtacar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelInfoAtacar.setAutoscrolls(true);
+        panelInfoAtacar.setMinimumSize(new java.awt.Dimension(320, 250));
+        panelInfoAtacar.setPreferredSize(new java.awt.Dimension(320, 250));
+
+        jLabel24.setText("Informacion");
+
+        javax.swing.GroupLayout panelInfoAtacarLayout = new javax.swing.GroupLayout(panelInfoAtacar);
+        panelInfoAtacar.setLayout(panelInfoAtacarLayout);
+        panelInfoAtacarLayout.setHorizontalGroup(
+            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel24)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+        panelInfoAtacarLayout.setVerticalGroup(
+            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel24)
+                .addContainerGap(221, Short.MAX_VALUE))
+        );
+
+        capaAtacar.add(panelInfoAtacar);
+
+        panelAtacar.setBackground(new java.awt.Color(255, 255, 255));
+        panelAtacar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelAtacar.setPreferredSize(new java.awt.Dimension(340, 250));
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("Rango corto");
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Rango medio");
+
+        buttonGroup1.add(jRadioButton3);
+        jRadioButton3.setText("Rango largo");
+
+        javax.swing.GroupLayout panelAtacarLayout = new javax.swing.GroupLayout(panelAtacar);
+        panelAtacar.setLayout(panelAtacarLayout);
+        panelAtacarLayout.setHorizontalGroup(
+            panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAtacarLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton1))
+                .addContainerGap(218, Short.MAX_VALUE))
+        );
+        panelAtacarLayout.setVerticalGroup(
+            panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAtacarLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton3)
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+
+        capaAtacar.add(panelAtacar);
+
+        Info.add(capaAtacar);
+        Info.setLayer(capaAtacar, 2);
+
+        capaAsTactico.setLayout(new javax.swing.BoxLayout(capaAsTactico, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelInfoAs.setBackground(new java.awt.Color(255, 255, 255));
+        panelInfoAs.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelInfoAs.setAutoscrolls(true);
+        panelInfoAs.setMinimumSize(new java.awt.Dimension(320, 250));
+        panelInfoAs.setPreferredSize(new java.awt.Dimension(320, 250));
+
+        jLabel25.setText("Informacion");
+
+        javax.swing.GroupLayout panelInfoAsLayout = new javax.swing.GroupLayout(panelInfoAs);
+        panelInfoAs.setLayout(panelInfoAsLayout);
+        panelInfoAsLayout.setHorizontalGroup(
+            panelInfoAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAsLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jLabel25)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+        panelInfoAsLayout.setVerticalGroup(
+            panelInfoAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAsLayout.createSequentialGroup()
+                .addComponent(jLabel25)
+                .addGap(0, 232, Short.MAX_VALUE))
+        );
+
+        capaAsTactico.add(panelInfoAs);
+
+        panelAs.setBackground(new java.awt.Color(255, 255, 255));
+        panelAs.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelAs.setPreferredSize(new java.awt.Dimension(340, 250));
+
+        javax.swing.GroupLayout panelAsLayout = new javax.swing.GroupLayout(panelAs);
+        panelAs.setLayout(panelAsLayout);
+        panelAsLayout.setHorizontalGroup(
+            panelAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 336, Short.MAX_VALUE)
+        );
+        panelAsLayout.setVerticalGroup(
+            panelAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+
+        capaAsTactico.add(panelAs);
+
+        Info.add(capaAsTactico);
+        Info.setLayer(capaAsTactico, 3);
+
+        capaReclutar.setLayout(new javax.swing.BoxLayout(capaReclutar, javax.swing.BoxLayout.LINE_AXIS));
+
+        panelInfoReclutar.setBackground(new java.awt.Color(255, 255, 255));
+        panelInfoReclutar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelInfoReclutar.setAutoscrolls(true);
+        panelInfoReclutar.setMinimumSize(new java.awt.Dimension(320, 250));
+        panelInfoReclutar.setPreferredSize(new java.awt.Dimension(320, 250));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Información");
+
+        javax.swing.GroupLayout panelInfoReclutarLayout = new javax.swing.GroupLayout(panelInfoReclutar);
+        panelInfoReclutar.setLayout(panelInfoReclutarLayout);
+        panelInfoReclutarLayout.setHorizontalGroup(
+            panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelInfoReclutarLayout.setVerticalGroup(
+            panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoReclutarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        capaReclutar.add(panelInfoReclutar);
 
         panelReclutar.setBackground(new java.awt.Color(255, 255, 255));
         panelReclutar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        panelReclutar.setAutoscrolls(true);
+        panelReclutar.setPreferredSize(new java.awt.Dimension(340, 250));
 
         bReclutarCachorro.setText("Reclutar");
+        bReclutarCachorro.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         bReclutarAlumno.setText("Reclutar");
+        bReclutarAlumno.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         bReclutarSuperior.setText("Reclutar");
+        bReclutarSuperior.setMargin(new java.awt.Insets(2, 0, 2, 0));
         bReclutarSuperior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bReclutarSuperiorActionPerformed(evt);
@@ -319,10 +610,13 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         });
 
         bReclutarAyudante.setText("Reclutar");
+        bReclutarAyudante.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         bReclutarCoordinador.setText("Reclutar");
+        bReclutarCoordinador.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         bReclutarPame.setText("Reclutar");
+        bReclutarPame.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Alumno");
@@ -384,7 +678,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -454,47 +748,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelInfoReclutar.setBackground(new java.awt.Color(255, 255, 255));
-        panelInfoReclutar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        capaReclutar.add(panelReclutar);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Información");
+        Info.add(capaReclutar);
+        Info.setLayer(capaReclutar, 4);
 
-        javax.swing.GroupLayout panelInfoReclutarLayout = new javax.swing.GroupLayout(panelInfoReclutar);
-        panelInfoReclutar.setLayout(panelInfoReclutarLayout);
-        panelInfoReclutarLayout.setHorizontalGroup(
-            panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-        );
-        panelInfoReclutarLayout.setVerticalGroup(
-            panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoReclutarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout InfoLayout = new javax.swing.GroupLayout(Info);
-        Info.setLayout(InfoLayout);
-        InfoLayout.setHorizontalGroup(
-            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InfoLayout.createSequentialGroup()
-                .addComponent(panelInfoReclutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelReclutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        InfoLayout.setVerticalGroup(
-            InfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelInfoReclutar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(InfoLayout.createSequentialGroup()
-                .addComponent(panelReclutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        Info.setLayer(panelReclutar, 1);
-        Info.setLayer(panelInfoReclutar, 1);
-
-        getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 660, 240));
+        getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 315, -1, 250));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Turno de");
@@ -505,24 +764,29 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
 
         botonMover.setText("Mover");
+        botonMover.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonMover, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 110, 70));
 
         botonAtacar.setText("Atacar");
+        botonAtacar.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonAtacar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, 110, 70));
 
         botonAsTactico.setText("As Táctico");
+        botonAsTactico.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonAsTactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, 110, 70));
 
         botonReclutar.setText("Reclutar");
+        botonReclutar.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonReclutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 110, 70));
 
         botonFinalizarTurno.setText("Finalizar Turno");
         botonFinalizarTurno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        botonFinalizarTurno.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        botonFinalizarTurno.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonFinalizarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 110, 120));
 
         botonRendirse.setText("Rendirse");
         botonRendirse.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonRendirse.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonRendirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 110, -1));
 
         pack();
@@ -583,8 +847,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JToggleButton botonMover;
     private javax.swing.JToggleButton botonReclutar;
     private javax.swing.JButton botonRendirse;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JPanel capaAsTactico;
+    private javax.swing.JPanel capaAtacar;
+    private javax.swing.JPanel capaDefault;
     private javax.swing.JPanel capaMapa;
+    private javax.swing.JPanel capaMover;
     private javax.swing.JPanel capaRango;
+    private javax.swing.JPanel capaReclutar;
     private javax.swing.JPanel capaUnidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -602,12 +872,27 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JPanel panelAs;
+    private javax.swing.JPanel panelAtacar;
+    private javax.swing.JPanel panelDefault;
+    private javax.swing.JPanel panelInfoAs;
+    private javax.swing.JPanel panelInfoAtacar;
+    private javax.swing.JPanel panelInfoDefault;
+    private javax.swing.JPanel panelInfoMover;
     private javax.swing.JPanel panelInfoReclutar;
+    private javax.swing.JPanel panelMover;
     private javax.swing.JPanel panelReclutar;
     // End of variables declaration//GEN-END:variables
 

@@ -173,7 +173,12 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 v.dibujarUnidades(mapa.unidadesToString());
             }
         }else if(v.getModo() == 2){ // modo atacar
-            
+            int[] posInicial = v.getCasillaSeleccionada();
+            Unidad uAtacante = mapa.getUnidad(posInicial[0], posInicial[1]);
+            Unidad uDefensora = mapa.getUnidad(i,j);
+            if(uAtacante != null && v.enRango(i, j) && v.getJugador() == uAtacante.getEquipo() ){
+                
+            }
         }else if(v.getModo() == 3){ // modo as tactico
             // aqui depende de cada as
         }else if(v.getModo() == 4){ // modo reclutar

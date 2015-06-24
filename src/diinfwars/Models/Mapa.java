@@ -293,6 +293,7 @@ public class Mapa {
                 }
             }
         }
+        retorno[fila][col] = false; // no se puede mover donde el esta parado
         return retorno;
     }
     private void preRangoMover(int[][] matrizRango, int fila,int col,int movimientos){
@@ -387,6 +388,7 @@ public class Mapa {
                 }
             }
         }
+        retorno[fila][col] = false; // no se puede atacar a si mismo
         return retorno;
     }
         
