@@ -52,6 +52,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setModo(0);
         agregarActionListener(al);
         agregarMouseListener(ml);
+        this.setLocationRelativeTo(null);
     }
 
     // Metodos
@@ -313,10 +314,11 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusCycleRoot(false);
+        setFocusable(false);
         setFocusableWindowState(false);
         setForeground(java.awt.Color.darkGray);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
+        setModalExclusionType(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tablero.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -567,6 +569,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoReclutar.setBackground(new java.awt.Color(255, 255, 255));
         panelInfoReclutar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelInfoReclutar.setAutoscrolls(true);
+        panelInfoReclutar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelInfoReclutar.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoReclutar.setPreferredSize(new java.awt.Dimension(320, 250));
 
@@ -584,8 +587,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoReclutarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(218, 218, 218))
         );
 
         capaReclutar.add(panelInfoReclutar);
@@ -710,11 +713,10 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             .addGroup(panelReclutarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bReclutarCachorro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bReclutarCachorro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -777,6 +779,11 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         botonReclutar.setText("Reclutar");
         botonReclutar.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        botonReclutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReclutarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonReclutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 110, 70));
 
         botonFinalizarTurno.setText("Finalizar Turno");
@@ -795,6 +802,10 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private void bReclutarSuperiorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReclutarSuperiorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bReclutarSuperiorActionPerformed
+
+    private void botonReclutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReclutarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonReclutarActionPerformed
 
     /**
      * @param args the command line arguments
