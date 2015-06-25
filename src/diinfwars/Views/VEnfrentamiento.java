@@ -52,6 +52,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setModo(0);
         agregarActionListener(al);
         agregarMouseListener(ml);
+        this.setLocationRelativeTo(null);
     }
 
     // Metodos
@@ -590,6 +591,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoReclutar.setBackground(new java.awt.Color(255, 255, 255));
         panelInfoReclutar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelInfoReclutar.setAutoscrolls(true);
+        panelInfoReclutar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panelInfoReclutar.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoReclutar.setPreferredSize(new java.awt.Dimension(320, 250));
 
@@ -747,11 +749,10 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             .addGroup(panelReclutarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bReclutarCachorro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bReclutarCachorro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -814,6 +815,11 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         botonReclutar.setText("Reclutar");
         botonReclutar.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        botonReclutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReclutarActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonReclutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 110, 70));
 
         botonFinalizarTurno.setText("Finalizar Turno");

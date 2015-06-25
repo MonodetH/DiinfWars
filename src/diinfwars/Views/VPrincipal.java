@@ -64,6 +64,12 @@ public class VPrincipal extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bienvenido a DIInf Wars");
+
+        jPanel1.setToolTipText("");
+        jPanel1.setName("Bienvenido a DIInf Wars"); // NOI18N
+
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 3, 36)); // NOI18N
         jLabel1.setText("Welcome to DIInf Wars!");
 
