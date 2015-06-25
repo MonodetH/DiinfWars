@@ -334,8 +334,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setModalExclusionType(null);
         setPreferredSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tablero.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -642,11 +642,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         bReclutarSuperior.setText("Reclutar");
         bReclutarSuperior.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        bReclutarSuperior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bReclutarSuperiorActionPerformed(evt);
-            }
-        });
 
         bReclutarAyudante.setText("Reclutar");
         bReclutarAyudante.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -815,11 +810,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         botonReclutar.setText("Reclutar");
         botonReclutar.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        botonReclutar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonReclutarActionPerformed(evt);
-            }
-        });
         getContentPane().add(botonReclutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, 110, 70));
 
         botonFinalizarTurno.setText("Finalizar Turno");
@@ -834,10 +824,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bReclutarSuperiorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReclutarSuperiorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bReclutarSuperiorActionPerformed
 
     private void radioRangoCortoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRangoCortoActionPerformed
         // TODO add your handling code here:
