@@ -336,6 +336,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(800, 600));
         setModalExclusionType(null);
         setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tablero.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
