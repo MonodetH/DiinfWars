@@ -18,6 +18,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 
 /**
@@ -25,6 +26,8 @@ import javax.swing.JToggleButton;
  * @author MonodetH
  */
 public class CEnfrentamiento implements ActionListener,MouseListener{
+    /**Controlador padre*/
+    private CPrincipal p;
     /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
     /**Jugador asociado*/
@@ -39,20 +42,21 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     private ArrayList<Unidad> uMovidas = new ArrayList<Unidad>();
     private ArrayList<Unidad> uAtacantes = new ArrayList<Unidad>();
     
+    private Unidad unidadAtacante = null;
+    private Unidad unidadDefensora = null;
+    
     
     
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(){
+    public CEnfrentamiento(CPrincipal padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
         Mapa mapa1 = new Mapa(2);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,10,1,2,3,"Estudioso","Deportista",jug2,10,1,3,2,"Estudioso","Deportista");
-        
-        
-        
-        
+
         /*Aqui empieza este controlador*/
+        this.p = padre;
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -60,14 +64,24 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.estratega1 = batalla.getEstratega1();
         this.estratega2 = batalla.getEstratega2();
         this.run();
-        v.setLabel2(jugador1.getNombre());
-        v.dibujarTerreno(mapa.terrenoToString());
-        v.dibujarUnidades(mapa.unidadesToString());
-        
+    }
+    /**Constructor que instancia la vista*/
+    public CEnfrentamiento(CPrincipal padre,Batalla datosBatalla){
+        this.batalla = datosBatalla;
+        this.mapa = batalla.getMapa();
+        this.jugador1 = batalla.getJugador1();
+        this.jugador2 = batalla.getJugador2();
+        this.estratega1 = batalla.getEstratega1();
+        this.estratega2 = batalla.getEstratega2();
     }
     
     public void run(){
-        if (this.v == null){this.v = new VEnfrentamiento(this,this);}
+        if (this.v == null){
+            this.v = new VEnfrentamiento(this,this);
+            v.setLabel2(jugador1.getNombre());
+            v.dibujarTerreno(mapa.terrenoToString());
+            v.dibujarUnidades(mapa.unidadesToString());
+        }
         this.v.setVisible(true);
     }
     
@@ -85,9 +99,17 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                 v.setModo(0);
                 v.dibujarRango(new boolean[9][20]);
                 
+                //Actualiza los paneles de informacion
+                Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
+                v.actualizarPanelReclutar(estratega.getOro());
+                estratega.cobrarMantencion();
+                //v.actualizarPanelDefault(estratega.cobrarMantencion());
+                
                 // se reinician las listas de movidos y atacantes
                 uMovidas.clear();
                 uAtacantes.clear();
+                this.unidadAtacante = null;
+                this.unidadDefensora = null;
             }
             
             
@@ -105,9 +127,13 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
                     Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
                     Unidad unidad = estratega.reclutar(tipoUnidad);
                     mapa.ubicarUnidad(unidad,pos[0], pos[1]);
-                    v.dibujarUnidades(mapa.unidadesToString());
-                    boolean[][] rango = mapa.getRango(v.getModo(),pos[0],pos[1],v.getJugador(),1);
+                    uMovidas.add(unidad);
+                    uAtacantes.add(unidad);
+                    
+                    boolean[][] rango = mapa.getRango(v.getModo(),pos[0],pos[1],v.getJugador(),v.getRangoAtaque());
                     v.dibujarRango(rango);
+                    v.dibujarUnidades(mapa.unidadesToString());
+                    v.actualizarPanelReclutar(estratega.getOro());
                 }
             }
             
@@ -117,30 +143,23 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             // cambio de modo
             if(boton.getText() == "Mover"){
                 v.setModo(1);
-                int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
-                v.dibujarRango(rango);
             }
             else if(boton.getText() == "Atacar"){
                 v.setModo(2);
-                int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),2);
-                v.dibujarRango(rango);
             }
             else if(boton.getText() == "As Táctico"){
                 v.setModo(3);
-                int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
-                v.dibujarRango(rango);
             }
             else if(boton.getText() == "Reclutar"){
                 v.setModo(4);
-                int[] casillaActual = v.getCasillaSeleccionada();
-                boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),1);
-                v.dibujarRango(rango);
-                int oroJugador = (v.getJugador() == 1)?estratega1.getOro():estratega1.getOro();
-                v.mostrarMenuReclutar(oroJugador);
+                Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
+                v.actualizarPanelReclutar(estratega.getOro());
+                
             }
+            int[] casillaActual = v.getCasillaSeleccionada();
+            boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),v.getRangoAtaque());
+            v.dibujarRango(rango);
+            
         // En caso de que sea una accion no implementada
         }else{
             System.out.println("Otro");
@@ -176,8 +195,14 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             int[] posInicial = v.getCasillaSeleccionada();
             Unidad uAtacante = mapa.getUnidad(posInicial[0], posInicial[1]);
             Unidad uDefensora = mapa.getUnidad(i,j);
-            if(uAtacante != null && v.enRango(i, j) && v.getJugador() == uAtacante.getEquipo() ){
-                
+            if(uAtacante != null && v.enRango(i, j) && v.getJugador() == uAtacante.getEquipo()
+                    && uDefensora != null && uAtacante.getEquipo() != uDefensora.getEquipo()){
+                System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
+                this.unidadAtacante = uAtacante;
+                this.unidadDefensora = uDefensora;
+            }else{
+                this.unidadAtacante = null;
+                this.unidadDefensora = null;
             }
         }else if(v.getModo() == 3){ // modo as tactico
             // aqui depende de cada as
@@ -187,7 +212,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         
         // Actualizar Casilla seleccionada y matriz de rango
         this.v.setCasillaSeleccionada(i,j);
-        v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador(),1));
+        v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador(),v.getRangoAtaque()));
     }
 
     @Override
@@ -203,6 +228,6 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     public void mouseExited(MouseEvent e) {}
     
     public static void main(String[] args){
-        new CEnfrentamiento();
+        new CEnfrentamiento(null);
     }
 }

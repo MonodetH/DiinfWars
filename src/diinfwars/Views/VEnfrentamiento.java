@@ -145,6 +145,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public void setLabel1(String str){this.jLabel1.setText(str);}
     public void setLabel2(String str){this.jLabel2.setText(str);}
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
+    public int getRangoAtaque(){
+        if(this.radioRangoCorto.isSelected()){return 1;}
+        else if(this.radioRangoMedio.isSelected()){return 2;}
+        else if(this.radioRangoLargo.isSelected()){return 3;}
+        return 1;
+    }    
     
     public JPanel getPanelReclutar(){return this.panelReclutar;}
     public JButton getReclutarAlumno(){return this.bReclutarAlumno;}
@@ -190,8 +196,15 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         return true;
     }
     
-    public void mostrarMenuReclutar(int oro) {
+    public void actualizarPanelReclutar(int oro) {
+        this.bReclutarAlumno.setEnabled(oro >= 6);
+        this.bReclutarAyudante.setEnabled(oro >= 8);
+        this.bReclutarCachorro.setEnabled(oro >= 4);
+        this.bReclutarCoordinador.setEnabled(oro >= 10);
+        this.bReclutarPame.setEnabled(oro >= 12);
+        this.bReclutarSuperior.setEnabled(oro >= 8);
         
+        this.jLabel27.setText(String.valueOf(oro));
     }
     
     
@@ -202,6 +215,11 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.botonReclutar.addActionListener(al);
         this.botonFinalizarTurno.addActionListener(al);
         this.botonRendirse.addActionListener(al);
+        
+        this.radioRangoCorto.addActionListener(al);
+        this.radioRangoMedio.addActionListener(al);
+        this.radioRangoLargo.addActionListener(al);
+        
         this.bReclutarAlumno.addActionListener(al);
         this.bReclutarAyudante.addActionListener(al);
         this.bReclutarCachorro.addActionListener(al);
@@ -264,9 +282,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoAtacar = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         panelAtacar = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radioRangoCorto = new javax.swing.JRadioButton();
+        radioRangoMedio = new javax.swing.JRadioButton();
+        radioRangoLargo = new javax.swing.JRadioButton();
         capaAsTactico = new javax.swing.JPanel();
         panelInfoAs = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -274,6 +292,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         capaReclutar = new javax.swing.JPanel();
         panelInfoReclutar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         panelReclutar = new javax.swing.JPanel();
         bReclutarCachorro = new javax.swing.JButton();
         bReclutarAlumno = new javax.swing.JButton();
@@ -312,10 +332,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         setTitle("DIInfWars - Enfrentamiento");
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setFocusCycleRoot(false);
-        setFocusableWindowState(false);
-        setForeground(java.awt.Color.darkGray);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -475,15 +493,20 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelAtacar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelAtacar.setPreferredSize(new java.awt.Dimension(340, 250));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Rango corto");
+        buttonGroup1.add(radioRangoCorto);
+        radioRangoCorto.setSelected(true);
+        radioRangoCorto.setText("Rango corto");
+        radioRangoCorto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioRangoCortoActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Rango medio");
+        buttonGroup1.add(radioRangoMedio);
+        radioRangoMedio.setText("Rango medio");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Rango largo");
+        buttonGroup1.add(radioRangoLargo);
+        radioRangoLargo.setText("Rango largo");
 
         javax.swing.GroupLayout panelAtacarLayout = new javax.swing.GroupLayout(panelAtacar);
         panelAtacar.setLayout(panelAtacarLayout);
@@ -492,20 +515,20 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             .addGroup(panelAtacarLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                    .addComponent(radioRangoLargo)
+                    .addComponent(radioRangoMedio)
+                    .addComponent(radioRangoCorto))
                 .addContainerGap(218, Short.MAX_VALUE))
         );
         panelAtacarLayout.setVerticalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtacarLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(jRadioButton1)
+                .addComponent(radioRangoCorto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(radioRangoMedio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(radioRangoLargo)
                 .addContainerGap(118, Short.MAX_VALUE))
         );
 
@@ -574,18 +597,32 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Información");
 
+        jLabel26.setText("Su oro es:");
+
+        jLabel27.setText("0");
+
         javax.swing.GroupLayout panelInfoReclutarLayout = new javax.swing.GroupLayout(panelInfoReclutar);
         panelInfoReclutar.setLayout(panelInfoReclutarLayout);
         panelInfoReclutarLayout.setHorizontalGroup(
             panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addGroup(panelInfoReclutarLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel27)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelInfoReclutarLayout.setVerticalGroup(
             panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoReclutarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         capaReclutar.add(panelInfoReclutar);
@@ -796,6 +833,10 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bReclutarSuperiorActionPerformed
 
+    private void radioRangoCortoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRangoCortoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioRangoCortoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -874,6 +915,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -881,9 +924,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JPanel panelAs;
     private javax.swing.JPanel panelAtacar;
     private javax.swing.JPanel panelDefault;
@@ -894,6 +934,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel panelInfoReclutar;
     private javax.swing.JPanel panelMover;
     private javax.swing.JPanel panelReclutar;
+    private javax.swing.JRadioButton radioRangoCorto;
+    private javax.swing.JRadioButton radioRangoLargo;
+    private javax.swing.JRadioButton radioRangoMedio;
     // End of variables declaration//GEN-END:variables
 
     

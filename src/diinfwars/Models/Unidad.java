@@ -82,9 +82,9 @@ public abstract class Unidad {
         return this.equipo;
     }
     
-    public int getMovimientos(){
-        return this.movimiento;
-    }
+    public int getMovimientos(){return this.movimiento;}
+    public int getCosto(){return this.costo;}
+    public int getMantencion(){return this.mantencion;}
     
     
 }

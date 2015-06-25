@@ -6,6 +6,7 @@
 package diinfwars.Models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -70,9 +71,21 @@ public class Estratega {
                 break;
         }
         
-        if (nuevaUnidad != null){unidades.add(nuevaUnidad);}
+        if (nuevaUnidad != null && this.oro >= nuevaUnidad.getCosto()){
+            this.oro -= nuevaUnidad.getCosto();
+            unidades.add(nuevaUnidad);
+            return nuevaUnidad;
+        }
         
-        return nuevaUnidad;
+        return null;
+    }
+    
+    
+    public int[] cobrarMantencion(){
+        int mantencion = getMantencion();
+        this.oro -= mantencion;
+        if (oro < 0){oro = 0;}
+        return new int[]{oro,mantencion};
     }
     
     /**
@@ -83,6 +96,13 @@ public class Estratega {
         Unidad candidato = unidades.get(0);
         return (candidato instanceof Profesor)?candidato:null; // si candidato es profesor lo retorna, sino null
     }
-    
+    public int getMantencion(){
+        int mantencion = 0;
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            mantencion += iterador.next().getMantencion();
+        }
+        return mantencion;
+    }
     public int getOro(){return this.oro;}
 }

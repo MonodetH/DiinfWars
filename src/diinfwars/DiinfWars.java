@@ -6,6 +6,7 @@
 package diinfwars;
 
 import diinfwars.Controllers.CEnfrentamiento;
+import diinfwars.Controllers.CPrincipal;
 
 /**
  *
@@ -18,7 +19,7 @@ public class DiinfWars {
      */
     public static void main(String[] args) {
         // TODO code application logic here 
-        CEnfrentamiento ce = new CEnfrentamiento();
+        CPrincipal cp = new CPrincipal();
     }
     
 }
