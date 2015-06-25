@@ -18,15 +18,16 @@ public class VCreditos extends javax.swing.JFrame {
      */
     public VCreditos() {
         initComponents();
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setTitle("Créditos");
-        this.setVisible(true);
+        
     }
     
     public VCreditos(ActionListener al){
         initComponents();
         agregarActionListeners(al);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        setTitle("Créditos");
+        this.setVisible(true);
     }
 
     public void agregarActionListeners(ActionListener al){
@@ -98,6 +99,11 @@ public class VCreditos extends javax.swing.JFrame {
         jLabel11.setText("Derechos de autor");
 
         bVolver.setText("Volver");
+        bVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,10 +184,12 @@ public class VCreditos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VPrincipal obj = new VPrincipal();
-        obj.setVisible(true);
-        dispose();
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bVolverActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package diinfwars.Views;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Alejandro
@@ -16,10 +18,21 @@ public class VEstadisticas extends javax.swing.JFrame {
      */
     public VEstadisticas() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        
     }
 
+    public VEstadisticas(ActionListener al){
+        initComponents();
+        agregarActionListeners(al);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        setTitle("Estadisticas");
+        this.setVisible(true);
+    }
+
+    public void agregarActionListeners(ActionListener al){
+        bVolver.addActionListener(al);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +48,7 @@ public class VEstadisticas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,11 +115,11 @@ public class VEstadisticas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Registro de los Jugadores");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Atrás");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bVolver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bVolver.setText("Volver");
+        bVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bVolverActionPerformed(evt);
             }
         });
 
@@ -122,7 +135,7 @@ public class VEstadisticas extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -134,7 +147,7 @@ public class VEstadisticas extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -142,11 +155,9 @@ public class VEstadisticas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VPrincipal obj = new VPrincipal();
-        obj.setVisible(true);
-        dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
+
+    }//GEN-LAST:event_bVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,7 +195,7 @@ public class VEstadisticas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

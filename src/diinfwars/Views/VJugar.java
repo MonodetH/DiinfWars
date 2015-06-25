@@ -5,6 +5,8 @@
  */
 package diinfwars.Views;
 
+import diinfwars.Controllers.CEnfrentamiento;
+
 /**
  *
  * @author Alejandro
@@ -170,9 +172,7 @@ public class VJugar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        VEnfrentamiento obj = new VEnfrentamiento();
-        obj.setVisible(true);
-        dispose();
+ 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

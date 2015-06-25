@@ -5,31 +5,31 @@
  */
 package diinfwars.Controllers;
 
-import diinfwars.Views.VCreditos;
+import diinfwars.Views.VEstadisticas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  *
- * @author MonodetH
+ * @author Zen
  */
-class CCreditos implements ActionListener{
+class CEstadisticas implements ActionListener{
     private CPrincipal p;
     
     /**Instancia de la vista principal*/
-    private VCreditos vi;
+    private VEstadisticas v;
     
-    public CCreditos(CPrincipal padre){
+    public CEstadisticas(CPrincipal padre){
         p = padre;
     }
     
     public void run(){
-        if (this.vi == null){this.vi = new VCreditos(this);}
-        this.vi.setVisible(true);
+        if (this.v == null){this.v = new VEstadisticas(this);}
+        this.v.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        vi.setVisible(false);
+        v.setVisible(false);
         p.run();
     }
 }

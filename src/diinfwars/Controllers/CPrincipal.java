@@ -5,7 +5,6 @@
  */
 package diinfwars.Controllers;
 
-import diinfwars.Views.VCreditos;
 import diinfwars.Views.VPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +21,8 @@ public class CPrincipal implements ActionListener{
     // Controladores
     private CCreditos cCreditos;
     private CEnfrentamiento cEnfrentamiento;
+    private CEstadisticas cEstadisticas;
+        
     
     public CPrincipal(){
         this.run();
@@ -37,11 +38,16 @@ public class CPrincipal implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JButton boton = (JButton) e.getSource();
         
-        if (boton == v.getBoton("Creditos")){
+        if (boton == v.getBoton("Estadisticas")){
+            if (cEstadisticas == null){cEstadisticas = new CEstadisticas(this);}
+            v.setVisible(false);
+            cEstadisticas.run();
+        }else if (boton == v.getBoton("Creditos")){
             if(cCreditos == null){cCreditos = new CCreditos(this);}
             v.setVisible(false);
             cCreditos.run();
-        }else if (boton == v.getBoton("Jugar")){
+        
+        }else if(boton == v.getBoton("Jugar")){
             if(cEnfrentamiento == null){cEnfrentamiento = new CEnfrentamiento(this);}
             v.setVisible(false);
             cEnfrentamiento.run();

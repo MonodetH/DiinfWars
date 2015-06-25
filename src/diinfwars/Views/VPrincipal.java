@@ -21,6 +21,10 @@ public class VPrincipal extends javax.swing.JFrame {
     public VPrincipal(ActionListener al) {
         initComponents();
         agregarActionListener(al);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setVisible(true);
+        
     }
     
     public void agregarActionListener(ActionListener al){
