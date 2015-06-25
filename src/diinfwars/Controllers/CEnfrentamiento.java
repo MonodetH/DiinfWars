@@ -50,10 +50,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     /**Constructor que instancia la vista*/
     public CEnfrentamiento(CPrincipal padre){
         /*Esto se hace en CPreEnfrentamiento*/
-        Jugador jug1=new Jugador("Mono"), jug2 = new Jugador("Ale");
+        Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
         Mapa mapa1 = new Mapa(2);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
-        Batalla datosBatalla = new Batalla(mapa1,5,jug1,10,1,2,3,"Estudioso","Deportista",jug2,10,1,3,2,"Estudioso","Deportista");
+        Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
         /*Aqui empieza este controlador*/
         this.p = padre;
@@ -92,6 +92,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         // En caso de que sean botones
         if( source instanceof JButton){
             JButton boton = (JButton) e.getSource();
+            if(boton.getText() == "Rendirse"){
+                v.setVisible(false);
+                p.run();
+                }
             // finalizar turno o rendirse
             if(boton.getText() == "Finalizar Turno"){
                 String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();

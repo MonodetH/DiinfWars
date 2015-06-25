@@ -26,7 +26,6 @@ public class VEstadisticas extends javax.swing.JFrame {
         agregarActionListeners(al);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        setTitle("Estadisticas");
         this.setVisible(true);
     }
 
@@ -51,6 +50,8 @@ public class VEstadisticas extends javax.swing.JFrame {
         bVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DIInf Wars - Estadisticas");
+        setAlwaysOnTop(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
 

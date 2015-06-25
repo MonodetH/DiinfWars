@@ -22,6 +22,8 @@ public class CPrincipal implements ActionListener{
     private CCreditos cCreditos;
     private CEnfrentamiento cEnfrentamiento;
     private CEstadisticas cEstadisticas;
+    private CLogin cLogin;
+    private CTorneo cTorneo;
         
     
     public CPrincipal(){
@@ -42,11 +44,18 @@ public class CPrincipal implements ActionListener{
             if (cEstadisticas == null){cEstadisticas = new CEstadisticas(this);}
             v.setVisible(false);
             cEstadisticas.run();
+        }else if (boton == v.getBoton("Torneo")){
+            if (cTorneo == null){cTorneo = new CTorneo(this);}
+            v.setVisible(false);
+            cTorneo.run();
         }else if (boton == v.getBoton("Creditos")){
             if(cCreditos == null){cCreditos = new CCreditos(this);}
             v.setVisible(false);
             cCreditos.run();
-        
+        }else if (boton == v.getBoton("Registrarse")){
+            if(cLogin == null){cLogin = new CLogin(this);}
+            v.setVisible(false);
+            cLogin.run();
         }else if(boton == v.getBoton("Jugar")){
             if(cEnfrentamiento == null){cEnfrentamiento = new CEnfrentamiento(this);}
             v.setVisible(false);

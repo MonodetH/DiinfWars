@@ -371,23 +371,22 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoDefault.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoDefault.setPreferredSize(new java.awt.Dimension(320, 250));
 
-        jLabel4.setText("Informacion");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Información");
 
         javax.swing.GroupLayout panelInfoDefaultLayout = new javax.swing.GroupLayout(panelInfoDefault);
         panelInfoDefault.setLayout(panelInfoDefaultLayout);
         panelInfoDefaultLayout.setHorizontalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoDefaultLayout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(jLabel4)
-                .addContainerGap(141, Short.MAX_VALUE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
         panelInfoDefaultLayout.setVerticalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoDefaultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         capaDefault.add(panelInfoDefault);
@@ -495,43 +494,49 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelAtacar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         panelAtacar.setPreferredSize(new java.awt.Dimension(340, 250));
 
+        radioRangoCorto.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(radioRangoCorto);
+        radioRangoCorto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         radioRangoCorto.setSelected(true);
-        radioRangoCorto.setText("Rango corto");
+        radioRangoCorto.setText("Rango Corto");
         radioRangoCorto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioRangoCortoActionPerformed(evt);
             }
         });
 
+        radioRangoMedio.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(radioRangoMedio);
-        radioRangoMedio.setText("Rango medio");
+        radioRangoMedio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radioRangoMedio.setText("Rango Medio");
 
+        radioRangoLargo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(radioRangoLargo);
-        radioRangoLargo.setText("Rango largo");
+        radioRangoLargo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radioRangoLargo.setText("Rango Largo");
 
         javax.swing.GroupLayout panelAtacarLayout = new javax.swing.GroupLayout(panelAtacar);
         panelAtacar.setLayout(panelAtacarLayout);
         panelAtacarLayout.setHorizontalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtacarLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(127, 127, 127)
                 .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioRangoLargo)
-                    .addComponent(radioRangoMedio)
-                    .addComponent(radioRangoCorto))
-                .addContainerGap(218, Short.MAX_VALUE))
+                    .addComponent(radioRangoMedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioRangoLargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioRangoCorto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(122, 122, 122))
         );
         panelAtacarLayout.setVerticalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtacarLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(radioRangoCorto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioRangoMedio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioRangoLargo)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addComponent(radioRangoCorto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioRangoMedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioRangoLargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(102, 102, 102))
         );
 
         capaAtacar.add(panelAtacar);
@@ -790,12 +795,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 315, -1, 250));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Turno de");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 100, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 110, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Jugador 1");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, 110, -1));
 
         botonMover.setText("Mover");
         botonMover.setMargin(new java.awt.Insets(2, 0, 2, 0));

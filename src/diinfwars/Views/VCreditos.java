@@ -26,7 +26,6 @@ public class VCreditos extends javax.swing.JFrame {
         agregarActionListeners(al);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        setTitle("Créditos");
         this.setVisible(true);
     }
 
@@ -58,6 +57,7 @@ public class VCreditos extends javax.swing.JFrame {
         bVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DIInf Wars - Creditos");
         setAlwaysOnTop(true);
         setResizable(false);
 
