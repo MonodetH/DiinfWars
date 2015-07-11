@@ -5,7 +5,7 @@
  */
 package diinfwars.Controllers;
 
-import diinfwars.Views.VTorneo;
+import diinfwars.Views.VPreTorneo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,18 +13,18 @@ import java.awt.event.ActionListener;
  *
  * @author MonodetH
  */
-class CTorneo implements ActionListener{
+class CPreTorneo implements ActionListener{
     private CPrincipal p;
     
     /**Instancia de la vista principal*/
-    private VTorneo vi;
+    private VPreTorneo vi;
     
-    public CTorneo(CPrincipal padre){
+    public CPreTorneo(CPrincipal padre){
         p = padre;
     }
     
     public void run(){
-        if (this.vi == null){this.vi = new VTorneo(this);}
+        if (this.vi == null){this.vi = new VPreTorneo(this);}
         this.vi.setVisible(true);
     }
     @Override

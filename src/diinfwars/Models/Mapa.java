@@ -283,27 +283,30 @@ public class Mapa {
         boolean[][] retorno = new boolean[9][20];
         if (matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].isHabilitada()){
             int[][] preRango = new int[9][20];
-            preRangoMover(preRango,fila,col,matrizCasillas[fila][col].getUnidad().getMovimientos());
+            Unidad unidad = matrizCasillas[fila][col].getUnidad();
+            preRangoMover(preRango,fila,col,unidad.getMovimientos(),unidad.getEquipo());
             
             for(int i=0;i<9;i++){
                 for(int j=0;j<20;j++){
-                    if(preRango[i][j]>0){
+                    if(preRango[i][j]>0 && matrizCasillas[i][j].getUnidad() == null){
                         retorno[i][j] = true;
                     }
                 }
             }
         }
-        retorno[fila][col] = false; // no se puede mover donde el esta parado
         return retorno;
     }
-    private void preRangoMover(int[][] matrizRango, int fila,int col,int movimientos){
-        if(movimientos > 0 && movimientos+1 > matrizRango[fila][col] && matrizCasillas[fila][col].isHabilitada()){
+    private void preRangoMover(int[][] matrizRango, int fila,int col,int movimientos,int jugador){
+        Unidad unidad = matrizCasillas[fila][col].getUnidad();
+        if(movimientos > 0 && movimientos+1 > matrizRango[fila][col] && matrizCasillas[fila][col].isHabilitada() 
+                && !(unidad != null && unidad.getEquipo() != jugador)){
+            
             matrizRango[fila][col] = movimientos+1;
             
-            if(fila-1 >= 0){preRangoMover(matrizRango,fila-1,col,movimientos-1);} // Arriba
-            if(col+1 < 20){preRangoMover(matrizRango,fila,col+1,movimientos-1);} // Derecha
-            if(fila+1 < 9){preRangoMover(matrizRango,fila+1,col,movimientos-1);} // Abajo
-            if(col-1 >= 0){preRangoMover(matrizRango,fila,col-1,movimientos-1);} // Izquierda
+            if(fila-1 >= 0){preRangoMover(matrizRango,fila-1,col,movimientos-1,jugador);} // Arriba
+            if(col+1 < 20){preRangoMover(matrizRango,fila,col+1,movimientos-1,jugador);} // Derecha
+            if(fila+1 < 9){preRangoMover(matrizRango,fila+1,col,movimientos-1,jugador);} // Abajo
+            if(col-1 >= 0){preRangoMover(matrizRango,fila,col-1,movimientos-1,jugador);} // Izquierda
         }
     }
     
