@@ -6,6 +6,7 @@
 package diinfwars.Views;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -29,6 +30,8 @@ public class VPreTorneo extends javax.swing.JFrame {
     public void agregarActionListeners(ActionListener al){
         bVolver.addActionListener(al);
     }
+    
+    public JButton getBVolver(){return this.bVolver;}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,11 +95,6 @@ public class VPreTorneo extends javax.swing.JFrame {
         getContentPane().add(bVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 526, 144, 63));
 
         jButton1.setText("Comenzar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 543, 102, 46));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Añadir jugador.jpg"))); // NOI18N
@@ -164,10 +162,6 @@ public class VPreTorneo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,14 +20,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * Controlador de la vista enfrentamiento
  * @author MonodetH
  */
-public class CEnfrentamiento implements ActionListener,MouseListener{
+public class CEnfrentamiento implements ActionListener,MouseListener,ListSelectionListener{
     /**Controlador padre*/
-    private CPrincipal p;
+    private CPreJugar p;
     /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
     /**Jugador asociado*/
@@ -48,7 +50,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     
     
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPrincipal padre){
+    public CEnfrentamiento(CPreJugar padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
         Mapa mapa1 = new Mapa(2);
@@ -63,10 +65,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
         this.jugador2 = batalla.getJugador2();
         this.estratega1 = batalla.getEstratega1();
         this.estratega2 = batalla.getEstratega2();
-        this.run();
     }
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPrincipal padre,Batalla datosBatalla){
+    public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -77,7 +78,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
     
     public void run(){
         if (this.v == null){
-            this.v = new VEnfrentamiento(this,this);
+            this.v = new VEnfrentamiento(this,this,this);
             v.setLabel2(jugador1.getNombre());
             v.dibujarTerreno(mapa.terrenoToString());
             v.dibujarUnidades(mapa.unidadesToString());
@@ -150,6 +151,13 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
             else if(boton.getText() == "Atacar"){
                 v.setModo(2);
+                int[] pos = v.getCasillaSeleccionada();
+                Unidad unidad = mapa.getUnidad(pos[0], pos[1]);
+                if(unidad != null){
+                    String[] listaAtaques = unidad.getListaAtaques();
+                    v.setListaAtaques(listaAtaques);
+                }
+                
             }
             else if(boton.getText() == "As Táctico"){
                 v.setModo(3);
@@ -186,52 +194,97 @@ public class CEnfrentamiento implements ActionListener,MouseListener{
             }
         }
         
+        // Obtener informacion necesaria
+        int[] posAntigua = v.getCasillaSeleccionada(); //Posicion anterior a la ultima seleccion
+            // i, j posicion actual
+        Unidad uAntigua = mapa.getUnidad(posAntigua[0], posAntigua[1]); //unidad en la posicion antigua, si la hay
+        Unidad uNueva = mapa.getUnidad(i,j); //unidad en la posicion nueva, si la hay
+        
+        // Procedimiento general pre analisis
+        if(uNueva != null){
+            if(v.getModo() != 2 && uNueva!=uAntigua){
+                String[] listaAtaques = uNueva.getListaAtaques();
+                v.setListaAtaques(listaAtaques);
+            }
+        }else{
+            v.setListaAtaques(null);
+        }
+        
+        
+        // Analizar segun modo
         if(v.getModo() == 1){ // modo mover
-            int[] posInicial = v.getCasillaSeleccionada();
-            Unidad uSeleccionada = mapa.getUnidad(posInicial[0], posInicial[1]);
-            if(uSeleccionada != null && v.enRango(i, j) && v.getJugador() == uSeleccionada.getEquipo() && !uMovidas.contains(uSeleccionada)){
-                if (mapa.moverUnidad(posInicial[0], posInicial[1], i, j)){
-                    uMovidas.add(uSeleccionada);
+            if(uAntigua != null && v.enRango(i, j) && v.getJugador() == uAntigua.getEquipo() && !uMovidas.contains(uAntigua)){
+                if (mapa.moverUnidad(posAntigua[0], posAntigua[1], i, j)){
+                    uMovidas.add(uAntigua);
                 }
                 v.dibujarUnidades(mapa.unidadesToString());
             }
+            this.v.clearCasillaObjetivo();
+            this.v.setCasillaSeleccionada(i,j);
+            
+            
+            
         }else if(v.getModo() == 2){ // modo atacar
-            int[] posInicial = v.getCasillaSeleccionada();
-            Unidad uAtacante = mapa.getUnidad(posInicial[0], posInicial[1]);
-            Unidad uDefensora = mapa.getUnidad(i,j);
-            if(uAtacante != null && v.enRango(i, j) && v.getJugador() == uAtacante.getEquipo()
-                    && uDefensora != null && uAtacante.getEquipo() != uDefensora.getEquipo()){
-                System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
-                this.unidadAtacante = uAtacante;
-                this.unidadDefensora = uDefensora;
+            this.unidadAtacante = null;
+            this.unidadDefensora = null;
+            
+            //Atacante y defensor valido
+            if(uAntigua != null && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
+                && uNueva != null  &&  uAntigua.getEquipo() != uNueva.getEquipo() 
+                && i != v.getCasillaObjetivo()[0] && j != v.getCasillaObjetivo()[1]){
+                    System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
+                    this.unidadAtacante = uAntigua;
+                    this.unidadDefensora = uNueva;
+                    //String[] listaAtaques = uAntigua.getListaAtaques();
+                    //v.setListaAtaques(listaAtaques);
+                    this.v.setCasillaObjetivo(i,j);
             }else{
-                this.unidadAtacante = null;
-                this.unidadDefensora = null;
+                if(uNueva != null){
+                    if(uNueva!=uAntigua){
+                        String[] listaAtaques = uNueva.getListaAtaques();
+                        v.setListaAtaques(listaAtaques);
+                    }
+                }
+                this.v.clearCasillaObjetivo();
+                this.v.setCasillaSeleccionada(i,j);
             }
+            
+            
         }else if(v.getModo() == 3){ // modo as tactico
             // aqui depende de cada as
+            this.v.setCasillaSeleccionada(i,j);
         }else if(v.getModo() == 4){ // modo reclutar
             // CREO QUE NO SE HACE NADA AQUI
+            this.v.setCasillaSeleccionada(i,j);
+        }else{ // Modo 0
+            this.v.setCasillaSeleccionada(i,j);
         }
         
-        // Actualizar Casilla seleccionada y matriz de rango
-        this.v.setCasillaSeleccionada(i,j);
+        // Dibujar nuevo rango
+        i = v.getCasillaSeleccionada()[0];
+        j = v.getCasillaSeleccionada()[1];
         v.dibujarRango(mapa.getRango(v.getModo(), i, j,v.getJugador(),v.getRangoAtaque()));
+    }
+    
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        int[] casillaActual = v.getCasillaSeleccionada();
+        boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),v.getRangoAtaque());
+        v.dibujarRango(rango);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {}
-    
     @Override
     public void mouseReleased(MouseEvent e) {}
-
     @Override
     public void mouseEntered(MouseEvent e) {}
-
     @Override
     public void mouseExited(MouseEvent e) {}
     
     public static void main(String[] args){
         new CEnfrentamiento(null);
     }
+
+    
 }

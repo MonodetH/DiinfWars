@@ -17,7 +17,7 @@ public class CRegistro implements ActionListener{
     private CPrincipal parentPrincipal = null;
     private CLogin parentLogin = null;
     
-    private VRegistro v;
+    private static VRegistro v;
     
     public CRegistro(){}
     public CRegistro(CPrincipal parent){

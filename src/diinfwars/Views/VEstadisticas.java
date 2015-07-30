@@ -6,6 +6,7 @@
 package diinfwars.Views;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -32,6 +33,8 @@ public class VEstadisticas extends javax.swing.JFrame {
     public void agregarActionListeners(ActionListener al){
         bVolver.addActionListener(al);
     }
+    
+    public JButton getBVolver(){return this.bVolver;}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

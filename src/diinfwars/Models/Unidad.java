@@ -63,6 +63,22 @@ public abstract class Unidad {
         return false;
     }
     
+    public String[] getListaAtaques(){
+        ArrayList<String> listaAtaques = new ArrayList<String>();
+        
+        Iterator<Ataque> iterador = ataques.iterator();
+        while(iterador.hasNext()){
+            Ataque a = iterador.next();
+            String rango = "";
+            if (a.getRango() == 1){rango = "Corto";}
+            else if (a.getRango() == 2){rango = "Medio";}
+            else if (a.getRango() == 3){rango = "Largo";}
+            listaAtaques.add(rango+" - "+String.valueOf(a.getDano())+" - "+String.valueOf(a.getGolpes()));
+        }
+        
+        return listaAtaques.toArray(new String[0]);
+    }
+    
     public String getSprite(){
         if(!isDead){
             if (equipo == 1){

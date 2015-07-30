@@ -8,6 +8,7 @@ package diinfwars.Controllers;
 import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -18,6 +19,7 @@ public class CPreJugar implements ActionListener{
     private CPrincipal p;
     /**Vista*/
     private VPreJugar v;
+    private CEnfrentamiento cEnfrentamiento;
     
     public CPreJugar(CPrincipal parent){
         p = parent;
@@ -31,6 +33,18 @@ public class CPreJugar implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        Object source = e.getSource();
+        // En caso de que sean botones
+        if( source instanceof JButton){
+            JButton boton = (JButton) e.getSource();
+            if (boton == v.getBVolver()){
+                v.dispose();
+                p.run();
+            }else if (boton == v.getBJugar()){
+                cEnfrentamiento = new CEnfrentamiento(this);
+                v.setVisible(false);
+                cEnfrentamiento.run();
+            }
+        }
     }
 }

@@ -85,11 +85,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
         bEstadisticas.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         bEstadisticas.setText("Estadísticas");
-        bEstadisticas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEstadisticasActionPerformed(evt);
-            }
-        });
 
         bTorneo.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         bTorneo.setText("Torneo");
@@ -174,10 +169,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEstadisticasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bEstadisticasActionPerformed
 
     /**
      * @param args the command line arguments

@@ -15,15 +15,14 @@ import java.util.ArrayList;
  * @author MonodetH
  */
 public class CLogin implements ActionListener{
-    private CPreTorneo parentTorneo;
-    private CPreJugar parentJugar;
+    private CPreTorneo parentTorneo = null;
+    private CPreJugar parentJugar = null;
     
     private ArrayList<Integer> listaIdLogeados = new ArrayList<Integer>();
     
     
-    
     /**Instancia de la vista principal*/
-    private VLogin v;
+    private static VLogin v;
     
     public CLogin(){
     }
@@ -37,6 +36,9 @@ public class CLogin implements ActionListener{
     public void logearJugador(int id){
         listaIdLogeados.add(id);
     }
+    
+    public void setParent(CPreTorneo parent){parentTorneo = parent;}
+    public void setParent(CPreJugar parent){parentJugar = parent;}
     
     public void run(){
         if (this.v == null){this.v = new VLogin(this);}

@@ -6,6 +6,7 @@
 package diinfwars.Views;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
 public class VCreditos extends javax.swing.JFrame {
 
     /**
-     * Creates new form vistaculia
+     * Creates new form 
      */
     public VCreditos() {
         initComponents();
@@ -32,6 +33,11 @@ public class VCreditos extends javax.swing.JFrame {
     public void agregarActionListeners(ActionListener al){
         bVolver.addActionListener(al);
     }
+    
+    public JButton getBVolver(){return this.bVolver;}
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,11 +105,6 @@ public class VCreditos extends javax.swing.JFrame {
         jLabel11.setText("Derechos de autor");
 
         bVolver.setText("Volver");
-        bVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bVolverActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,10 +187,6 @@ public class VCreditos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void bVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bVolverActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,9 +5,9 @@
  */
 package diinfwars;
 
-import diinfwars.Controllers.CEnfrentamiento;
 import diinfwars.Controllers.CPrincipal;
 import diinfwars.Controllers.CLogin;
+
 import diinfwars.Models.Registro;
 import java.util.ArrayList;
 
@@ -19,20 +19,30 @@ public class DiinfWars {
     
     private static CPrincipal sCPrincipal;
     private static CLogin sCLogin;
-    private static Registro sRegistro;
     
-    public static CPrincipal getCPrincipal(){return sCPrincipal;}
-    public static CLogin getCLogin(){return sCLogin;}
-    public static Registro getRegistro(){return sRegistro;}
+    
+    public static void destroyController(String controller){
+        if (controller == "Principal"){sCPrincipal = null;}
+        else if(controller == "Login"){sCLogin = null;}
+    }
+    
+    public static CPrincipal getCPrincipal(){
+        if(sCPrincipal == null){sCPrincipal =new CPrincipal();}
+        return sCPrincipal;
+    }
+    public static CLogin getCLogin(){
+        if(sCLogin == null){sCLogin =new CLogin();}
+        return sCLogin;
+    }
+    
+    
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        sRegistro = new Registro();
-        sCLogin = new CLogin();
-        sCLogin.logearJugador(1); //Logea a la CPU
-        sCPrincipal = new CPrincipal();
+        getCLogin().logearJugador(1); //Logea a la CPU
+        getCPrincipal().run();
     }
     
 }

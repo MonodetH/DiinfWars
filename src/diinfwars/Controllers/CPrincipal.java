@@ -16,13 +16,12 @@ import javax.swing.JButton;
  */
 public class CPrincipal implements ActionListener{
     /**Instancia de la vista principal*/
-    private VPrincipal v;
+    private static VPrincipal v;
     
     // Controladores
     private CCreditos cCreditos;
-    private CEnfrentamiento cEnfrentamiento;
+    private CPreJugar cJugar;
     private CEstadisticas cEstadisticas;
-    private CLogin cLogin;
     private CPreTorneo cTorneo;
         
     
@@ -45,7 +44,7 @@ public class CPrincipal implements ActionListener{
             v.setVisible(false);
             cEstadisticas.run();
         }else if (boton == v.getBoton("Torneo")){
-            if (cTorneo == null){cTorneo = new CPreTorneo(this);}
+            cTorneo = new CPreTorneo(this);
             v.setVisible(false);
             cTorneo.run();
         }else if (boton == v.getBoton("Creditos")){
@@ -59,9 +58,9 @@ public class CPrincipal implements ActionListener{
             cLogin.run();
             */
         }else if(boton == v.getBoton("Jugar")){
-            if(cEnfrentamiento == null){cEnfrentamiento = new CEnfrentamiento(this);}
+            cJugar = new CPreJugar(this);
             v.setVisible(false);
-            cEnfrentamiento.run();
+            cJugar.run();
         }
     }
     
