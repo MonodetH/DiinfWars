@@ -61,7 +61,41 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    // Metodos
+    // METODOS
+    public void toggleJugador(String nombre){
+        if(this.jActivo == 1){this.jActivo=2;}
+        else{this.jActivo=1;}
+        setLabel2(nombre);
+    }
+    public void clearCasillaObjetivo(){
+        if(this.casillaObjetivo[0] != -1 && this.casillaObjetivo[1] != -1){
+            matrizUnidad[casillaObjetivo[0]][casillaObjetivo[1]].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+            this.casillaObjetivo[0]=-1;
+            this.casillaObjetivo[1]=-1;
+        }
+    }
+    public boolean existeUnidad(int fila,int col){
+        return !(matrizUnidad[fila][col].getIcon() == null);
+    }
+    public boolean enRango(int fila, int col){
+        if (matrizRango[fila][col].getBackground().equals(new java.awt.Color(0, 0, 0, 0))){
+            return false;
+        }
+        return true;
+    }
+    
+    public void actualizarPanelReclutar(int oro) {
+        this.bReclutarAlumno.setEnabled(oro >= 6);
+        this.bReclutarAyudante.setEnabled(oro >= 8);
+        this.bReclutarCachorro.setEnabled(oro >= 4);
+        this.bReclutarCoordinador.setEnabled(oro >= 10);
+        this.bReclutarPame.setEnabled(oro >= 12);
+        this.bReclutarSuperior.setEnabled(oro >= 8);
+        
+        this.jLabel27.setText(String.valueOf(oro));
+    }
+    
+    // Dibujar GUI
     public void dibujarTerreno(String[][] casillas){
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
@@ -107,7 +141,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     
     
     
-    // GETS Y SETS
+    // SETS
     /**
      * Cambia la ventana de modo
      * @param modo 0 = nada, 1 = mover, 2 = atacar, 3 = as tactico, 5 = reclutar.
@@ -130,15 +164,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             setToggleOn(modo);
         }
     }
-    public int getModo(){return this.modo;}
-
     public void setCasillaSeleccionada(int i,int j){
         matrizUnidad[casillaSeleccionada[0]][casillaSeleccionada[1]].setBorder(javax.swing.BorderFactory.createEmptyBorder());
         this.casillaSeleccionada[0]=i;
         this.casillaSeleccionada[1]=j;
         matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(250, 245, 0), 1, true));
     }
-    public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public void setCasillaObjetivo(int i,int j){
         if(i != -1 && j != -1){
             if(this.casillaObjetivo[0] != -1 && this.casillaObjetivo[1] != -1){
@@ -148,34 +179,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             this.casillaObjetivo[1]=j;
             matrizUnidad[i][j].setBorder(new javax.swing.border.LineBorder(new java.awt.Color(200, 200, 0), 1, true));
         }
-    } 
-    public void clearCasillaObjetivo(){
-        if(this.casillaObjetivo[0] != -1 && this.casillaObjetivo[1] != -1){
-            matrizUnidad[casillaObjetivo[0]][casillaObjetivo[1]].setBorder(javax.swing.BorderFactory.createEmptyBorder());
-            this.casillaObjetivo[0]=-1;
-            this.casillaObjetivo[1]=-1;
-        }
     }
-    public int[] getCasillaObjetivo(){return this.casillaObjetivo;}
-    public int getJugador(){return this.jActivo;}
-    public void toggleJugador(String nombre){
-        if(this.jActivo == 1){this.jActivo=2;}
-        else{this.jActivo=1;}
-        setLabel2(nombre);
-    }
-    public void setLabel1(String str){this.jLabel1.setText(str);}
-    public void setLabel2(String str){this.jLabel2.setText(str);}
-    public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
-    public int getRangoAtaque(){
-        String selected = (String) this.listaAtaque.getSelectedValue();
-        String rango = (selected == null)? "Corto":selected.split(" - ")[0];
-        
-        if("Corto".equals(rango)){return 1;}
-        else if("Medio".equals(rango)){return 2;}
-        else if("Largo".equals(rango)){return 3;}
-        return 1;
-    }   
-    
     public void setListaAtaques(String[] listaAtaques){
         String[] lista = {"Corto - 0 - 0","Medio - 0 - 0","Largo - 0 - 0"};
         if(listaAtaques != null){lista = listaAtaques;}
@@ -183,15 +187,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.listaAtaque.setSelectedIndex(0);
         this.listaAtaque.ensureIndexIsVisible(0);
     }
-    
-    public JPanel getPanelReclutar(){return this.panelReclutar;}
-    public JButton getReclutarAlumno(){return this.bReclutarAlumno;}
-    public JButton getReclutarCachorro(){return this.bReclutarCachorro;}
-    public JButton getReclutarSuperior(){return this.bReclutarSuperior;}
-    public JButton getReclutarAyudante(){return this.bReclutarAyudante;}
-    public JButton getReclutarCoordinador(){return this.bReclutarCoordinador;}
-    public JButton getReclutarPame(){return this.bReclutarPame;}
-    
     /**
      * Cambia visualmente los botones de seleccion de modo
      * @param activado Modo activado
@@ -217,29 +212,38 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                 break;
         }
     }
+    public void setEnableAtacar(boolean enable){this.bConfirmarAtaque.setEnabled(enable);}
+    public void setLabel1(String str){this.jLabel1.setText(str);}
+    public void setLabel2(String str){this.jLabel2.setText(str);}
     
-    public boolean existeUnidad(int fila,int col){
-        return !(matrizUnidad[fila][col].getIcon() == null);
-    }
-    public boolean enRango(int fila, int col){
-        if (matrizRango[fila][col].getBackground().equals(new java.awt.Color(0, 0, 0, 0))){
-            return false;
-        }
-        return true;
-    }
     
-    public void actualizarPanelReclutar(int oro) {
-        this.bReclutarAlumno.setEnabled(oro >= 6);
-        this.bReclutarAyudante.setEnabled(oro >= 8);
-        this.bReclutarCachorro.setEnabled(oro >= 4);
-        this.bReclutarCoordinador.setEnabled(oro >= 10);
-        this.bReclutarPame.setEnabled(oro >= 12);
-        this.bReclutarSuperior.setEnabled(oro >= 8);
+    // GETS
+    public int getRangoAtaque(){
+        String selected = (String) this.listaAtaque.getSelectedValue();
+        String rango = (selected == null)? "Corto":selected.split(" - ")[0];
         
-        this.jLabel27.setText(String.valueOf(oro));
+        if("Corto".equals(rango)){return 1;}
+        else if("Medio".equals(rango)){return 2;}
+        else if("Largo".equals(rango)){return 3;}
+        return 1;
     }
+    public int getModo(){return this.modo;}
+    public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
+    public int[] getCasillaObjetivo(){return this.casillaObjetivo;}
+    public int getJugador(){return this.jActivo;}
+    public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
+    // Get GUI component
+    public JPanel getPanelReclutar(){return this.panelReclutar;}
+    public JButton getReclutarAlumno(){return this.bReclutarAlumno;}
+    public JButton getReclutarCachorro(){return this.bReclutarCachorro;}
+    public JButton getReclutarSuperior(){return this.bReclutarSuperior;}
+    public JButton getReclutarAyudante(){return this.bReclutarAyudante;}
+    public JButton getReclutarCoordinador(){return this.bReclutarCoordinador;}
+    public JButton getReclutarPame(){return this.bReclutarPame;}
+    public JButton getBConfirmarAtaque(){return this.bConfirmarAtaque;}
+
     
-    
+    // LISTENERS
     private void agregarActionListener(ActionListener al){
         this.botonAtacar.addActionListener(al);
         this.botonMover.addActionListener(al);
@@ -254,6 +258,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.bReclutarCoordinador.addActionListener(al);
         this.bReclutarPame.addActionListener(al);
         this.bReclutarSuperior.addActionListener(al);
+        this.bConfirmarAtaque.addActionListener(al);
     }
     
     private void agregarMouseListener(MouseListener ml){
@@ -316,6 +321,15 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         listaAtaque = new javax.swing.JList();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        bConfirmarAtaque = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
         capaAsTactico = new javax.swing.JPanel();
         panelInfoAs = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -491,6 +505,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         Info.add(capaMover);
         Info.setLayer(capaMover, 1);
 
+        capaAtacar.setMinimumSize(new java.awt.Dimension(600, 250));
+        capaAtacar.setName(""); // NOI18N
+        capaAtacar.setPreferredSize(new java.awt.Dimension(600, 250));
         capaAtacar.setLayout(new javax.swing.BoxLayout(capaAtacar, javax.swing.BoxLayout.LINE_AXIS));
 
         panelInfoAtacar.setBackground(new java.awt.Color(255, 255, 255));
@@ -500,6 +517,25 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoAtacar.setPreferredSize(new java.awt.Dimension(320, 250));
 
         jLabel24.setText("Informacion");
+
+        javax.swing.GroupLayout panelInfoAtacarLayout = new javax.swing.GroupLayout(panelInfoAtacar);
+        panelInfoAtacar.setLayout(panelInfoAtacarLayout);
+        panelInfoAtacarLayout.setHorizontalGroup(
+            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelInfoAtacarLayout.setVerticalGroup(
+            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        capaAtacar.add(panelInfoAtacar);
 
         panelAtacar.setBackground(new java.awt.Color(255, 255, 255));
         panelAtacar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -517,53 +553,100 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         jLabel29.setText("Rango - Daño - Golpes");
 
+        bConfirmarAtaque.setText("Atacar!");
+
+        jLabel30.setText("Objetivo");
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unidadPlaceholder.png"))); // NOI18N
+
+        jLabel32.setText("Nivel");
+
+        jLabel33.setText("HP");
+
+        jLabel35.setText("1");
+
+        jLabel36.setText("50");
+
+        jLabel37.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel37.setText("35");
+
+        jLabel34.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel34.setText("20");
+
         javax.swing.GroupLayout panelAtacarLayout = new javax.swing.GroupLayout(panelAtacar);
         panelAtacar.setLayout(panelAtacarLayout);
         panelAtacarLayout.setHorizontalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtacarLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel28))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                        .addComponent(bConfirmarAtaque)
+                        .addContainerGap())
+                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel28))
+                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAtacarLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel30)
+                                .addGap(101, 101, 101))
+                            .addGroup(panelAtacarLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel31)
+                                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel33)
+                                            .addGroup(panelAtacarLayout.createSequentialGroup()
+                                                .addComponent(jLabel32)
+                                                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                                                        .addGap(20, 20, 20)
+                                                        .addComponent(jLabel36))
+                                                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(jLabel35)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel37)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel34)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         panelAtacarLayout.setVerticalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAtacarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAtacarLayout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel35))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel34))))
+                .addGap(51, 51, 51)
+                .addComponent(bConfirmarAtaque)
+                .addGap(43, 43, 43))
         );
 
-        javax.swing.GroupLayout panelInfoAtacarLayout = new javax.swing.GroupLayout(panelInfoAtacar);
-        panelInfoAtacar.setLayout(panelInfoAtacarLayout);
-        panelInfoAtacarLayout.setHorizontalGroup(
-            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(panelAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        panelInfoAtacarLayout.setVerticalGroup(
-            panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel24)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
-                .addComponent(panelAtacar, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        capaAtacar.add(panelInfoAtacar);
+        capaAtacar.add(panelAtacar);
 
         Info.add(capaAtacar);
         Info.setLayer(capaAtacar, 2);
@@ -896,6 +979,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane Info;
     private javax.swing.JLayeredPane Tablero;
+    private javax.swing.JButton bConfirmarAtaque;
     private javax.swing.JButton bReclutarAlumno;
     private javax.swing.JButton bReclutarAyudante;
     private javax.swing.JButton bReclutarCachorro;
@@ -939,6 +1023,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

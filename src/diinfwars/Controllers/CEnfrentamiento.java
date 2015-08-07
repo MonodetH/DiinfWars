@@ -145,6 +145,12 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
+            
+            // Dejar en estado neutro
+            this.unidadAtacante = null;
+            this.unidadDefensora = null;
+            this.v.setEnableAtacar(false);
+            
             // cambio de modo
             if(boton.getText() == "Mover"){
                 v.setModo(1);
@@ -227,6 +233,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         }else if(v.getModo() == 2){ // modo atacar
             this.unidadAtacante = null;
             this.unidadDefensora = null;
+            this.v.setEnableAtacar(false);
             
             //Atacante y defensor valido
             if(uAntigua != null && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
@@ -235,8 +242,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
                     this.unidadAtacante = uAntigua;
                     this.unidadDefensora = uNueva;
-                    //String[] listaAtaques = uAntigua.getListaAtaques();
-                    //v.setListaAtaques(listaAtaques);
+                    
+                    this.v.setEnableAtacar(true);
                     this.v.setCasillaObjetivo(i,j);
             }else{
                 if(uNueva != null){
