@@ -211,6 +211,10 @@ public class Mapa {
     /**Retorna la matriz de casillas*/
     public Casilla[][] getCasillas(){return this.matrizCasillas;}
     
+    public int getDefensa(int fil,int col){
+        return matrizCasillas[fil][col].getDefensa();
+    }
+    
     /**
      * Esta funcion genera una matriz de 9x20 con la direccion a los sprites
      * del terreno de cada casilla

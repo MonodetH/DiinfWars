@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -46,6 +47,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     
     private Unidad unidadAtacante = null;
     private Unidad unidadDefensora = null;
+    
+    private Random rand = new Random();
     
     
     
@@ -86,6 +89,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.v.setVisible(true);
     }
     
+    public void finPartida(int ganador){
+        System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES EL JUGADOR NUMERO "+String.valueOf(ganador));
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -118,7 +125,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             }
             
             
-            if(boton.getParent() == v.getPanelReclutar()){
+            else if(boton.getParent() == v.getPanelReclutar()){
                 String tipoUnidad = "Cachorro";
                 if(boton == v.getReclutarCachorro()){tipoUnidad = "Cachorro";}
                 else if(boton == v.getReclutarAlumno()){tipoUnidad = "Alumno";}
@@ -141,6 +148,77 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     v.actualizarPanelReclutar(estratega.getOro());
                 }
             }
+            
+            else if(boton == v.getBConfirmarAtaque()){
+                if(this.unidadAtacante != null && this.unidadDefensora != null && !uAtacantes.contains(unidadAtacante)){
+                    // OBTENER ATAQUES
+                    int[] ataque = v.getAtaqueSeleccionado();
+                    int[] contra = unidadDefensora.getAtaque(ataque[0]); // Mismo rango que atacante
+                    if(contra == null){contra = unidadDefensora.getAtaque(1);} // pedir ataque corto
+                    if(contra == null){contra = unidadDefensora.getAtaque(2);} // pedir ataque medio
+                    if(contra == null){contra = unidadDefensora.getAtaque(3);} // pedir ataque largo
+                    if(contra == null){contra = new int[3];contra[0]=1;contra[1]=0;contra[2]=0;} // ataque nulo
+                    
+                    // Atacar
+                    int golpesA = ataque[2], golpesD = contra[2]; // numero de golpes
+                    int danoA = 0, danoD = 0; // daño hecho
+                    int missA = 0; // cantidad de fallas
+                    int critMissA = 0; // cantidad de fallas criticas
+                    int danoCritMissA = 0;
+                    int[] posA = v.getCasillaSeleccionada(), posD = v.getCasillaObjetivo();
+                    int defensaA = mapa.getDefensa(posA[0],posA[1]), defensaD = mapa.getDefensa(posD[0],posD[1]); // Defensa de la unidad en su casilla
+                    while((golpesA != 0 || golpesD != 0) && (!unidadAtacante.isDead() && !unidadDefensora.isDead())){
+                        //ATAQUE
+                        if(golpesA > 0){
+                            if(rand.nextInt(100) >= defensaD){//ATACAR
+                                danoA += ataque[1];
+                                unidadDefensora.recibirDano(ataque[1]);
+                            }else if (rand.nextInt(100) < unidadAtacante.getCritMiss()){// Critical miss
+                                danoCritMissA += (ataque[1]+1)/2;
+                                critMissA++;
+                                unidadAtacante.recibirDano((ataque[1]+1)/2);
+                            }else{missA++;}// miss
+                            golpesA--;
+                        }
+                        //CONTRAATAQUE
+                        if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
+                            if(rand.nextInt(100) >= defensaA){
+                                System.out.println(contra[1]);
+                                danoD += contra[1];
+                                unidadAtacante.recibirDano(contra[1]);
+                            }
+                            golpesD--;
+                        } 
+                    }
+                    // Imprimir resultado por pantalla
+                    System.out.print("La unidad ha hecho ");
+                    System.out.print(danoA);
+                    System.out.print(" de daño, fallando ");
+                    System.out.print(missA);
+                    System.out.print(" golpes de ");
+                    System.out.println(ataque[2]);
+                    System.out.print("Se han producido ");
+                    System.out.print(critMissA);
+                    System.out.print(" fallas criticas, autoinflingiendose ");
+                    System.out.print(danoCritMissA);
+                    System.out.println(" de daño ");
+                    System.out.print("El oponente hizo ");
+                    System.out.print(danoD);
+                    System.out.println(" de daño como contraataque");
+                }
+                uAtacantes.add(unidadAtacante);
+                v.dibujarUnidades(mapa.unidadesToString());
+                v.setEnableAtacar(false);
+                
+                //TERMINO DE LA PARTIDA
+                if(estratega1.getProfesor().isDead()){
+                    finPartida(2);
+                }
+                if(estratega2.getProfesor().isDead()){
+                    finPartida(1);
+                }
+            }
+            
             
         // En caso de que sean botones toggle (los modos del tablero)
         }else if(source instanceof JToggleButton){
@@ -219,7 +297,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         
         // Analizar segun modo
         if(v.getModo() == 1){ // modo mover
-            if(uAntigua != null && v.enRango(i, j) && v.getJugador() == uAntigua.getEquipo() && !uMovidas.contains(uAntigua)){
+            if(uAntigua != null && v.enRango(i, j) && v.getJugador() == uAntigua.getEquipo() && !uMovidas.contains(uAntigua) && !uAntigua.isDead()){
                 if (mapa.moverUnidad(posAntigua[0], posAntigua[1], i, j)){
                     uMovidas.add(uAntigua);
                 }
@@ -236,7 +314,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             this.v.setEnableAtacar(false);
             
             //Atacante y defensor valido
-            if(uAntigua != null && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
+            if(uAntigua != null && !uAtacantes.contains(uAntigua) && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
                 && uNueva != null  &&  uAntigua.getEquipo() != uNueva.getEquipo() 
                 && i != v.getCasillaObjetivo()[0] && j != v.getCasillaObjetivo()[1]){
                     System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");

@@ -7,6 +7,7 @@ package diinfwars.Models;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  *
@@ -26,7 +27,7 @@ public abstract class Unidad {
     protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
     protected int mantencion;
     protected int costo;
-    protected boolean isDead = false;
+    protected int dead = -1; // -1: esta vivo, 1-3: muerto pero en terreno, 0: Se debe eliminar del mapa
     protected String rutaSprite1;
     protected String rutaSprite2;
     protected String rutaSpriteMuerto1 = "/images/Tumba1.png";
@@ -63,24 +64,46 @@ public abstract class Unidad {
         return false;
     }
     
+    public void recibirDano(int danoRecibido){
+        this.hp -= danoRecibido;
+        if(this.hp <= 0){
+            this.hp=0;
+            this.dead = 4;
+        } 
+    }
+    
     public String[] getListaAtaques(){
         ArrayList<String> listaAtaques = new ArrayList<String>();
         
         Iterator<Ataque> iterador = ataques.iterator();
         while(iterador.hasNext()){
             Ataque a = iterador.next();
-            String rango = "";
-            if (a.getRango() == 1){rango = "Corto";}
-            else if (a.getRango() == 2){rango = "Medio";}
-            else if (a.getRango() == 3){rango = "Largo";}
-            listaAtaques.add(rango+" - "+String.valueOf(a.getDano())+" - "+String.valueOf(a.getGolpes()));
+            listaAtaques.add(a.toString());
         }
         
         return listaAtaques.toArray(new String[0]);
     }
     
+    public int[] getAtaque(int rango){
+        int[] retorno = null;
+        ArrayList<Ataque> listaAtaques = new ArrayList<Ataque>();
+        
+        Iterator<Ataque> iterador = ataques.iterator();
+        while(iterador.hasNext()){
+            Ataque a = iterador.next();
+            if (a.getRango() == rango){
+                listaAtaques.add(a);
+            }
+        }
+        if(!listaAtaques.isEmpty()){
+            int random = (new Random()).nextInt(listaAtaques.size());
+            retorno = listaAtaques.get(random).toInt();
+        }
+        return retorno;
+    }
+    
     public String getSprite(){
-        if(!isDead){
+        if(dead == -1){
             if (equipo == 1){
                 return this.rutaSprite1;
             }
@@ -91,16 +114,16 @@ public abstract class Unidad {
             }
             return this.rutaSpriteMuerto2;
         }
-        
     }
 
-    public int getEquipo() {
-        return this.equipo;
-    }
-    
+    public int getEquipo() {return this.equipo;}
     public int getMovimientos(){return this.movimiento;}
     public int getCosto(){return this.costo;}
     public int getMantencion(){return this.mantencion;}
+    public int getCritMiss(){
+        return this.criticalMiss;
+    }
+    public boolean isDead(){return (dead != -1);}
     
     
 }

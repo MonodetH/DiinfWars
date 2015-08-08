@@ -32,4 +32,17 @@ public class Ataque {
     public int getRango(){return rango;}
     public int getGolpes(){return cantidadGolpes;}
     
+    @Override
+    public String toString(){
+        String sRango = "Corto";
+        if (rango == 1){sRango = "Corto";}
+        else if (rango == 2){sRango = "Medio";}
+        else if (rango == 3){sRango = "Largo";}
+        return (sRango+" - "+String.valueOf(dano)+" - "+String.valueOf(cantidadGolpes));
+    }
+    public int[] toInt(){
+        int[] retorno = {rango,dano,cantidadGolpes};
+        return retorno;
+    }
+    
 }

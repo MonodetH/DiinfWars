@@ -227,6 +227,22 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         else if("Largo".equals(rango)){return 3;}
         return 1;
     }
+    public int[] getAtaqueSeleccionado(){
+        int[] ataque = new int[3];
+        String selected = (String) this.listaAtaque.getSelectedValue();
+        
+        // Rango
+        String rango = selected.split(" - ")[0];
+        if("Corto".equals(rango)){ataque[0]=1;}
+        else if("Medio".equals(rango)){ataque[0]=2;}
+        else if("Largo".equals(rango)){ataque[0]=3;}
+        // Daño
+        ataque[1] = Integer.parseInt(selected.split(" - ")[1]);
+        // Golpes
+        ataque[2] = Integer.parseInt(selected.split(" - ")[2]);
+        
+        return ataque;
+    }
     public int getModo(){return this.modo;}
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public int[] getCasillaObjetivo(){return this.casillaObjetivo;}

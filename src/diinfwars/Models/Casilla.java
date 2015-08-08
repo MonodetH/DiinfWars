@@ -72,6 +72,7 @@ public abstract class Casilla {
     public String getSprite(){return this.rutaSprite;}
     public String getHabilidadEntrada(){return this.habEntrada;}
     public String getHabilidadPersistente(){return this.habPersistente;}
+    public int getDefensa(){return this.defensa;}
     public boolean isHabilitada(){return this.habilitada;}
     
 }
