@@ -5,6 +5,8 @@
  */
 package diinfwars.Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author MonodetH
@@ -206,6 +208,17 @@ public class Mapa {
         matrizCasillas[fila][col].setUnidad(unidad); //trata de ubicar la unidad
         if (matrizCasillas[fila][col].getUnidad()!= null){return true;}
         return false;
+    }
+    
+    public void eliminarMuertos(ArrayList<Unidad> eliminados){
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<20;j++){
+                Unidad unidad = matrizCasillas[i][j].getUnidad();
+                if(eliminados.contains(unidad)){
+                    matrizCasillas[i][j].popUnidad(); // saca a la unidad
+                }
+            }
+        }
     }
     
     /**Retorna la matriz de casillas*/

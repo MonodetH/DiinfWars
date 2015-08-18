@@ -87,6 +87,41 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             v.dibujarUnidades(mapa.unidadesToString());
         }
         this.v.setVisible(true);
+        this.rutinaNuevoTurno();
+        
+    }
+    
+    public void rutinaNuevoTurno(){
+        String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();
+        v.toggleJugador(nombreJugador);
+        v.setModo(0);
+        v.dibujarRango(new boolean[9][20]);
+        
+        // se reinician las listas de movidos y atacantes
+        uMovidas.clear();
+        uAtacantes.clear();
+        this.unidadAtacante = null;
+        this.unidadDefensora = null;
+        
+        // Rutina Edificios
+        //Validar capturas
+        //Otorgar oro Kioscos
+
+        //Rutina de descuentos
+        Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
+        estratega.cobrarMantencion();
+        
+        estratega.restarTurnoAS();//Cooldown As tactico
+        estratega.restarTurnoMod();//Modificadores
+        ArrayList<Unidad> eliminados =  estratega.restarTurnoMuertos();//Restar turno muerte y eliminar a los muertos del estratega
+        this.mapa.eliminarMuertos(eliminados);
+        
+        //Actualiza los paneles de informacion
+        v.actualizarPanelReclutar(estratega.getOro());
+        
+        //v.actualizarPanelDefault(estratega.cobrarMantencion());
+
+        v.dibujarUnidades(mapa.unidadesToString());
     }
     
     public void finPartida(int ganador){
@@ -106,22 +141,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 }
             // finalizar turno o rendirse
             if(boton.getText() == "Finalizar Turno"){
-                String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();
-                v.toggleJugador(nombreJugador);
-                v.setModo(0);
-                v.dibujarRango(new boolean[9][20]);
-                
-                //Actualiza los paneles de informacion
-                Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
-                v.actualizarPanelReclutar(estratega.getOro());
-                estratega.cobrarMantencion();
-                //v.actualizarPanelDefault(estratega.cobrarMantencion());
-                
-                // se reinician las listas de movidos y atacantes
-                uMovidas.clear();
-                uAtacantes.clear();
-                this.unidadAtacante = null;
-                this.unidadDefensora = null;
+                this.rutinaNuevoTurno();
             }
             
             
@@ -183,7 +203,6 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                         //CONTRAATAQUE
                         if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
                             if(rand.nextInt(100) >= defensaA){
-                                System.out.println(contra[1]);
                                 danoD += contra[1];
                                 unidadAtacante.recibirDano(contra[1]);
                             }
@@ -196,7 +215,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     System.out.print(" de daño, fallando ");
                     System.out.print(missA);
                     System.out.print(" golpes de ");
-                    System.out.println(ataque[2]);
+                    System.out.println(ataque[2] - golpesA);
                     System.out.print("Se han producido ");
                     System.out.print(critMissA);
                     System.out.print(" fallas criticas, autoinflingiendose ");

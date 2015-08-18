@@ -72,6 +72,20 @@ public abstract class Unidad {
         } 
     }
     
+    public void restarTurnoMuerto(){
+        if(dead > 0){dead--;}
+    }
+    
+    public void restarMod(){
+        Iterator<ModificadorAtributo> iterador = modificadores.iterator();
+        while(iterador.hasNext()){
+            ModificadorAtributo mod = iterador.next();
+            if(!mod.reducirTurno()){
+                modificadores.remove(mod);
+            }
+        }
+    }
+    
     public String[] getListaAtaques(){
         ArrayList<String> listaAtaques = new ArrayList<String>();
         
@@ -124,6 +138,7 @@ public abstract class Unidad {
         return this.criticalMiss;
     }
     public boolean isDead(){return (dead != -1);}
+    public boolean isReallyDead(){return (dead == 0);}
     
     
 }

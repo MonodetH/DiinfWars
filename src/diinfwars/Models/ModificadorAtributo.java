@@ -89,6 +89,7 @@ public class ModificadorAtributo {
         return (turnosRestantes != 0);
     }
     
+    
     public String getAtributo(){return atributo;}
     public int getValor(){return modificacion;}
     

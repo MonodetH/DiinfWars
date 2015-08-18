@@ -24,7 +24,7 @@ public class Estratega {
      * Costructor de la clase Estratega
      * @param equipo Equipo al cual lidera: 1: equipo azul, 2: equipo rojo
      * @param oroInicial
-     * @param as As tactico que se ha helegido. valor entero
+     * @param as As tactico que se ha elegido. valor entero
      * @param puntosCorto Puntos de ataque asignados al rango corto de profesor
      * @param puntosMedio Puntos asignados al rango medio de profesor
      * @param naturalezaProfesor1 Nombre de una naturaleza del profesor
@@ -88,6 +88,38 @@ public class Estratega {
         return new int[]{oro,mantencion};
     }
     
+    public void restarTurnoAS(){
+        if(asCooldown > 0){asCooldown--;}
+    }
+    
+    public ArrayList<Unidad> restarTurnoMuertos(){
+        ArrayList<Unidad> eliminados = new ArrayList<Unidad>(); 
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(unidad.isDead()){
+                unidad.restarTurnoMuerto();
+            }
+            if(unidad.isReallyDead()){
+                eliminados.add(unidad);
+            }
+        }
+        iterador = eliminados.iterator();
+        while(iterador.hasNext()){
+            unidades.remove(iterador.next());
+        }
+        
+        return eliminados;
+    }
+    
+    public void restarTurnoMod(){
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            unidad.restarMod();
+        }
+    }
+    
     /**
      * Obtiene la unidad profesor
      * @return La unidad. null si no existe
@@ -100,7 +132,10 @@ public class Estratega {
         int mantencion = 0;
         Iterator<Unidad> iterador = unidades.iterator();
         while(iterador.hasNext()){
-            mantencion += iterador.next().getMantencion();
+            Unidad unidad = iterador.next();
+            if(!unidad.isDead()){
+                mantencion += unidad.getMantencion();
+            }
         }
         return mantencion;
     }

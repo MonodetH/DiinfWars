@@ -35,7 +35,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     /**Matriz que contiene la representacion de los terrenos*/
     private JLabel[][] matrizMapa = new JLabel[9][20];
     /**Jugador activo*/
-    private int jActivo = 1;
+    private int jActivo = 2;
     
     // CONSTRUCTORES
     /**Constructor de la vista sin listeners*/
