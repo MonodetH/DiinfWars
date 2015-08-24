@@ -103,6 +103,16 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             }
         }
     }
+    public void actualizarTerrenoToolTip(String[][] toolTips){
+        /* 
+         * IMPLEMENTAR
+         */
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                matrizUnidad[i][j].setToolTipText(toolTips[i][j]);
+            }
+        }
+    }
     
     public void dibujarUnidades(String[][] unidades){
         for(int i=0;i<9;i++){

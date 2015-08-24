@@ -28,6 +28,7 @@ public class CiteCamp extends Casilla {
     protected void setDefaults() {
         this.defensa = 50;
         this.rutaSprite = "/images/CiteCamp.png";
+        this.tipo = "CiteCamp";
     }
     
 }

@@ -28,6 +28,7 @@ public class Foro extends Casilla {
     protected void setDefaults() {
         this.defensa = 30;
         this.rutaSprite = "/images/spritePasto.jpg";
+        this.tipo = "Foro";
     }
     
 }

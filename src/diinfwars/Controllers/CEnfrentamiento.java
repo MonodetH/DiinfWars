@@ -84,6 +84,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             this.v = new VEnfrentamiento(this,this,this);
             v.setLabel2(jugador1.getNombre());
             v.dibujarTerreno(mapa.terrenoToString());
+            v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
             v.dibujarUnidades(mapa.unidadesToString());
         }
         this.v.setVisible(true);
@@ -122,6 +123,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         //v.actualizarPanelDefault(estratega.cobrarMantencion());
 
         v.dibujarUnidades(mapa.unidadesToString());
+        v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
     }
     
     public void finPartida(int ganador){
@@ -321,6 +323,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     uMovidas.add(uAntigua);
                 }
                 v.dibujarUnidades(mapa.unidadesToString());
+                v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
             }
             this.v.clearCasillaObjetivo();
             this.v.setCasillaSeleccionada(i,j);

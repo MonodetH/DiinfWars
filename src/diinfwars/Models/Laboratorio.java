@@ -28,6 +28,7 @@ public class Laboratorio extends Casilla {
     protected void setDefaults() {
         this.defensa = 70;
         this.rutaSprite = "/images/Laboratorio.jpg";
+        this.tipo = "Laboratorio";
     }
     
 }

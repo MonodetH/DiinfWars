@@ -28,6 +28,7 @@ public class Casitas extends Casilla {
     protected void setDefaults() {
         this.defensa = 40;
         this.rutaSprite = "/images/Casitas.jpg";
+        this.tipo = "Casitas";
     }
     
 }

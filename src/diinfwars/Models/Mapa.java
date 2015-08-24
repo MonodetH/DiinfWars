@@ -243,6 +243,28 @@ public class Mapa {
         return retorno;
     }
     
+    public String[][] terrenoToolTip(){
+        String[][] retorno = new String[9][20];
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                String actual = "<html>"+matrizCasillas[i][j].getTipo();
+                /*
+                AGREGAR DE QUIEN ES EL DUEÑO!!!!
+                if(matrizCasillas[i][j].getDueno() != null){
+                    actual += 
+                }
+                */
+                actual += "<br/>Defensa: "+ String.valueOf(matrizCasillas[i][j].getDefensa());
+                if(!matrizCasillas[i][j].isHabilitada()){
+                    actual += "<br/>Unidades no se pueden mover a esta casilla";
+                }
+                actual+="</html>";
+                retorno[i][j] = actual;
+            }
+        }
+        return retorno;
+    }
+    
     /**
      * Esta funcion genera una matriz de 9x20 con la direccion a los sprites
      * de la unidad de cada casilla

@@ -28,6 +28,7 @@ public class Diinf extends Casilla {
     protected void setDefaults() {
         this.defensa = 60;
         this.rutaSprite = "/images/spritePasto.jpg";
+        this.tipo = "Diinf";
     }
     
 }

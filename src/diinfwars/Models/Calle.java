@@ -28,6 +28,7 @@ public class Calle extends Casilla {
     protected void setDefaults() {
         this.defensa = 20;
         this.rutaSprite = "/images/spritePasto.jpg";
+        this.tipo = "Calle";
     }
     
 }

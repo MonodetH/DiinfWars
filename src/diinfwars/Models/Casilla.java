@@ -20,6 +20,7 @@ public abstract class Casilla {
     protected String rutaSprite;
     protected String habEntrada = "";
     protected String habPersistente = "";
+    protected String tipo = "";
     
     
     // Static
@@ -68,6 +69,8 @@ public abstract class Casilla {
         this.unidad = null;
         return respuesta;
     }
+    
+    public String getTipo(){return this.tipo;}
     
     public String getSprite(){return this.rutaSprite;}
     public String getHabilidadEntrada(){return this.habEntrada;}

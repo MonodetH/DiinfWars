@@ -28,6 +28,7 @@ public class EAO extends Casilla {
     protected void setDefaults() {
         this.defensa = 50;
         this.rutaSprite = "/images/EAO.jpg";
+        this.tipo = "EAO";
     }
     
 }

@@ -28,6 +28,7 @@ public class Kiosco extends Casilla {
     protected void setDefaults() {
         this.defensa = 60;
         this.rutaSprite = "/images/Kiosko.png";
+        this.tipo = "Kiosco";
     }
     
 }
