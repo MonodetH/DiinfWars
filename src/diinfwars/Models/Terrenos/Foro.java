@@ -3,32 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diinfwars.Models;
+package diinfwars.Models.Terrenos;
+
+import diinfwars.Models.Casilla;
+import diinfwars.Models.Edificio;
 
 /**
  *
  * @author MonodetH
  */
-public class Calle extends Casilla {
+public class Foro extends Casilla {
 
-    public Calle() {
+    public Foro() {
         super();
     }
-    public Calle(boolean isHabilitada) {
+    public Foro(boolean isHabilitada) {
         super(isHabilitada);
     }
-    public Calle(boolean isHorizontal, int parte) {
-        super(isHorizontal,parte);
+    public Foro(Edificio edificio) {
+        super(edificio);
     }
-    public Calle(boolean isHorizontal, int parte, boolean isHabilitada) {
-        super(isHorizontal,parte,isHabilitada);
+    public Foro(Edificio edificio,boolean isHabilitada) {
+        super(edificio,isHabilitada);
     }
     
     @Override
     protected void setDefaults() {
-        this.defensa = 20;
+        this.defensa = 30;
         this.rutaSprite = "/images/spritePasto.jpg";
-        this.tipo = "Calle";
+        this.tipo = "Foro";
     }
     
 }

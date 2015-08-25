@@ -6,6 +6,7 @@
 package diinfwars.Controllers;
 
 import diinfwars.Models.Batalla;
+import diinfwars.Models.Edificio;
 import diinfwars.Models.Estratega;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -56,7 +58,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     public CEnfrentamiento(CPreJugar padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(2);
+        Mapa mapa1 = new Mapa(1);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
@@ -84,7 +86,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             this.v = new VEnfrentamiento(this,this,this);
             v.setLabel2(jugador1.getNombre());
             v.dibujarTerreno(mapa.terrenoToString());
-            v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
+            v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
             v.dibujarUnidades(mapa.unidadesToString());
         }
         this.v.setVisible(true);
@@ -104,12 +106,20 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.unidadAtacante = null;
         this.unidadDefensora = null;
         
-        // Rutina Edificios
-        //Validar capturas
+        Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
+        
         //Otorgar oro Kioscos
+        Iterator<Edificio> iterador = mapa.getEdificios().iterator();
+        while(iterador.hasNext()){
+            Edificio edif = iterador.next();
+            if(edif.getTipo() == "Kiosco" && edif.getDueno()== v.getJugador()){
+                estratega.otorgarOro(batalla.getOroKiosco());
+                // IMPRIMO
+                System.out.println("Jugador "+String.valueOf(v.getJugador())+" gana "+String.valueOf(batalla.getOroKiosco())+" oro.");
+            }
+        }
 
         //Rutina de descuentos
-        Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
         estratega.cobrarMantencion();
         
         estratega.restarTurnoAS();//Cooldown As tactico
@@ -123,7 +133,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         //v.actualizarPanelDefault(estratega.cobrarMantencion());
 
         v.dibujarUnidades(mapa.unidadesToString());
-        v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
+        v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
     }
     
     public void finPartida(int ganador){
@@ -323,7 +333,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     uMovidas.add(uAntigua);
                 }
                 v.dibujarUnidades(mapa.unidadesToString());
-                v.actualizarTerrenoToolTip(mapa.terrenoToolTip());
+                v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
             }
             this.v.clearCasillaObjetivo();
             this.v.setCasillaSeleccionada(i,j);

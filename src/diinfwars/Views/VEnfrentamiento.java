@@ -5,7 +5,7 @@
  */
 package diinfwars.Views;
 
-import diinfwars.Models.Alumno;
+import diinfwars.Models.Unidades.Alumno;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;

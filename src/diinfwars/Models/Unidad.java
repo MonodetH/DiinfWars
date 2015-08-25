@@ -23,8 +23,8 @@ public abstract class Unidad {
     protected int experiencia = 0;
     protected int movimiento;
     protected int criticalMiss = 5;
-    protected ArrayList<Ataque> ataques = new ArrayList<Ataque>();
-    protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<ModificadorAtributo>();
+    protected ArrayList<Ataque> ataques = new ArrayList<>();
+    protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<>();
     protected int mantencion;
     protected int costo;
     protected int dead = -1; // -1: esta vivo, 1-3: muerto pero en terreno, 0: Se debe eliminar del mapa

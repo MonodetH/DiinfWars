@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diinfwars.Models;
+package diinfwars.Models.Terrenos;
+
+import diinfwars.Models.Casilla;
+import diinfwars.Models.Edificio;
 
 /**
  *
@@ -17,11 +20,11 @@ public class Laboratorio extends Casilla {
     public Laboratorio(boolean isHabilitada) {
         super(isHabilitada);
     }
-    public Laboratorio(boolean isHorizontal, int parte) {
-        super(isHorizontal,parte);
+    public Laboratorio(Edificio edificio) {
+        super(edificio);
     }
-    public Laboratorio(boolean isHorizontal, int parte, boolean isHabilitada) {
-        super(isHorizontal,parte,isHabilitada);
+    public Laboratorio(Edificio edificio,boolean isHabilitada) {
+        super(edificio,isHabilitada);
     }
     
     @Override

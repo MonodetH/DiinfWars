@@ -5,6 +5,17 @@
  */
 package diinfwars.Models;
 
+import diinfwars.Models.Unidades.Profesor;
+import diinfwars.Models.Terrenos.Casitas;
+import diinfwars.Models.Terrenos.Pastos;
+import diinfwars.Models.Terrenos.Diinf;
+import diinfwars.Models.Terrenos.Calle;
+import diinfwars.Models.Terrenos.EAO;
+import diinfwars.Models.Terrenos.Kiosco;
+import diinfwars.Models.Terrenos.Laboratorio;
+import diinfwars.Models.Terrenos.CiteCamp;
+import diinfwars.Models.Terrenos.Foro;
+import diinfwars.Models.Terrenos.Sherwood;
 import java.util.ArrayList;
 
 /**
@@ -14,69 +25,87 @@ import java.util.ArrayList;
 public class Mapa {
     // ATRIBUTOS
     private Casilla[][] matrizCasillas = new Casilla[9][20];
-    //private boolean[][] capaRango = new boolean[9][20];
+    private ArrayList<Edificio> listaEdificios = new ArrayList<Edificio>();
     
     /**
      * Constructor de mapa
      * @param pred mapa seleccionado: 0 = Aleatorio, 1 = Predet1, 2 = Predet2, 3 = Predet3 
      */
     public Mapa(int pred){
-        if (pred == 1){
+        if (pred == 0){ // Mapa aleatorio
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
                     matrizCasillas[i][j] = new Pastos();
                 }
             }
         }
-        if(pred == 2){
-            matrizCasillas[2][0] = new Laboratorio(false,1,true);
-            matrizCasillas[3][0] = new Laboratorio(false,2,true);
-            matrizCasillas[4][0] = new Laboratorio(false,3,true);
-            matrizCasillas[5][0] = new Laboratorio(false,4,true);
-            matrizCasillas[6][0] = new Laboratorio(false,5,true);
-            matrizCasillas[2][19] = new Laboratorio(false,1,true);
-            matrizCasillas[3][19] = new Laboratorio(false,2,true);
-            matrizCasillas[4][19] = new Laboratorio(false,3,true);
-            matrizCasillas[5][19] = new Laboratorio(false,4,true);
-            matrizCasillas[6][19] = new Laboratorio(false,5,true);
+        else if(pred == 1){
+            // Lab inicial 1
+            matrizCasillas[2][0] = new Laboratorio();
+            matrizCasillas[3][0] = new Laboratorio();
+            matrizCasillas[4][0] = new Laboratorio();
+            matrizCasillas[5][0] = new Laboratorio();
+            matrizCasillas[6][0] = new Laboratorio();
+            // Lab inicial 2
+            matrizCasillas[2][19] = new Laboratorio();
+            matrizCasillas[3][19] = new Laboratorio();
+            matrizCasillas[4][19] = new Laboratorio();
+            matrizCasillas[5][19] = new Laboratorio();
+            matrizCasillas[6][19] = new Laboratorio();
+            // esquinas
             matrizCasillas[0][0] = new Sherwood(false);
             matrizCasillas[0][19] = new Sherwood(false);
             matrizCasillas[1][0] = new Sherwood(false);
-            matrizCasillas[1][8] = new Sherwood(false);
-            matrizCasillas[1][12] = new Foro(true,1,true);
-            matrizCasillas[1][17] = new Sherwood(false);
             matrizCasillas[1][19] = new Sherwood(false);
-            matrizCasillas[3][2] = new Kiosco(true,1,true); 
-            matrizCasillas[3][3] = new Kiosco(true,2,true);
-            matrizCasillas[3][7] = new Pastos(true,1,true);
-            matrizCasillas[3][9] = new Laboratorio(false,1,true);
-            matrizCasillas[3][10] = new Laboratorio(false,2,true);
-            matrizCasillas[3][12] = new Casitas(true,1,true);
-            matrizCasillas[3][16] = new Kiosco(true,1,true);
-            matrizCasillas[3][17] = new Kiosco(true,2,true);
-            matrizCasillas[4][2] = new Kiosco(true,3,true);
-            matrizCasillas[4][3] = new Kiosco(true,4,true);
-            matrizCasillas[4][9] = new Laboratorio(true,3,true);
-            matrizCasillas[4][10] = new Laboratorio(true,4,true);
-            matrizCasillas[4][16] = new Kiosco(true,3,true);
-            matrizCasillas[4][17] = new Kiosco(true,4,true);
-            matrizCasillas[5][9] = new Laboratorio(true,5,true);
-            matrizCasillas[5][10] = new Laboratorio(true,6,true);
-            matrizCasillas[5][12] = new CiteCamp(true,1,true);
-            matrizCasillas[6][16] = new EAO(true,1,true);
-            matrizCasillas[6][17] = new EAO(true,2,true);
             matrizCasillas[7][0] = new Sherwood(false);
-            matrizCasillas[7][2] = new Diinf(true,1,true); 
-            matrizCasillas[7][5] = new Sherwood(false);
-            matrizCasillas[7][14] = new Sherwood(false);
-            matrizCasillas[7][16] = new EAO(true,3,true);
-            matrizCasillas[7][17] = new EAO(true,4,true);
             matrizCasillas[7][19] = new Sherwood(false);
             matrizCasillas[8][0] = new Sherwood(false);
-            matrizCasillas[8][19] = new Sherwood(false);         
+            matrizCasillas[8][19] = new Sherwood(false); 
+            // Sherwoods
+            matrizCasillas[1][8] = new Sherwood(false);
+            matrizCasillas[1][17] = new Sherwood(false);
+            matrizCasillas[7][5] = new Sherwood(false);
+            matrizCasillas[7][14] = new Sherwood(false);
+            // Otros
+            matrizCasillas[1][12] = new Foro();
+            matrizCasillas[3][7] = new Pastos();
+            matrizCasillas[3][12] = new Casitas();
+            matrizCasillas[7][2] = new Diinf(); 
+            matrizCasillas[5][12] = new CiteCamp();
+            
+            // Edificios Capturables
+            Edificio nuevoEdif = new Edificio("Kiosco");
+            matrizCasillas[3][2] = new Kiosco(nuevoEdif); 
+            matrizCasillas[3][3] = new Kiosco(nuevoEdif);
+            matrizCasillas[4][2] = new Kiosco(nuevoEdif);
+            matrizCasillas[4][3] = new Kiosco(nuevoEdif);
+            listaEdificios.add(nuevoEdif);
+            
+            nuevoEdif = new Edificio("Kiosco");
+            matrizCasillas[3][16] = new Kiosco(nuevoEdif);
+            matrizCasillas[3][17] = new Kiosco(nuevoEdif);
+            matrizCasillas[4][16] = new Kiosco(nuevoEdif);
+            matrizCasillas[4][17] = new Kiosco(nuevoEdif);
+            listaEdificios.add(nuevoEdif);
+            
+            nuevoEdif = new Edificio("Laboratorio");
+            matrizCasillas[3][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[3][10] = new Laboratorio(nuevoEdif);
+            matrizCasillas[4][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[4][10] = new Laboratorio(nuevoEdif);
+            matrizCasillas[5][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[5][10] = new Laboratorio(nuevoEdif);
+            listaEdificios.add(nuevoEdif);
+            
+            nuevoEdif = new Edificio("EAO");
+            matrizCasillas[6][16] = new EAO(nuevoEdif);
+            matrizCasillas[6][17] = new EAO(nuevoEdif);
+            matrizCasillas[7][16] = new EAO(nuevoEdif);
+            matrizCasillas[7][17] = new EAO(nuevoEdif);
+            listaEdificios.add(nuevoEdif);                    
         }
-     
-        else if(pred == 3){
+        /*
+        else if(pred == 2){
             matrizCasillas[2][0] = new Laboratorio(false,1,true);
             matrizCasillas[3][0] = new Laboratorio(false,2,true);
             matrizCasillas[4][0] = new Laboratorio(false,3,true);
@@ -124,7 +153,7 @@ public class Mapa {
             matrizCasillas[8][19] = new Sherwood(false);
         }
         
-        else if(pred == 4){
+        else if(pred == 3){
             matrizCasillas[2][0] = new Laboratorio(false,1,true);
             matrizCasillas[3][0] = new Laboratorio(false,2,true);
             matrizCasillas[4][0] = new Laboratorio(false,3,true);
@@ -171,6 +200,7 @@ public class Mapa {
             matrizCasillas[8][11] = new Laboratorio(true,6,true);
             matrizCasillas[8][19] = new Sherwood(false);
         }
+        */
         
         //Se rellena las casillas vacias con Calles
         for(int i = 0;i<9;i++){
@@ -243,17 +273,16 @@ public class Mapa {
         return retorno;
     }
     
-    public String[][] terrenoToolTip(){
+    public String[][] terrenoToolTip(String jugador1,String jugador2){
         String[][] retorno = new String[9][20];
         for(int i=0;i<9;i++){
             for(int j=0;j<20;j++){
                 String actual = "<html>"+matrizCasillas[i][j].getTipo();
-                /*
-                AGREGAR DE QUIEN ES EL DUEÑO!!!!
-                if(matrizCasillas[i][j].getDueno() != null){
-                    actual += 
-                }
-                */
+                int dueno = matrizCasillas[i][j].getDueno();
+                if(dueno == 0){actual +=" (Neutral)";}
+                else if(dueno == 1){actual +=" ("+jugador1+")";}
+                else if(dueno == 2){actual +=" ("+jugador2+")";}
+                
                 actual += "<br/>Defensa: "+ String.valueOf(matrizCasillas[i][j].getDefensa());
                 if(!matrizCasillas[i][j].isHabilitada()){
                     actual += "<br/>Unidades no se pueden mover a esta casilla";
@@ -362,11 +391,21 @@ public class Mapa {
         if (!(matrizCasillas[4][columna].getUnidad() instanceof Profesor)){
             return retorno;
         }
-
+        // Laboratorios iniciales
         if (matrizCasillas[2][columna].getUnidad() == null){retorno[2][columna]=true;}
         if (matrizCasillas[3][columna].getUnidad() == null){retorno[3][columna]=true;}
         if (matrizCasillas[5][columna].getUnidad() == null){retorno[5][columna]=true;}
         if (matrizCasillas[6][columna].getUnidad() == null){retorno[6][columna]=true;}
+        
+        // Laboratorios capturables
+        for (int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(matrizCasillas[i][j].getTipo()=="Laboratorio" && matrizCasillas[i][j].getDueno() == jugador && matrizCasillas[i][j].getUnidad() == null){
+                    retorno[i][j]=true;
+                }
+            }
+        }
+        
         return retorno;
     }
     
@@ -436,5 +475,8 @@ public class Mapa {
         
     public Unidad getUnidad(int fila, int col) {
         return matrizCasillas[fila][col].getUnidad();
+    }
+    public ArrayList<Edificio> getEdificios(){
+        return listaEdificios;
     }
 }

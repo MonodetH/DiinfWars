@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diinfwars.Models;
+package diinfwars.Models.Terrenos;
+
+import diinfwars.Models.Casilla;
+import diinfwars.Models.Edificio;
 
 /**
  *
@@ -17,11 +20,11 @@ public class CiteCamp extends Casilla {
     public CiteCamp(boolean isHabilitada) {
         super(isHabilitada);
     }
-    public CiteCamp(boolean isHorizontal, int parte) {
-        super(isHorizontal,parte);
+    public CiteCamp(Edificio edificio) {
+        super(edificio);
     }
-    public CiteCamp(boolean isHorizontal, int parte, boolean isHabilitada) {
-        super(isHorizontal,parte,isHabilitada);
+    public CiteCamp(Edificio edificio,boolean isHabilitada) {
+        super(edificio,isHabilitada);
     }
     
     @Override

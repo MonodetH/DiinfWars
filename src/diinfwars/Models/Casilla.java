@@ -13,9 +13,10 @@ public abstract class Casilla {
     // ATRIBUTOS
     protected int defensa;
     protected Unidad unidad = null;
-    protected Estratega dueno = null;
-    protected boolean horizontal = true;
-    protected int parte = 1;
+    protected Edificio edificio = null;
+    //protected Estratega dueno = null;
+    //protected boolean horizontal = true;
+    //protected int parte = 1;
     protected boolean habilitada = true;
     protected String rutaSprite;
     protected String habEntrada = "";
@@ -33,16 +34,14 @@ public abstract class Casilla {
         setDefaults();
         this.habilitada=isHabilitada;
     }
-    public Casilla(boolean isHorizontal,int parte){
+    public Casilla(Edificio edificio){
         setDefaults();
-        this.horizontal = isHorizontal;
-        this.parte = parte;
+        this.edificio = edificio;
     }
-    public Casilla(boolean isHorizontal,int parte,boolean isHabilitada){
+    public Casilla(Edificio edificio, boolean isHabilitada){
         setDefaults();
-        this.horizontal = isHorizontal;
-        this.parte = parte;
-        this.habilitada = isHabilitada;
+        this.edificio = edificio;
+        this.habilitada=isHabilitada;
     }
     
     // Metodos abstractos que deben ser implementados por los hijos
@@ -54,11 +53,14 @@ public abstract class Casilla {
         if (this.unidad == null){
             this.unidad = unidad;
             if (this.unidad != null){
+                if(edificio != null){this.edificio.agregarUnidad(unidad.getEquipo());}
                 return true;
             }
         }
             return false;
     }
+    
+    public void setEdificio(Edificio edificio){this.edificio = edificio;}
     
     public Unidad getUnidad(){
         return this.unidad;
@@ -67,11 +69,17 @@ public abstract class Casilla {
     public Unidad popUnidad(){
         Unidad respuesta = this.unidad;
         this.unidad = null;
+        if (respuesta != null && edificio != null){
+            this.edificio.quitarUnidad(respuesta.getEquipo());
+        }
         return respuesta;
     }
     
     public String getTipo(){return this.tipo;}
-    
+    public int getDueno(){
+        if(edificio != null){return edificio.getDueno();}
+        return -1;
+    }
     public String getSprite(){return this.rutaSprite;}
     public String getHabilidadEntrada(){return this.habEntrada;}
     public String getHabilidadPersistente(){return this.habPersistente;}

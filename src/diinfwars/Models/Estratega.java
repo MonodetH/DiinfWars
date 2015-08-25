@@ -5,6 +5,13 @@
  */
 package diinfwars.Models;
 
+import diinfwars.Models.Unidades.AlumnoNivelSuperior;
+import diinfwars.Models.Unidades.Profesor;
+import diinfwars.Models.Unidades.CoordinadorAyudantes;
+import diinfwars.Models.Unidades.Ayudante;
+import diinfwars.Models.Unidades.Pame;
+import diinfwars.Models.Unidades.Cachorro;
+import diinfwars.Models.Unidades.Alumno;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -118,6 +125,10 @@ public class Estratega {
             Unidad unidad = iterador.next();
             unidad.restarMod();
         }
+    }
+    
+    public void otorgarOro(int cantidad){
+        this.oro+=cantidad;
     }
     
     /**
