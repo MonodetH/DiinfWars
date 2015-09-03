@@ -30,7 +30,7 @@ public class Calle extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 20;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Calle.png";
         this.tipo = "Calle";
     }
     

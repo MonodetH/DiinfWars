@@ -30,7 +30,7 @@ public class Diinf extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 60;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Diinf.png";
         this.tipo = "Diinf";
     }
     
