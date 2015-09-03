@@ -39,7 +39,7 @@ public class Mapa {
                 }
             }
         }
-        else if(pred == 3){
+        else if(pred == 1){
             // Lab inicial 1
             matrizCasillas[2][0] = new Laboratorio();
             matrizCasillas[3][0] = new Laboratorio();
@@ -54,6 +54,8 @@ public class Mapa {
             matrizCasillas[6][19] = new Laboratorio();
             // Esquinas
             matrizCasillas[0][0] = new Sherwood(false);
+            matrizCasillas[0][3] = new Sherwood(false);
+            matrizCasillas[0][4] = new Sherwood(false);
             matrizCasillas[0][19] = new Sherwood(false);
             matrizCasillas[1][0] = new Sherwood(false);
             matrizCasillas[1][19] = new Sherwood(false);
@@ -68,6 +70,12 @@ public class Mapa {
             matrizCasillas[7][14] = new Sherwood(false);
             // Otros
             matrizCasillas[1][12] = new Foro();
+            matrizCasillas[0][2] = new Pastos();
+            matrizCasillas[0][5] = new Pastos();
+            matrizCasillas[1][2] = new Pastos();
+            matrizCasillas[1][3] = new Pastos();
+            matrizCasillas[1][4] = new Pastos();
+            matrizCasillas[1][5] = new Pastos();
             matrizCasillas[2][8] = new Pastos();
             matrizCasillas[2][9] = new Pastos();
             matrizCasillas[2][10] = new Pastos();
@@ -150,6 +158,7 @@ public class Mapa {
             matrizCasillas[1][13] = new Sherwood(false);
             matrizCasillas[6][5] = new Sherwood(false);
             matrizCasillas[6][13] = new Sherwood(false);
+            matrizCasillas[8][7] = new Sherwood(false);
             // Otros
             matrizCasillas[6][9] = new Foro();
             matrizCasillas[0][7] = new Pastos();
@@ -164,8 +173,12 @@ public class Mapa {
             matrizCasillas[4][9] = new Pastos();
             matrizCasillas[4][10] = new Pastos();
             matrizCasillas[4][15] = new Pastos();
+            matrizCasillas[6][6] = new Pastos(); 
+            matrizCasillas[6][8] = new Pastos();
+            matrizCasillas[6][10] = new Pastos();
             matrizCasillas[7][10] = new Pastos();
             matrizCasillas[7][13] = new Pastos();
+            matrizCasillas[8][6] = new Pastos();
             matrizCasillas[8][10] = new Pastos();
             matrizCasillas[8][13] = new Pastos();
             matrizCasillas[2][16] = new Casitas();
@@ -204,7 +217,7 @@ public class Mapa {
             listaEdificios.add(nuevoEdif);
         }
         
-        else if(pred == 1){
+        else if(pred == 3){
             // Lab inicial 1
             matrizCasillas[2][0] = new Laboratorio();
             matrizCasillas[3][0] = new Laboratorio();
@@ -234,17 +247,21 @@ public class Mapa {
             matrizCasillas[5][14] = new Sherwood(false);
             // Otros
             matrizCasillas[7][13] = new Foro();
-            matrizCasillas[0][4] = new Pastos();
+            matrizCasillas[0][2] = new Pastos();
+            matrizCasillas[0][5] = new Pastos();
             matrizCasillas[0][8] = new Pastos();
             matrizCasillas[0][9] = new Pastos();
             matrizCasillas[0][10] = new Pastos();
             matrizCasillas[0][11] = new Pastos();
+            matrizCasillas[0][14] = new Pastos();
             matrizCasillas[0][17] = new Pastos();
-            matrizCasillas[1][4] = new Pastos();
+            matrizCasillas[1][2] = new Pastos();
+            matrizCasillas[1][5] = new Pastos();
             matrizCasillas[1][8] = new Pastos();
             matrizCasillas[1][9] = new Pastos();
             matrizCasillas[1][10] = new Pastos();
             matrizCasillas[1][11] = new Pastos();
+            matrizCasillas[1][14] = new Pastos();
             matrizCasillas[1][17] = new Pastos();
             matrizCasillas[3][7] = new Pastos();
             matrizCasillas[3][9] = new Pastos();
@@ -258,15 +275,16 @@ public class Mapa {
             matrizCasillas[7][14] = new Pastos();
             matrizCasillas[8][5] = new Pastos();
             matrizCasillas[8][8] = new Pastos();
+            matrizCasillas[4][8] = new Casitas();
             matrizCasillas[3][13] = new Diinf();
-            matrizCasillas[7][16] = new CiteCamp();
+            matrizCasillas[7][15] = new CiteCamp();
         
             // Edificios Capturables 
             Edificio nuevoEdif = new Edificio("Kiosco");
-            matrizCasillas[0][2] = new Kiosco(nuevoEdif);
             matrizCasillas[0][3] = new Kiosco(nuevoEdif);
-            matrizCasillas[1][2] = new Kiosco(nuevoEdif);
+            matrizCasillas[0][4] = new Kiosco(nuevoEdif);
             matrizCasillas[1][3] = new Kiosco(nuevoEdif);
+            matrizCasillas[1][4] = new Kiosco(nuevoEdif);
             listaEdificios.add(nuevoEdif);
         
             nuevoEdif = new Edificio("Kiosco");
