@@ -280,7 +280,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             }
             
             
-        // En caso de que sean botones toggle (los modos del tablero)
+        // En caso de que sean botones toggle (los modos del tablero).
         }else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             
