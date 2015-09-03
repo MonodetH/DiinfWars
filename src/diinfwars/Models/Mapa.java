@@ -490,7 +490,7 @@ public class Mapa {
                 else if(dueno == 1){actual +=" ("+jugador1+")";}
                 else if(dueno == 2){actual +=" ("+jugador2+")";}
                 
-                actual += "<br/>Defensa: "+ String.valueOf(matrizCasillas[i][j].getDefensa());
+                actual += "<br/>Defensa: "+ String.valueOf(matrizCasillas[i][j].getDefensa())+ "%";
                 if(!matrizCasillas[i][j].isHabilitada()){
                     actual += "<br/>Unidades no se pueden mover a esta casilla";
                 }

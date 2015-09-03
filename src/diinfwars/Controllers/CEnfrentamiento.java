@@ -115,6 +115,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(edif.getTipo() == "Kiosco" && edif.getDueno()== v.getJugador()){
                 estratega.otorgarOro(batalla.getOroKiosco());
                 // IMPRIMO
+                this.v.getTextoReclutar().append("Jugador "+String.valueOf(v.getJugador())+" gana "+String.valueOf(batalla.getOroKiosco())+" oro.");
+                this.v.getTextoReclutar().append(System.getProperty("line.separator"));
+                this.v.getTextoReclutar().append(System.getProperty("line.separator"));
+
+
                 System.out.println("Jugador "+String.valueOf(v.getJugador())+" gana "+String.valueOf(batalla.getOroKiosco())+" oro.");
             }
         }
@@ -211,6 +216,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                                 unidadAtacante.recibirDano((ataque[1]+1)/2);
                             }else{missA++;}// miss
                             golpesA--;
+                            
+                            
                         }
                         //CONTRAATAQUE
                         if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
@@ -222,6 +229,28 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                         } 
                     }
                     // Imprimir resultado por pantalla
+                    
+                    this.v.getTextoAtacar().append("La unidad ha hecho ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoA));
+                    this.v.getTextoAtacar().append(" de daño, fallando ");
+                    this.v.getTextoAtacar().append(String.valueOf(missA));
+                    this.v.getTextoAtacar().append(" golpes de ");
+                    this.v.getTextoAtacar().append(String.valueOf(ataque[2] - golpesA));
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+
+                    this.v.getTextoAtacar().append("Se han producido ");
+                    this.v.getTextoAtacar().append(String.valueOf(critMissA));
+                    this.v.getTextoAtacar().append(" fallas criticas, autoinflingiendose ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoCritMissA));
+                    this.v.getTextoAtacar().append(" de daño.");
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    
+                    this.v.getTextoAtacar().append("El oponente hizo ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoD));
+                    this.v.getTextoAtacar().append(" de daño como contraataque.");
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    
                     System.out.print("La unidad ha hecho ");
                     System.out.print(danoA);
                     System.out.print(" de daño, fallando ");
@@ -349,6 +378,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(uAntigua != null && !uAtacantes.contains(uAntigua) && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
                 && uNueva != null  &&  uAntigua.getEquipo() != uNueva.getEquipo() 
                 && i != v.getCasillaObjetivo()[0] && j != v.getCasillaObjetivo()[1]){
+                
+                    
+                
                     System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
                     this.unidadAtacante = uAntigua;
                     this.unidadDefensora = uNueva;
