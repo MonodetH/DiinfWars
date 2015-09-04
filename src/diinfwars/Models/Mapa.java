@@ -658,6 +658,12 @@ public class Mapa {
             }  
             // Rango Largo
             else if (rango == 3){
+                int filaNula1 = fila-1;
+                int filaNula2 = fila;
+                int filaNula3 = fila+1;
+                int colNula1 = col-1;
+                int colNula2 = col;
+                int colNula3 = col+1;
                 int filaCambio = fila-3;
                 int filaFinal = fila+3;
                 while (filaCambio<=filaFinal){
@@ -666,6 +672,15 @@ public class Mapa {
                     while (colCambio<=colFinal){
                         if (filaCambio<0 || filaCambio>8 || colCambio<0 || colCambio>19){
                             colCambio+=1;
+                        }
+                        else if (colCambio==colNula1 || colCambio==colNula2 || colCambio==colNula3){
+                            if (filaCambio==filaNula1 || filaCambio==filaNula2 || filaCambio==filaNula3){
+                                colCambio+=1;
+                            }
+                            else{
+                                retorno[filaCambio][colCambio]=true;
+                                colCambio+=1;
+                            }
                         }
                         else{
                             retorno[filaCambio][colCambio]=true;
