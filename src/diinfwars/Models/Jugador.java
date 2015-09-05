@@ -21,7 +21,8 @@ public class Jugador {
      * Constructor de jugador
      * @param nombre String que contiene el nombre del jugador
      */
-    public Jugador(String nombre){this.nombre=nombre;}
+    public Jugador(String nombre){
+        this.nombre=nombre;}
     
     
     public String getNombre(){return this.nombre;}

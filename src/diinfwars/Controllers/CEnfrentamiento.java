@@ -12,6 +12,7 @@ import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Models.Unidad;
 import diinfwars.Views.VEnfrentamiento;
+import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -58,7 +59,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     public CEnfrentamiento(CPreJugar padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(1);
+        Mapa mapa1 = new Mapa(rand.nextInt(3)+1);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
@@ -88,8 +89,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             v.dibujarTerreno(mapa.terrenoToString());
             v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
             v.dibujarUnidades(mapa.unidadesToString());
-        }
+            }
         this.v.setVisible(true);
+        this.v.getBotonSalir().setVisible(false);
         this.rutinaNuevoTurno();
         
     }
@@ -142,6 +144,20 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     }
     
     public void finPartida(int ganador){
+        
+        v.setModo(0);
+        this.v.getBotonAtacar().setEnabled(false);
+        this.v.getBotonMover().setEnabled(false);
+        this.v.getBotonReclutar().setEnabled(false);
+        this.v.getBotonAsTactico().setEnabled(false);
+        this.v.getBotonFinalizarTurno().setEnabled(false);
+        this.v.getBotonRendirse().setEnabled(false);
+        this.v.getBotonSalir().setVisible(true);
+        this.v.getBotonRendirse().setVisible(false);
+        
+        
+        this.v.gettextoGanador().setText("GANADOR: JUGADOR "+String.valueOf(ganador));
+
         System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES EL JUGADOR NUMERO "+String.valueOf(ganador));
     }
     
@@ -152,11 +168,25 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         // En caso de que sean botones
         if( source instanceof JButton){
             JButton boton = (JButton) e.getSource();
-            if(boton.getText() == "Rendirse"){
+            String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();      
+            
+            //Salir
+            if(boton.getText()== "Salir"){
                 v.setVisible(false);
                 p.run();
+            }
+
+            //Rendirse
+            if(boton.getText() == "Rendirse"){
+                if (nombreJugador == jugador2.getNombre()){
+                    finPartida(2);
+                }           
+                else if (nombreJugador == jugador1.getNombre()){
+                    finPartida(1);
                 }
-            // finalizar turno o rendirse
+            }
+            
+            // finalizar turno
             if(boton.getText() == "Finalizar Turno"){
                 this.rutinaNuevoTurno();
             }
@@ -278,10 +308,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     finPartida(1);
                 }
             }
-            
+        }
             
         // En caso de que sean botones toggle (los modos del tablero).
-        }else if(source instanceof JToggleButton){
+        else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             
             // Dejar en estado neutro

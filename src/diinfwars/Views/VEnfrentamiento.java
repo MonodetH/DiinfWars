@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayer;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.event.ListSelectionListener;
 
 /**
@@ -273,6 +275,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public JButton getReclutarCoordinador(){return this.bReclutarCoordinador;}
     public JButton getReclutarPame(){return this.bReclutarPame;}
     public JButton getBConfirmarAtaque(){return this.bConfirmarAtaque;}
+    public JButton getBotonSalir(){return this.botonSalir;}
+    public JButton getBotonFinalizarTurno(){return this.botonFinalizarTurno;}
+    public JButton getBotonRendirse(){return this.botonRendirse;}
+    public JToggleButton getBotonMover(){return this.botonMover;}
+    public JToggleButton getBotonAtacar(){return this.botonAtacar;}
+    public JToggleButton getBotonReclutar(){return this.botonReclutar;}
+    public JToggleButton getBotonAsTactico(){return this.botonAsTactico;}
+    public JTextField gettextoGanador(){return this.textoGanador;}
     public JTextArea getTextoAtacar(){return this.TextoAtacar;}
     public JTextArea getTextoReclutar(){return this.TextoReclutar;}
 
@@ -285,6 +295,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.botonReclutar.addActionListener(al);
         this.botonFinalizarTurno.addActionListener(al);
         this.botonRendirse.addActionListener(al);
+        this.botonSalir.addActionListener(al);
 
         this.bReclutarAlumno.addActionListener(al);
         this.bReclutarAyudante.addActionListener(al);
@@ -334,6 +345,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         Tablero = new javax.swing.JLayeredPane();
         capaMapa = new javax.swing.JPanel();
         capaRango = new javax.swing.JPanel();
@@ -342,6 +354,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         capaDefault = new javax.swing.JPanel();
         panelInfoDefault = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        textoGanador = new javax.swing.JTextField();
         panelDefault = new javax.swing.JPanel();
         capaMover = new javax.swing.JPanel();
         panelInfoMover = new javax.swing.JPanel();
@@ -410,6 +423,18 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         botonReclutar = new javax.swing.JToggleButton();
         botonFinalizarTurno = new javax.swing.JButton();
         botonRendirse = new javax.swing.JButton();
+        botonSalir = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DIInfWars - Enfrentamiento");
@@ -457,18 +482,35 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Información");
 
+        textoGanador.setEditable(false);
+        textoGanador.setBackground(new java.awt.Color(255, 255, 255));
+        textoGanador.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        textoGanador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textoGanador.setBorder(null);
+        textoGanador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoGanadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelInfoDefaultLayout = new javax.swing.GroupLayout(panelInfoDefault);
         panelInfoDefault.setLayout(panelInfoDefaultLayout);
         panelInfoDefaultLayout.setHorizontalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addGroup(panelInfoDefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textoGanador)
+                .addContainerGap())
         );
         panelInfoDefaultLayout.setVerticalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoDefaultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(textoGanador, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         capaDefault.add(panelInfoDefault);
@@ -999,8 +1041,15 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         botonRendirse.setMargin(new java.awt.Insets(2, 0, 2, 0));
         getContentPane().add(botonRendirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 110, -1));
 
+        botonSalir.setText("Salir");
+        getContentPane().add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 110, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textoGanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoGanadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoGanadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1057,6 +1106,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JToggleButton botonMover;
     private javax.swing.JToggleButton botonReclutar;
     private javax.swing.JButton botonRendirse;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JPanel capaAsTactico;
     private javax.swing.JPanel capaAtacar;
     private javax.swing.JPanel capaDefault;
@@ -1065,6 +1115,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel capaRango;
     private javax.swing.JPanel capaReclutar;
     private javax.swing.JPanel capaUnidad;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1115,6 +1166,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel panelInfoReclutar;
     private javax.swing.JPanel panelMover;
     private javax.swing.JPanel panelReclutar;
+    private javax.swing.JTextField textoGanador;
     // End of variables declaration//GEN-END:variables
 
     

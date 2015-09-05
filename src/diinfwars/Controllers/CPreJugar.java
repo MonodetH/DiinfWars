@@ -19,6 +19,7 @@ public class CPreJugar implements ActionListener{
     private CPrincipal p;
     /**Vista*/
     private VPreJugar v;
+    
     private CEnfrentamiento cEnfrentamiento;
     
     public CPreJugar(CPrincipal parent){
@@ -43,7 +44,7 @@ public class CPreJugar implements ActionListener{
             }else if (boton == v.getBJugar()){
                 cEnfrentamiento = new CEnfrentamiento(this);
                 v.setVisible(false);
-                cEnfrentamiento.run();
+                cEnfrentamiento.run();             
             }
         }
     }
