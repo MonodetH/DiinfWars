@@ -31,7 +31,7 @@ public class CPreJugar implements ActionListener{
         this.v.setVisible(true);
     }
     
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -47,5 +47,11 @@ public class CPreJugar implements ActionListener{
                 cEnfrentamiento.run();             
             }
         }
+        //En el caso que sea ComboBox
+//        
+//        if(e.getSource()== v.getComboBox1()){
+//            int valorMapa =(int) v.getComboBox1().getSelectedIndex();
+//            System.out.println(valorMapa);
+//        }
     }
 }

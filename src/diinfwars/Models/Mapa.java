@@ -17,6 +17,7 @@ import diinfwars.Models.Terrenos.CiteCamp;
 import diinfwars.Models.Terrenos.Foro;
 import diinfwars.Models.Terrenos.Sherwood;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Mapa {
     // ATRIBUTOS
     private Casilla[][] matrizCasillas = new Casilla[9][20];
     private ArrayList<Edificio> listaEdificios = new ArrayList<Edificio>();
+    private Random rand = new Random();
     
     /**
      * Constructor de mapa
@@ -33,12 +35,141 @@ public class Mapa {
      */
     public Mapa(int pred){
         if (pred == 0){ // Mapa aleatorio
+            //90% Aleatorio
+            // Lab Inicial
+            matrizCasillas[2][0] = new Laboratorio();
+            matrizCasillas[3][0] = new Laboratorio();
+            matrizCasillas[4][0] = new Laboratorio();
+            matrizCasillas[5][0] = new Laboratorio();
+            matrizCasillas[6][0] = new Laboratorio();
+            // Lab inicial 2
+            matrizCasillas[2][19] = new Laboratorio();
+            matrizCasillas[3][19] = new Laboratorio();
+            matrizCasillas[4][19] = new Laboratorio();
+            matrizCasillas[5][19] = new Laboratorio();
+            matrizCasillas[6][19] = new Laboratorio();
+            // Esquinas
+            matrizCasillas[0][0] = new Sherwood(false);
+            matrizCasillas[0][19] = new Sherwood(false);
+            matrizCasillas[1][0] = new Sherwood(false);
+            matrizCasillas[1][19] = new Sherwood(false);
+            matrizCasillas[7][0] = new Sherwood(false);
+            matrizCasillas[7][19] = new Sherwood(false);
+            matrizCasillas[8][0] = new Sherwood(false);
+            matrizCasillas[8][19] = new Sherwood(false);
+
+            //Laboratorio Unico
+            Edificio nuevoEdif = new Edificio("Laboratorio");
+            matrizCasillas[3][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[4][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[5][9] = new Laboratorio(nuevoEdif);
+            matrizCasillas[3][10] = new Laboratorio(nuevoEdif);
+            matrizCasillas[4][10] = new Laboratorio(nuevoEdif);
+            matrizCasillas[5][10] = new Laboratorio(nuevoEdif);
+            listaEdificios.add(nuevoEdif);
+            
+            //Kiosco Jugador 1
+            for (int k=0;k<1;k++){
+                int x =rand.nextInt(8);
+                int y =(rand.nextInt(6)+1);
+                
+                nuevoEdif = new Edificio("Kiosco");
+                matrizCasillas[x][y] = new Kiosco(nuevoEdif);
+                matrizCasillas[x+1][y]= new Kiosco(nuevoEdif);
+                matrizCasillas[x][y+1]= new Kiosco(nuevoEdif);
+                matrizCasillas[x+1][y+1]= new Kiosco(nuevoEdif);
+                }
+            //Kiosco Jugador 2
+            for (int k=0;k<1;k++){
+                int x =rand.nextInt(8);
+                int y1 =(rand.nextInt(6)+11);
+
+                nuevoEdif = new Edificio("Kiosco");
+                matrizCasillas[x][y1] = new Kiosco(nuevoEdif);
+                matrizCasillas[x+1][y1]= new Kiosco(nuevoEdif);
+                matrizCasillas[x][y1+1]= new Kiosco(nuevoEdif);
+                matrizCasillas[x+1][y1+1]= new Kiosco(nuevoEdif);
+                }
+
+            //Casitas Jugador 1
+            for (int k=0;k<1;k++){
+                int x =rand.nextInt(8);
+                int y =(rand.nextInt(6)+1);
+                if(matrizCasillas[x][y] == null){
+                    matrizCasillas[x][y] = new Casitas();
+                }
+            }
+            //Casitas Jugador 2
+            for (int k=0;k<1;k++){
+                int x =rand.nextInt(8);
+                int y =(rand.nextInt(6)+11);
+                if(matrizCasillas[x][y] == null){
+                    matrizCasillas[x][y] = new Casitas();
+                }
+            }
+         
+            //EAO Max:2
+            for (int k=0;k<2;k++){
+                int x =rand.nextInt(8);
+                int y =(rand.nextInt(18));
+                
+                
+                if (matrizCasillas[x][y]== null){
+                    if (matrizCasillas[x+1][y]== null){
+                        if (matrizCasillas[x+1][y+1]== null){
+                            if (matrizCasillas[x][y+1]== null){
+                                matrizCasillas[x][y] = new EAO(nuevoEdif);
+                                matrizCasillas[x][y+1] = new EAO(nuevoEdif);
+                                matrizCasillas[x+1][y] = new EAO(nuevoEdif);
+                                matrizCasillas[x+1][y+1] = new EAO(nuevoEdif);
+                                listaEdificios.add(nuevoEdif);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+            //Sherwood Max:10
+            for (int k=0;k<10;k++){
+                int x=rand.nextInt(9);
+                int y=rand.nextInt(18)+1;
+                if (matrizCasillas[x][y]== null){
+                    matrizCasillas[x][y]= new Sherwood(false);}
+            }
+                
+            //DIINF Max:4
+            for (int k=0;k<4;k++){
+                int x=rand.nextInt(9);
+                int y=rand.nextInt(18)+1;
+                if(matrizCasillas[x][y]==null){
+                    matrizCasillas[x][y]= new Diinf();}
+            }
+            
+            //CiteCamp Max:4
+            for (int k=0;k<4;k++){
+                int x=rand.nextInt(9);
+                int y=rand.nextInt(18)+1;
+                if(matrizCasillas[x][y]==null){
+                    matrizCasillas[x][y]= new CiteCamp();}
+            }
+            
+            //Pastos Max:40
+            for (int k=0;k<40;k++){
+                int x=rand.nextInt(9);
+                int y=rand.nextInt(18)+1;
+                if(matrizCasillas[x][y]==null){
+                    matrizCasillas[x][y]= new Pastos();}
+            }
+            //Rellenar con Calle
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
-                    matrizCasillas[i][j] = new Pastos();
+                    if (matrizCasillas[i][j] == null){
+                        matrizCasillas[i][j] = new Calle();}
                 }
             }
         }
+        
         else if(pred == 1){
             // Lab inicial 1
             matrizCasillas[2][0] = new Laboratorio();
@@ -409,7 +540,7 @@ public class Mapa {
         }
         */
         
-        //Se rellena las casillas vacias con Calles
+//        Se rellena las casillas vacias con Calles
         for(int i = 0;i<9;i++){
             for(int j = 0;j<20;j++){
                 if (matrizCasillas[i][j] == null){

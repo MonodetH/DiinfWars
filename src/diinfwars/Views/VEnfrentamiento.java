@@ -237,9 +237,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         String selected = (String) this.listaAtaque.getSelectedValue();
         String rango = (selected == null)? "Corto":selected.split(" - ")[0];
         
-        if("Corto".equals(rango)){return 1;}
-        else if("Medio".equals(rango)){return 2;}
-        else if("Largo".equals(rango)){return 3;}
+        if("Corto".equals(rango)){
+            return 1;}
+        else if("Medio".equals(rango)){
+            return 2;}
+        else if("Largo".equals(rango)){
+            return 3;}
         return 1;
     }
     public int[] getAtaqueSeleccionado(){
@@ -260,11 +263,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
     
 
-    
+
     public int getModo(){return this.modo;}
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public int[] getCasillaObjetivo(){return this.casillaObjetivo;}
     public int getJugador(){return this.jActivo;}
+    
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
     // Get GUI component
     public JPanel getPanelReclutar(){return this.panelReclutar;}

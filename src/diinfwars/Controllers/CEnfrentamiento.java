@@ -59,7 +59,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     public CEnfrentamiento(CPreJugar padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(rand.nextInt(3)+1);
+        Mapa mapa1 = new Mapa(0);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
