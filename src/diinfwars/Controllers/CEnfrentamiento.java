@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -56,10 +56,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     
     
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPreJugar padre){
+    public CEnfrentamiento(CPreJugar padre, int valorMapa, String Jugador1, String Jugador2){
         /*Esto se hace en CPreEnfrentamiento*/
-        Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(0);
+        Jugador jug1=new Jugador(Jugador1), jug2 = new Jugador(Jugador2);
+        Mapa mapa1 = new Mapa(valorMapa);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
@@ -72,8 +72,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.estratega1 = batalla.getEstratega1();
         this.estratega2 = batalla.getEstratega2();
     }
-    /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
+    
+public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
+        /*Constructor que instancia la vista*/
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -110,6 +111,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         
         Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
         
+        //Helear
+        
+        
+        
         //Otorgar oro Kioscos
         Iterator<Edificio> iterador = mapa.getEdificios().iterator();
         while(iterador.hasNext()){
@@ -143,7 +148,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
     }
     
-    public void finPartida(int ganador){
+    public void finPartida(String ganador){
         
         v.setModo(0);
         this.v.getBotonAtacar().setEnabled(false);
@@ -156,9 +161,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.v.getBotonRendirse().setVisible(false);
         
         
-        this.v.gettextoGanador().setText("GANADOR: JUGADOR "+String.valueOf(ganador));
+        this.v.gettextoGanador().setText("GANADOR: "+(ganador));
 
-        System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES EL JUGADOR NUMERO "+String.valueOf(ganador));
+        System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES "+(ganador));
     }
     
     @Override
@@ -179,10 +184,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             //Rendirse
             if(boton.getText() == "Rendirse"){
                 if (nombreJugador == jugador2.getNombre()){
-                    finPartida(2);
+                    finPartida(jugador2.getNombre());
                 }           
                 else if (nombreJugador == jugador1.getNombre()){
-                    finPartida(1);
+                    finPartida(jugador1.getNombre());
                 }
             }
             
@@ -302,10 +307,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 
                 //TERMINO DE LA PARTIDA
                 if(estratega1.getProfesor().isDead()){
-                    finPartida(2);
+                    finPartida(jugador2.getNombre());
                 }
                 if(estratega2.getProfesor().isDead()){
-                    finPartida(1);
+                    finPartida(jugador1.getNombre());
                 }
             }
         }
@@ -459,11 +464,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}}
     
-    public static void main(String[] args){
-        new CEnfrentamiento(null);
-    }
+//    public static void main(String[] args){
+//        new CEnfrentamiento(null, v.valorMapa);
+//    }
 
     
-}
+

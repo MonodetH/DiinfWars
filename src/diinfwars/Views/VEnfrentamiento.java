@@ -96,6 +96,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.bReclutarSuperior.setEnabled(oro >= 8);
         
         this.jLabel27.setText(String.valueOf(oro));
+        this.jLabel38.setText(String.valueOf(oro));
     } 
     
     // Dibujar GUI
@@ -201,7 +202,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         this.listaAtaque.ensureIndexIsVisible(0);  
     }
     
-    
+
     /**
      * Cambia visualmente los botones de seleccion de modo
      * @param activado Modo activado
@@ -227,12 +228,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                 break;
         }
     }
+    
+    
     public void setEnableAtacar(boolean enable){this.bConfirmarAtaque.setEnabled(enable);}
     public void setLabel1(String str){this.jLabel1.setText(str);}
     public void setLabel2(String str){this.jLabel2.setText(str);}
     
     
-    // GETS
+    // GETS            
     public int getRangoAtaque(){
         String selected = (String) this.listaAtaque.getSelectedValue();
         String rango = (selected == null)? "Corto":selected.split(" - ")[0];
@@ -289,6 +292,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public JTextField gettextoGanador(){return this.textoGanador;}
     public JTextArea getTextoAtacar(){return this.TextoAtacar;}
     public JTextArea getTextoReclutar(){return this.TextoReclutar;}
+    
 
     
     // LISTENERS
@@ -350,6 +354,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
+        jLabel31 = new javax.swing.JLabel();
         Tablero = new javax.swing.JLayeredPane();
         capaMapa = new javax.swing.JPanel();
         capaRango = new javax.swing.JPanel();
@@ -359,6 +364,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoDefault = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         textoGanador = new javax.swing.JTextField();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
         panelDefault = new javax.swing.JPanel();
         capaMover = new javax.swing.JPanel();
         panelInfoMover = new javax.swing.JPanel();
@@ -376,12 +383,12 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         bConfirmarAtaque = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        Icono = new javax.swing.JLabel();
+        iconoSeleccionado = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
+        hpSeleccionado = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         capaAsTactico = new javax.swing.JPanel();
         panelInfoAs = new javax.swing.JPanel();
@@ -440,6 +447,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jLabel31.setText("jLabel31");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DIInfWars - Enfrentamiento");
         setAlwaysOnTop(true);
@@ -482,7 +491,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoDefault.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoDefault.setPreferredSize(new java.awt.Dimension(320, 250));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Información");
 
@@ -497,24 +505,41 @@ public class VEnfrentamiento extends javax.swing.JFrame {
             }
         });
 
+        jLabel37.setText("Su oro es:");
+
+        jLabel38.setText("0");
+
         javax.swing.GroupLayout panelInfoDefaultLayout = new javax.swing.GroupLayout(panelInfoDefault);
         panelInfoDefault.setLayout(panelInfoDefaultLayout);
         panelInfoDefaultLayout.setHorizontalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
             .addGroup(panelInfoDefaultLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textoGanador)
+                .addGroup(panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textoGanador, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                    .addGroup(panelInfoDefaultLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(panelInfoDefaultLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelInfoDefaultLayout.setVerticalGroup(
             panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoDefaultLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(textoGanador, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(panelInfoDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textoGanador, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         capaDefault.add(panelInfoDefault);
@@ -548,6 +573,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoMover.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoMover.setPreferredSize(new java.awt.Dimension(320, 250));
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Informacion");
 
         javax.swing.GroupLayout panelInfoMoverLayout = new javax.swing.GroupLayout(panelInfoMover);
@@ -555,9 +581,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoMoverLayout.setHorizontalGroup(
             panelInfoMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoMoverLayout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(jLabel5)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelInfoMoverLayout.setVerticalGroup(
             panelInfoMoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +626,9 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoAtacar.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoAtacar.setPreferredSize(new java.awt.Dimension(320, 250));
 
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("Informacion");
+        jLabel24.setAlignmentY(0.0F);
 
         TextoAtacar.setEditable(false);
         TextoAtacar.setColumns(20);
@@ -613,19 +641,17 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoAtacarLayout.setHorizontalGroup(
             panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoAtacarLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel24)
-                .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(panelInfoAtacarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInfoAtacarLayout.setVerticalGroup(
             panelInfoAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoAtacarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel24)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addContainerGap())
@@ -653,8 +679,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         jLabel30.setText("Objetivo");
 
-        Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unidadPlaceholder.png"))); // NOI18N
-        Icono.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        iconoSeleccionado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unidadPlaceholder.png"))); // NOI18N
+        iconoSeleccionado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel32.setText("Nivel");
 
@@ -664,8 +690,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
 
         jLabel36.setText("50");
 
-        jLabel37.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel37.setText("35");
+        hpSeleccionado.setForeground(new java.awt.Color(0, 0, 204));
+        hpSeleccionado.setText("35");
 
         jLabel34.setForeground(new java.awt.Color(255, 0, 0));
         jLabel34.setText("20");
@@ -693,7 +719,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                             .addGroup(panelAtacarLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Icono)
+                                    .addComponent(iconoSeleccionado)
                                     .addGroup(panelAtacarLayout.createSequentialGroup()
                                         .addGap(4, 4, 4)
                                         .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,7 +734,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel35)))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel37)
+                                        .addComponent(hpSeleccionado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel34)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
@@ -727,7 +753,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                     .addGroup(panelAtacarLayout.createSequentialGroup()
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Icono)
+                        .addComponent(iconoSeleccionado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32)
@@ -736,7 +762,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                         .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel33)
                             .addComponent(jLabel36)
-                            .addComponent(jLabel37)
+                            .addComponent(hpSeleccionado)
                             .addComponent(jLabel34))))
                 .addGap(51, 51, 51)
                 .addComponent(bConfirmarAtaque)
@@ -756,22 +782,24 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoAs.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoAs.setPreferredSize(new java.awt.Dimension(320, 250));
 
-        jLabel25.setText("Informacion");
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Información");
 
         javax.swing.GroupLayout panelInfoAsLayout = new javax.swing.GroupLayout(panelInfoAs);
         panelInfoAs.setLayout(panelInfoAsLayout);
         panelInfoAsLayout.setHorizontalGroup(
             panelInfoAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoAsLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addComponent(jLabel25)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelInfoAsLayout.setVerticalGroup(
             panelInfoAsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoAsLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel25)
-                .addGap(0, 232, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         capaAsTactico.add(panelInfoAs);
@@ -805,7 +833,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoReclutar.setMinimumSize(new java.awt.Dimension(320, 250));
         panelInfoReclutar.setPreferredSize(new java.awt.Dimension(320, 250));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Información");
 
@@ -822,16 +849,17 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         panelInfoReclutar.setLayout(panelInfoReclutarLayout);
         panelInfoReclutarLayout.setHorizontalGroup(
             panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-            .addGroup(panelInfoReclutarLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel27)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelInfoReclutarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addGroup(panelInfoReclutarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInfoReclutarLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel27)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInfoReclutarLayout.setVerticalGroup(
@@ -844,7 +872,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                     .addComponent(jLabel26)
                     .addComponent(jLabel27))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1092,7 +1120,6 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Icono;
     private javax.swing.JLayeredPane Info;
     private javax.swing.JLayeredPane Tablero;
     private javax.swing.JTextArea TextoAtacar;
@@ -1119,6 +1146,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel capaRango;
     private javax.swing.JPanel capaReclutar;
     private javax.swing.JPanel capaUnidad;
+    private javax.swing.JLabel hpSeleccionado;
+    private javax.swing.JLabel iconoSeleccionado;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1144,12 +1173,14 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

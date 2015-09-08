@@ -27,14 +27,22 @@ public class CPreJugar implements ActionListener{
     }
 
     public void run(){
-        if (this.v == null){this.v = new VPreJugar(this);}
+        if (this.v == null){
+            this.v = new VPreJugar(this);}
         this.v.setVisible(true);
     }
-    
+       
+    public void comenzarPartida(int valorMapa){            
+        String j1 = v.getNombre1().getText();
+        String j2 = v.getNombre2().getText();
+        cEnfrentamiento = new CEnfrentamiento(this, valorMapa, j1, j2);
+        v.setVisible(false);
+        cEnfrentamiento.run();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
+        Object source = e.getSource();  
         // En caso de que sean botones
         if( source instanceof JButton){
             JButton boton = (JButton) e.getSource();
@@ -42,16 +50,9 @@ public class CPreJugar implements ActionListener{
                 v.dispose();
                 p.run();
             }else if (boton == v.getBJugar()){
-                cEnfrentamiento = new CEnfrentamiento(this);
-                v.setVisible(false);
-                cEnfrentamiento.run();             
+                int valorMapa =(int)v.getboxTipoMapa().getSelectedIndex();
+                comenzarPartida(valorMapa);           
             }
         }
-        //En el caso que sea ComboBox
-//        
-//        if(e.getSource()== v.getComboBox1()){
-//            int valorMapa =(int) v.getComboBox1().getSelectedIndex();
-//            System.out.println(valorMapa);
-//        }
     }
 }
