@@ -46,6 +46,8 @@ public class VPreJugar extends javax.swing.JFrame {
     public JComboBox getboxTipoMapa(){return this.boxTipoMapa;}
     public JTextField getNombre1(){return this.nombre1;}
     public JTextField getNombre2(){return this.nombre2;}
+    public JSpinner getOroInicio(){return this.oroInicio;}
+    public JSpinner getOroKiosco(){return this.oroInicioKiosco;}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +66,7 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         bJugar = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        oroInicioKiosco = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -73,7 +75,7 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         nombre1 = new javax.swing.JTextField();
         nombre2 = new javax.swing.JTextField();
-        cantidadOro = new javax.swing.JSpinner();
+        oroInicio = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -107,7 +109,7 @@ public class VPreJugar extends javax.swing.JFrame {
         bJugar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bJugar.setText("Comenzar");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(5), Integer.valueOf(5), null, Integer.valueOf(1)));
+        oroInicioKiosco.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(5), Integer.valueOf(5), null, Integer.valueOf(1)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,7 +131,12 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Nombre Jugador 2");
 
-        cantidadOro.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        nombre1.setText("Jugador 1");
+
+        nombre2.setText("Jugador 2");
+
+        oroInicio.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        oroInicio.setValue(50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,8 +157,8 @@ public class VPreJugar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(boxTipoMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cantidadOro, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(oroInicioKiosco, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(oroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -208,7 +215,7 @@ public class VPreJugar extends javax.swing.JFrame {
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oroInicioKiosco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,7 +227,7 @@ public class VPreJugar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantidadOro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(oroInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1)
                 .addGap(36, 36, 36)
@@ -283,7 +290,6 @@ public class VPreJugar extends javax.swing.JFrame {
     private javax.swing.JButton bJugar;
     private javax.swing.JButton bVolver;
     private javax.swing.JComboBox boxTipoMapa;
-    private javax.swing.JSpinner cantidadOro;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -296,8 +302,9 @@ public class VPreJugar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField nombre1;
     private javax.swing.JTextField nombre2;
+    private javax.swing.JSpinner oroInicio;
+    private javax.swing.JSpinner oroInicioKiosco;
     // End of variables declaration//GEN-END:variables
 }
