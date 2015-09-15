@@ -465,7 +465,7 @@ public class Mapa {
             matrizCasillas[8][7] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
         }
-        /*
+        
         
         else if(pred == 2){
             //Sherwood
