@@ -30,7 +30,7 @@ public class Foro extends Casilla {
     @Override
     protected void setDefaults() {
         this.defensa = 30;
-        this.rutaSprite = "/images/spritePasto.jpg";
+        this.rutaSprite = "/images/Foro.png";
         this.tipo = "Foro";
     }
     

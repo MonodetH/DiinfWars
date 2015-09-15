@@ -12,6 +12,7 @@ import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Models.Unidad;
 import diinfwars.Views.VEnfrentamiento;
+import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +22,7 @@ import java.util.Iterator;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -55,10 +56,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     
     
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPreJugar padre){
+    public CEnfrentamiento(CPreJugar padre, int valorMapa, String Jugador1, String Jugador2){
         /*Esto se hace en CPreEnfrentamiento*/
-        Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(rand.nextInt(4));
+        Jugador jug1=new Jugador(Jugador1), jug2 = new Jugador(Jugador2);
+        Mapa mapa1 = new Mapa(valorMapa);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
@@ -71,8 +72,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.estratega1 = batalla.getEstratega1();
         this.estratega2 = batalla.getEstratega2();
     }
-    /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
+    
+public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
+        /*Constructor que instancia la vista*/
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -88,8 +90,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             v.dibujarTerreno(mapa.terrenoToString());
             v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
             v.dibujarUnidades(mapa.unidadesToString());
-        }
+            }
         this.v.setVisible(true);
+        this.v.getBotonSalir().setVisible(false);
         this.rutinaNuevoTurno();
         
     }
@@ -108,6 +111,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         
         Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
         
+        //Helear
+        
+        
+        
         //Otorgar oro Kioscos
         Iterator<Edificio> iterador = mapa.getEdificios().iterator();
         while(iterador.hasNext()){
@@ -115,6 +122,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(edif.getTipo() == "Kiosco" && edif.getDueno()== v.getJugador()){
                 estratega.otorgarOro(batalla.getOroKiosco());
                 // IMPRIMO
+                this.v.getTextoReclutar().append("Jugador "+String.valueOf(v.getJugador())+" gana "+String.valueOf(batalla.getOroKiosco())+" oro.");
+                this.v.getTextoReclutar().append(System.getProperty("line.separator"));
+                this.v.getTextoReclutar().append(System.getProperty("line.separator"));
+
+
                 System.out.println("Jugador "+String.valueOf(v.getJugador())+" gana "+String.valueOf(batalla.getOroKiosco())+" oro.");
             }
         }
@@ -136,8 +148,22 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
     }
     
-    public void finPartida(int ganador){
-        System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES EL JUGADOR NUMERO "+String.valueOf(ganador));
+    public void finPartida(String ganador){
+        
+        v.setModo(0);
+        this.v.getBotonAtacar().setEnabled(false);
+        this.v.getBotonMover().setEnabled(false);
+        this.v.getBotonReclutar().setEnabled(false);
+        this.v.getBotonAsTactico().setEnabled(false);
+        this.v.getBotonFinalizarTurno().setEnabled(false);
+        this.v.getBotonRendirse().setEnabled(false);
+        this.v.getBotonSalir().setVisible(true);
+        this.v.getBotonRendirse().setVisible(false);
+        
+        
+        this.v.gettextoGanador().setText("GANADOR: "+(ganador));
+
+        System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES "+(ganador));
     }
     
     @Override
@@ -147,11 +173,25 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         // En caso de que sean botones
         if( source instanceof JButton){
             JButton boton = (JButton) e.getSource();
-            if(boton.getText() == "Rendirse"){
+            String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();      
+            
+            //Salir
+            if(boton.getText()== "Salir"){
                 v.setVisible(false);
                 p.run();
+            }
+
+            //Rendirse
+            if(boton.getText() == "Rendirse"){
+                if (nombreJugador == jugador2.getNombre()){
+                    finPartida(jugador2.getNombre());
+                }           
+                else if (nombreJugador == jugador1.getNombre()){
+                    finPartida(jugador1.getNombre());
                 }
-            // finalizar turno o rendirse
+            }
+            
+            // finalizar turno
             if(boton.getText() == "Finalizar Turno"){
                 this.rutinaNuevoTurno();
             }
@@ -214,6 +254,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                                 unidadAtacante.recibirDano((ataque[1]+1)/2);
                             }else{missA++;}// miss
                             golpesA--;
+                            
+                            
                         }
                         //CONTRAATAQUE
                         if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
@@ -228,6 +270,28 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                         } 
                     }
                     // Imprimir resultado por pantalla
+                    
+                    this.v.getTextoAtacar().append("La unidad ha hecho ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoA));
+                    this.v.getTextoAtacar().append(" de daño, fallando ");
+                    this.v.getTextoAtacar().append(String.valueOf(missA));
+                    this.v.getTextoAtacar().append(" golpes de ");
+                    this.v.getTextoAtacar().append(String.valueOf(ataque[2] - golpesA));
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+
+                    this.v.getTextoAtacar().append("Se han producido ");
+                    this.v.getTextoAtacar().append(String.valueOf(critMissA));
+                    this.v.getTextoAtacar().append(" fallas criticas, autoinflingiendose ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoCritMissA));
+                    this.v.getTextoAtacar().append(" de daño.");
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    
+                    this.v.getTextoAtacar().append("El oponente hizo ");
+                    this.v.getTextoAtacar().append(String.valueOf(danoD));
+                    this.v.getTextoAtacar().append(" de daño como contraataque.");
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+                    
                     System.out.print("La unidad ha hecho ");
                     System.out.print(danoA);
                     System.out.print(" de daño, fallando ");
@@ -249,16 +313,16 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 
                 //TERMINO DE LA PARTIDA
                 if(estratega1.getProfesor().isDead()){
-                    finPartida(2);
+                    finPartida(jugador2.getNombre());
                 }
                 if(estratega2.getProfesor().isDead()){
-                    finPartida(1);
+                    finPartida(jugador1.getNombre());
                 }
             }
+        }
             
-            
-        // En caso de que sean botones toggle (los modos del tablero)
-        }else if(source instanceof JToggleButton){
+        // En caso de que sean botones toggle (los modos del tablero).
+        else if(source instanceof JToggleButton){
             JToggleButton boton = (JToggleButton) e.getSource();
             
             // Dejar en estado neutro
@@ -355,6 +419,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(uAntigua != null && !uAtacantes.contains(uAntigua) && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
                 && uNueva != null  &&  uAntigua.getEquipo() != uNueva.getEquipo() 
                 && i != v.getCasillaObjetivo()[0] && j != v.getCasillaObjetivo()[1]){
+                
+                    
+                
                     System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
                     this.unidadAtacante = uAntigua;
                     this.unidadDefensora = uNueva;
@@ -403,11 +470,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}}
     
-    public static void main(String[] args){
-        new CEnfrentamiento(null);
-    }
+//    public static void main(String[] args){
+//        new CEnfrentamiento(null, v.valorMapa);
+//    }
 
     
-}
+
