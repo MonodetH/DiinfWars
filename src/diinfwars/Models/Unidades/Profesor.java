@@ -63,9 +63,21 @@ public class Profesor extends Unidad {
         this.movimiento = 3;
         this.mantencion = 0;
         this.costo = 0;
+        this.expMax = 50;
 
         this.rutaSprite1 = Profesor.sRutaSprite1;
         this.rutaSprite2 = Profesor.sRutaSprite2;
+    }
+
+    @Override
+    protected void subirNivel() {
+        this.nivel++;
+        this.expMax += 15;
+        this.hpMax += hpMax/10;
+        modificadores.add(new ModificadorAtributo("dano",1,-1));
+        if(nivel%2 == 1){
+            modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
+        }
     }
     
 }

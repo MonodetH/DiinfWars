@@ -6,6 +6,7 @@
 package diinfwars.Models.Unidades;
 
 import diinfwars.Models.Ataque;
+import diinfwars.Models.ModificadorAtributo;
 import diinfwars.Models.Unidad;
 
 /**
@@ -30,12 +31,36 @@ public class Pame extends Unidad {
         this.movimiento = 4;
         this.mantencion = 6;
         this.costo = 12;
+        this.expMax=50;
 
         this.rutaSprite1 = Pame.sRutaSprite1;
         this.rutaSprite2 = Pame.sRutaSprite2;
         
         // ATAQUES
         this.ataques.add(new Ataque(3,4,2));
+    }
+    
+    @Override
+    protected void subirNivel() {
+        this.nivel++;
+        if(nivel<5){expMax+=5;}
+        else{this.expMax += 10;}
+        
+        if(nivel == 2){
+            this.hpMax += hpMax/20;
+        }else if (nivel == 3){
+            this.hpMax += hpMax/10;
+        }else if (nivel == 4){
+            this.hpMax += (hpMax*15/100);
+        }else {
+            this.hpMax += hpMax/5;
+        }
+        if(nivel > 2){
+            modificadores.add(new ModificadorAtributo("dano",1,-1));
+        }
+        
+        modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
+        
     }
     
 }

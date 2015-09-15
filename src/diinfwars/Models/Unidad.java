@@ -21,6 +21,7 @@ public abstract class Unidad {
     protected int estamina = 100;
     protected int nivel = 1;
     protected int experiencia = 0;
+    protected int expMax;
     protected int movimiento;
     protected int criticalMiss = 5;
     protected ArrayList<Ataque> ataques = new ArrayList<>();
@@ -52,6 +53,7 @@ public abstract class Unidad {
      * @param equipo El equipo al cual pertenece la unidad: 1 = equipo azul; 2 = equipo rojo
      */
     protected abstract void setDefaults(int equipo);
+    protected abstract void subirNivel();
     
     // METODOS GENERALES (heredables)
     public boolean tieneRango(int rango){
@@ -64,12 +66,24 @@ public abstract class Unidad {
         return false;
     }
     
-    public void recibirDano(int danoRecibido){
+    public boolean otorgarExp(int pts){
+        this.experiencia += pts;
+        if (this.experiencia >= this.expMax){
+            this.experiencia -= this.expMax;
+            this.subirNivel();
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean recibirDano(int danoRecibido){
         this.hp -= danoRecibido;
         if(this.hp <= 0){
             this.hp=0;
             this.dead = 4;
+            return true;
         } 
+        return false;
     }
     
     public void restarTurnoMuerto(){
@@ -134,9 +148,8 @@ public abstract class Unidad {
     public int getMovimientos(){return this.movimiento;}
     public int getCosto(){return this.costo;}
     public int getMantencion(){return this.mantencion;}
-    public int getCritMiss(){
-        return this.criticalMiss;
-    }
+    public int getCritMiss(){return this.criticalMiss;}
+    public int getExpMuerte(){return (nivel*hpMax/10);}
     public boolean isDead(){return (dead != -1);}
     public boolean isReallyDead(){return (dead == 0);}
     

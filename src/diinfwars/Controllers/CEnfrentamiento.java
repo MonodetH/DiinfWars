@@ -58,7 +58,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     public CEnfrentamiento(CPreJugar padre){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador("Gerardo"), jug2 = new Jugador("Alejandro");
-        Mapa mapa1 = new Mapa(1);
+        Mapa mapa1 = new Mapa(rand.nextInt(4));
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
         Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
 
@@ -204,7 +204,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                         if(golpesA > 0){
                             if(rand.nextInt(100) >= defensaD){//ATACAR
                                 danoA += ataque[1];
-                                unidadDefensora.recibirDano(ataque[1]);
+                                unidadAtacante.otorgarExp(ataque[1]);
+                                if(unidadDefensora.recibirDano(ataque[1])){
+                                    unidadAtacante.otorgarExp(unidadDefensora.getExpMuerte());
+                                }
                             }else if (rand.nextInt(100) < unidadAtacante.getCritMiss()){// Critical miss
                                 danoCritMissA += (ataque[1]+1)/2;
                                 critMissA++;
@@ -216,7 +219,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                         if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
                             if(rand.nextInt(100) >= defensaA){
                                 danoD += contra[1];
-                                unidadAtacante.recibirDano(contra[1]);
+                                unidadDefensora.otorgarExp(contra[1]);
+                                if(unidadAtacante.recibirDano(contra[1])){
+                                    unidadDefensora.otorgarExp(unidadAtacante.getExpMuerte());
+                                }
                             }
                             golpesD--;
                         } 
