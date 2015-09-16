@@ -5,6 +5,9 @@
  */
 package diinfwars.Controllers;
 
+import diinfwars.Models.Batalla;
+import diinfwars.Models.Jugador;
+import diinfwars.Models.Mapa;
 import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +38,15 @@ public class CPreJugar implements ActionListener{
     public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            
         String j1 = v.getNombre1().getText();
         String j2 = v.getNombre2().getText();
-        cEnfrentamiento = new CEnfrentamiento(this, valorMapa, oroInicio, oroInicioKiosco, j1, j2);
+        
+        // Se prepara el objeto Batalla
+        Jugador jug1=new Jugador(j1), jug2 = new Jugador(j2);
+        Mapa mapa1 = new Mapa(valorMapa);
+
+        // estos datos se sacan de login, preJugar y configuracion profesor
+        Batalla datosBatalla = new Batalla(mapa1,oroInicioKiosco,jug1,oroInicio,1,2,3,"Estudioso","Deportista",jug2,oroInicio,1,3,2,"Estudioso","Deportista");
+
+        cEnfrentamiento = new CEnfrentamiento(this, datosBatalla);
         v.setVisible(false);
         cEnfrentamiento.run();
     }

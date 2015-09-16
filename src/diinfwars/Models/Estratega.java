@@ -27,6 +27,7 @@ public class Estratega {
     private int asTactico = 0;
     private int asCooldown;
     
+    
     /**
      * Costructor de la clase Estratega
      * @param equipo Equipo al cual lidera: 1: equipo azul, 2: equipo rojo

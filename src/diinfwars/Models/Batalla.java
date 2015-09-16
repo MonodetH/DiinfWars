@@ -53,6 +53,8 @@ public class Batalla {
         this.oroKiosco = oroKiosco;
     }
     
+    
+    
     public Mapa getMapa(){return mapa;}
     public Jugador getJugador1(){return this.jugador1;}
     public Jugador getJugador2(){return this.jugador2;}
