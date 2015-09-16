@@ -33,7 +33,8 @@ import javax.swing.event.ListSelectionListener;
  */
 public class CEnfrentamiento implements ActionListener,MouseListener,ListSelectionListener{
     /**Controlador padre*/
-    private CPreJugar p;
+    private CPreJugar pJugar;
+    private CPreTorneo pTorneo;
     /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
     /**Jugador asociado*/
@@ -64,7 +65,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         Batalla datosBatalla = new Batalla(mapa1,oroInicioKiosco,jug1,oroInicio,1,2,3,"Estudioso","Deportista",jug2,oroInicio,1,3,2,"Estudioso","Deportista");
 
         /*Aqui empieza este controlador*/
-        this.p = padre;
+        this.pJugar = padre;
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -73,8 +74,20 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.estratega2 = batalla.getEstratega2();
     }
     
-public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
+    public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
         /*Constructor que instancia la vista*/
+        this.pJugar = padre;
+        this.batalla = datosBatalla;
+        this.mapa = batalla.getMapa();
+        this.jugador1 = batalla.getJugador1();
+        this.jugador2 = batalla.getJugador2();
+        this.estratega1 = batalla.getEstratega1();
+        this.estratega2 = batalla.getEstratega2();
+    }
+    /** Sobrecarga del constructor para usar torneo como padre*/
+    public CEnfrentamiento(CPreTorneo padre,Batalla datosBatalla){
+        /*Constructor que instancia la vista*/
+        this.pTorneo = padre;
         this.batalla = datosBatalla;
         this.mapa = batalla.getMapa();
         this.jugador1 = batalla.getJugador1();
@@ -112,7 +125,10 @@ public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
         Estratega estratega = (v.getJugador() == 1)?estratega1:estratega2;
         
         //Helear
-        
+        this.mapa.curaPorPame(v.getJugador());
+        this.mapa.curaPorEdificio(v.getJugador());
+        estratega.curaPorMovimiento();
+        estratega.resetearMovimiento();
         
         
         //Otorgar oro Kioscos
@@ -178,7 +194,7 @@ public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
             //Salir
             if(boton.getText()== "Salir"){
                 v.setVisible(false);
-                p.run();
+                pJugar.run();
             }
 
             //Rendirse
@@ -394,6 +410,13 @@ public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
         }else{
             v.setListaAtaques(null);
         }
+        if(uNueva != null){
+            String sprite = uNueva.getSprite();
+            String lvl = String.valueOf(uNueva.getNivel());
+            String hpActual = String.valueOf(uNueva.getHp());
+            this.v.setInfoAtacante(sprite,lvl,hpActual);
+        }
+        
         
         
         // Analizar segun modo
@@ -401,6 +424,7 @@ public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
             if(uAntigua != null && v.enRango(i, j) && v.getJugador() == uAntigua.getEquipo() && !uMovidas.contains(uAntigua) && !uAntigua.isDead()){
                 if (mapa.moverUnidad(posAntigua[0], posAntigua[1], i, j)){
                     uMovidas.add(uAntigua);
+                    uAntigua.setInmovil(false);
                 }
                 v.dibujarUnidades(mapa.unidadesToString());
                 v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
@@ -419,8 +443,12 @@ public CEnfrentamiento(CPreJugar padre,Batalla datosBatalla){
             if(uAntigua != null && !uAtacantes.contains(uAntigua) && v.getJugador() == uAntigua.getEquipo() && v.enRango(i, j)
                 && uNueva != null  &&  uAntigua.getEquipo() != uNueva.getEquipo() 
                 && i != v.getCasillaObjetivo()[0] && j != v.getCasillaObjetivo()[1]){
-                
-                    
+                    this.v.getTextoAtacar().setText("");
+                    String sprite = uAntigua.getSprite();
+                    String lvl = String.valueOf(uAntigua.getNivel());
+                    String hpActual = String.valueOf(uAntigua.getHp());
+                    this.v.setInfoAtacante(sprite,lvl,hpActual);
+                    //this.v.setInfoDefensor();
                 
                     System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
                     this.unidadAtacante = uAntigua;

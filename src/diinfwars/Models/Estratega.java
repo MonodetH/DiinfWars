@@ -127,6 +127,22 @@ public class Estratega {
         }
     }
     
+    public void resetearMovimiento(){
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            unidad.setInmovil(true);
+        }
+    }
+    
+    public void curaPorMovimiento(){
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(unidad.getInmovil()==true)unidad.curar(2);
+        }
+    }
+    
     public void otorgarOro(int cantidad){
         this.oro+=cantidad;
     }

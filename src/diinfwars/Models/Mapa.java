@@ -16,6 +16,7 @@ import diinfwars.Models.Terrenos.Laboratorio;
 import diinfwars.Models.Terrenos.CiteCamp;
 import diinfwars.Models.Terrenos.Foro;
 import diinfwars.Models.Terrenos.Sherwood;
+import diinfwars.Models.Unidades.Pame;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -631,6 +632,79 @@ public class Mapa {
                 Unidad unidad = matrizCasillas[i][j].getUnidad();
                 if(eliminados.contains(unidad)){
                     matrizCasillas[i][j].popUnidad(); // saca a la unidad
+                }
+            }
+        }
+    }
+    
+    public void curaPorPame(int equipo){
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<20;j++){
+                Unidad pame = matrizCasillas[i][j].getUnidad();
+                Unidad unidad;
+                if(pame instanceof Pame && pame.getEquipo()==equipo){
+                    if(i-1 >= 0){ //Arriba
+                        if(j-1 >= 0){
+                            unidad = matrizCasillas[i-1][j-1].getUnidad();
+                            if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                                unidad.curar(pame.getHeal());
+                            }
+                        }
+                        if(j+1<20){
+                            unidad = matrizCasillas[i-1][j+1].getUnidad();
+                            if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                                unidad.curar(pame.getHeal());
+                            }
+                        }
+                        unidad = matrizCasillas[i-1][j].getUnidad();
+                        if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                            unidad.curar(pame.getHeal());
+                        }  
+                    }
+                    if(i+1 < 9){ //Abajo
+                        if(j-1 >= 0){
+                            unidad = matrizCasillas[i+1][j-1].getUnidad();
+                            if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                                unidad.curar(pame.getHeal());
+                            }
+                        }
+                        if(j+1<20){
+                            unidad = matrizCasillas[i+1][j+1].getUnidad();
+                            if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                                unidad.curar(pame.getHeal());
+                            }
+                        }
+                        unidad = matrizCasillas[i+1][j].getUnidad();
+                        if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                            unidad.curar(pame.getHeal());
+                        }
+                    }
+                    //al medio
+                    if(j-1 >= 0){
+                        unidad = matrizCasillas[i][j-1].getUnidad();
+                        if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                            unidad.curar(pame.getHeal());
+                        }
+                    }
+                    if(j+1<20){
+                        unidad = matrizCasillas[i][j+1].getUnidad();
+                        if(unidad!=null && unidad.getEquipo()==equipo && !unidad.isDead()){
+                            unidad.curar(pame.getHeal());
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void curaPorEdificio(int equipo){
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<20;j++){
+                Casilla casilla = matrizCasillas[i][j];
+                if(casilla instanceof Kiosco){
+                    if(casilla.getUnidad()!=null && casilla.getUnidad().getEquipo()==equipo){
+                        casilla.getUnidad().curar(8);
+                    }
                 }
             }
         }

@@ -32,6 +32,7 @@ public class Pame extends Unidad {
         this.mantencion = 6;
         this.costo = 12;
         this.expMax=50;
+        this.heal = 8;
 
         this.rutaSprite1 = Pame.sRutaSprite1;
         this.rutaSprite2 = Pame.sRutaSprite2;
@@ -48,8 +49,10 @@ public class Pame extends Unidad {
         
         if(nivel == 2){
             this.hpMax += hpMax/20;
+            this.heal++;
         }else if (nivel == 3){
             this.hpMax += hpMax/10;
+            this.heal++;
         }else if (nivel == 4){
             this.hpMax += (hpMax*15/100);
         }else {

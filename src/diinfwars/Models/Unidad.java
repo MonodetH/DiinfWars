@@ -24,6 +24,8 @@ public abstract class Unidad {
     protected int expMax;
     protected int movimiento;
     protected int criticalMiss = 5;
+    protected int heal=0;
+    protected boolean inmovil = false;
     protected ArrayList<Ataque> ataques = new ArrayList<>();
     protected ArrayList<ModificadorAtributo> modificadores = new ArrayList<>();
     protected int mantencion;
@@ -90,6 +92,13 @@ public abstract class Unidad {
         if(dead > 0){dead--;}
     }
     
+    public void curar(int cura){
+        this.hp+=cura;
+        if(this.hp > this.hpMax){
+            this.hp=this.hpMax;
+        }
+    }
+    
     public void restarMod(){
         Iterator<ModificadorAtributo> iterador = modificadores.iterator();
         while(iterador.hasNext()){
@@ -144,12 +153,17 @@ public abstract class Unidad {
         }
     }
 
+    public void setInmovil(boolean flag){inmovil = flag;}
     public int getEquipo() {return this.equipo;}
     public int getMovimientos(){return this.movimiento;}
     public int getCosto(){return this.costo;}
     public int getMantencion(){return this.mantencion;}
     public int getCritMiss(){return this.criticalMiss;}
     public int getExpMuerte(){return (nivel*hpMax/10);}
+    public int getHeal(){return heal;}
+    public int getNivel(){return nivel;}
+    public int getHp(){return hp;}
+    public boolean getInmovil(){return inmovil;}
     public boolean isDead(){return (dead != -1);}
     public boolean isReallyDead(){return (dead == 0);}
     
