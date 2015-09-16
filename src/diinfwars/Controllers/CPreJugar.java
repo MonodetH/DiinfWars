@@ -32,10 +32,10 @@ public class CPreJugar implements ActionListener{
         this.v.setVisible(true);
     }
        
-    public void comenzarPartida(int valorMapa){            
+    public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            
         String j1 = v.getNombre1().getText();
         String j2 = v.getNombre2().getText();
-        cEnfrentamiento = new CEnfrentamiento(this, valorMapa, j1, j2);
+        cEnfrentamiento = new CEnfrentamiento(this, valorMapa, oroInicio, oroInicioKiosco, j1, j2);
         v.setVisible(false);
         cEnfrentamiento.run();
     }
@@ -51,7 +51,9 @@ public class CPreJugar implements ActionListener{
                 p.run();
             }else if (boton == v.getBJugar()){
                 int valorMapa =(int)v.getboxTipoMapa().getSelectedIndex();
-                comenzarPartida(valorMapa);           
+                int oroInicio =(int)v.getOroInicio().getValue();
+                int oroInicioKisco = (int)v.getOroKiosco().getValue();
+                comenzarPartida(valorMapa, oroInicio, oroInicioKisco);           
             }
         }
     }

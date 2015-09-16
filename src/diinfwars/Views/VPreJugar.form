@@ -43,8 +43,8 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="boxTipoMapa" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
-                                  <Component id="cantidadOro" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <Component id="jSpinner1" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="oroInicioKiosco" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="oroInicio" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -124,7 +124,7 @@
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="oroInicioKiosco" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel10" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="nombre1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -138,7 +138,7 @@
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="cantidadOro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="oroInicio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
@@ -227,7 +227,7 @@
         <Property name="text" type="java.lang.String" value="Comenzar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="oroInicioKiosco">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="5" minimum="5" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -281,13 +281,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nombre1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jugador 1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nombre2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jugador 2"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="cantidadOro">
+    <Component class="javax.swing.JSpinner" name="oroInicio">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="50" type="code"/>
         </Property>
       </Properties>
     </Component>

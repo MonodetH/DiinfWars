@@ -56,12 +56,12 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     
     
     /**Constructor que instancia la vista*/
-    public CEnfrentamiento(CPreJugar padre, int valorMapa, String Jugador1, String Jugador2){
+    public CEnfrentamiento(CPreJugar padre, int valorMapa,int oroInicio, int oroInicioKiosco, String Jugador1, String Jugador2){
         /*Esto se hace en CPreEnfrentamiento*/
         Jugador jug1=new Jugador(Jugador1), jug2 = new Jugador(Jugador2);
         Mapa mapa1 = new Mapa(valorMapa);
         /*El objeto Batalla deberia ser pasado al constructor por CPreEnfrentamiento*/
-        Batalla datosBatalla = new Batalla(mapa1,5,jug1,50,1,2,3,"Estudioso","Deportista",jug2,50,1,3,2,"Estudioso","Deportista");
+        Batalla datosBatalla = new Batalla(mapa1,oroInicioKiosco,jug1,oroInicio,1,2,3,"Estudioso","Deportista",jug2,oroInicio,1,3,2,"Estudioso","Deportista");
 
         /*Aqui empieza este controlador*/
         this.p = padre;

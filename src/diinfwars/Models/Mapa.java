@@ -282,7 +282,16 @@ public class Mapa {
             matrizCasillas[6][17] = new EAO(nuevoEdif);
             matrizCasillas[7][16] = new EAO(nuevoEdif);
             matrizCasillas[7][17] = new EAO(nuevoEdif);
-            listaEdificios.add(nuevoEdif);                    
+            listaEdificios.add(nuevoEdif);
+            
+            //Rellenar con Calle
+            for(int i = 0;i<9;i++){
+                for(int j = 0;j<20;j++){
+                    if (matrizCasillas[i][j] == null){
+                        matrizCasillas[i][j] = new Calle();
+                    }
+                }
+            }
         }
         // MAPAS PREDETERMINADOS ANTERIORES MODIFICADOS A LA NUEVA ESTRUCTURA Y NUEVO DISEÑO.
         
@@ -370,6 +379,15 @@ public class Mapa {
             matrizCasillas[8][11] = new EAO(nuevoEdif);
             matrizCasillas[8][12] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
+            
+            //Rellenar con Calle
+            for(int i = 0;i<9;i++){
+                for(int j = 0;j<20;j++){
+                    if (matrizCasillas[i][j] == null){
+                        matrizCasillas[i][j] = new Calle();
+                    }
+                }
+            }
         }
         
         else if(pred == 3){
@@ -464,6 +482,15 @@ public class Mapa {
             matrizCasillas[8][6] = new EAO(nuevoEdif);
             matrizCasillas[8][7] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
+            
+            //Rellenar con Calle
+            for(int i = 0;i<9;i++){
+                for(int j = 0;j<20;j++){
+                    if (matrizCasillas[i][j] == null){
+                        matrizCasillas[i][j] = new Calle();
+                    }
+                }
+            }
         }
         
         
