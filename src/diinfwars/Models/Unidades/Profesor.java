@@ -30,22 +30,43 @@ public class Profesor extends Unidad {
         if (naturaleza1 == "Estudioso" || naturaleza2 == "Estudioso")
         {
             modificadores.add(new ModificadorAtributo("dano",1,-1));
+            System.out.println("Estudioso");
         }
-        else if (naturaleza1 == "Normal" || naturaleza2 == "Normal")
+        if (naturaleza1 == "Normal" || naturaleza2 == "Normal")
         {
             // No existe modificacion
+            System.out.println("Normal");
         }
-        else if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista")
+        if (naturaleza1 == "Deportista" || naturaleza2 == "Deportista")
         {
             modificadores.add(new ModificadorAtributo("movimiento",1,-1));
+            System.out.println("Deportista");
         }
-        else if (naturaleza1 == "Incoherente" || naturaleza2 == "Incoherente")
+        if (naturaleza1 == "Incoherente" || naturaleza2 == "Incoherente")
         {
             modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
+            System.out.println("Incoherente");
         }
+        if (naturaleza1 == "Tortuga" || naturaleza2 == "Tortuga")
+        {
+            modificadores.add(new ModificadorAtributo("movimiento",-1,-1));
+            System.out.println("Tortuga");
+        }
+        if (naturaleza1 == "Deprimido" || naturaleza2 == "Deprimido")
+        {
+            modificadores.add(new ModificadorAtributo("dano",-1,-1));
+            System.out.println("Deprimido");
+        }
+        if (naturaleza1 == "Carretero" || naturaleza2 == "Carretero")
+        {
+            modificadores.add(new ModificadorAtributo("cantidadGolpes",-1,-1));
+            System.out.println("Carretero");
+        }
+        
         
         if(naturaleza1 == naturaleza2){
             modificadores.add(new ModificadorAtributo());
+            System.out.println("Aweonao");
         }
 
         
