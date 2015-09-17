@@ -23,6 +23,7 @@ public class CPrincipal implements ActionListener{
     private CPreJugar cJugar;
     private CEstadisticas cEstadisticas;
     private CPreTorneo cTorneo;
+    private CLogin cLogin;
         
     
     public CPrincipal(){
@@ -52,11 +53,11 @@ public class CPrincipal implements ActionListener{
             v.setVisible(false);
             cCreditos.run();
         }else if (boton == v.getBoton("Registrarse")){
-            /*
+            
             if(cLogin == null){cLogin = new CLogin(this);}
             v.setVisible(false);
             cLogin.run();
-            */
+            
         }else if(boton == v.getBoton("Jugar")){
             cJugar = new CPreJugar(this);
             v.setVisible(false);

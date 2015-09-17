@@ -44,10 +44,10 @@ public class VPreJugar extends javax.swing.JFrame {
     public JButton getBVolver(){return this.bVolver;}
     public JButton getBJugar(){return this.bJugar;}
     public JComboBox getboxTipoMapa(){return this.boxTipoMapa;}
-    public JComboBox getNaturaleza1J1(){return this.naturaleza1J1;}
-    public JComboBox getNaturaleza2J1(){return this.naturaleza2J1;}
-    public JComboBox getNaturaleza1J2(){return this.naturaleza1J2;}
-    public JComboBox getNaturaleza2J2(){return this.naturaleza2J2;}
+    public JComboBox getNaturaleza1J1(){return this.naturaleza1J1Selecc;}
+    public JComboBox getNaturaleza2J1(){return this.naturaleza2J1Selecc;}
+    public JComboBox getNaturaleza1J2(){return this.naturaleza1J2Selecc;}
+    public JComboBox getNaturaleza2J2(){return this.naturaleza2J2Selecc;}
     public JTextField getNombre1(){return this.nombre1;}
     public JTextField getNombre2(){return this.nombre2;}
     public JTextField getPuntosJ1(){return this.puntosJ1;}
@@ -96,10 +96,10 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        naturaleza1J1 = new javax.swing.JComboBox();
-        naturaleza2J1 = new javax.swing.JComboBox();
-        naturaleza1J2 = new javax.swing.JComboBox();
-        naturaleza2J2 = new javax.swing.JComboBox();
+        naturaleza1J1Selecc = new javax.swing.JComboBox();
+        naturaleza2J1Selecc = new javax.swing.JComboBox();
+        naturaleza1J2Selecc = new javax.swing.JComboBox();
+        naturaleza2J2Selecc = new javax.swing.JComboBox();
         puntosJ1 = new javax.swing.JTextField();
         puntosJ2 = new javax.swing.JTextField();
         cortoJ1 = new javax.swing.JSpinner();
@@ -143,6 +143,7 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Jugar");
+        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("")));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CPU");
@@ -202,13 +203,13 @@ public class VPreJugar extends javax.swing.JFrame {
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Naturalezas");
 
-        naturaleza1J1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
+        naturaleza1J1Selecc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
 
-        naturaleza2J1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
+        naturaleza2J1Selecc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
 
-        naturaleza1J2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
+        naturaleza1J2Selecc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
 
-        naturaleza2J2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
+        naturaleza2J2Selecc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carretero", "Deportista", "Deprimido", "Estudioso", "Incoherente", "Normal", "Tortuga" }));
 
         puntosJ1.setEditable(false);
         puntosJ1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -229,6 +230,12 @@ public class VPreJugar extends javax.swing.JFrame {
         });
 
         cortoJ1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 15, 1));
+        cortoJ1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cortoJ1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                cortoJ1StateChanged(evt);
+            }
+        });
 
         medioJ1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
@@ -259,8 +266,8 @@ public class VPreJugar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(naturaleza1J2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(naturaleza2J2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(naturaleza1J2Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(naturaleza2J2Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,8 +291,8 @@ public class VPreJugar extends javax.swing.JFrame {
                                                     .addComponent(puntosJ1))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(naturaleza1J1, 0, 94, Short.MAX_VALUE)
-                                                    .addComponent(naturaleza2J1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(naturaleza1J1Selecc, 0, 94, Short.MAX_VALUE)
+                                                    .addComponent(naturaleza2J1Selecc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 42, Short.MAX_VALUE))))
                                     .addGroup(layout.createSequentialGroup()
@@ -358,11 +365,12 @@ public class VPreJugar extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel6))
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(oroInicioKiosco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(oroInicioKiosco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -384,31 +392,33 @@ public class VPreJugar extends javax.swing.JFrame {
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel21)
-                        .addComponent(jLabel22)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(puntosJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(puntosJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel22)
+                            .addComponent(puntosJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(puntosJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel13))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(naturaleza1J1Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15)
-                        .addComponent(naturaleza1J1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cortoJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(naturaleza1J2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(naturaleza1J2Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cortoJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel20)
-                    .addComponent(naturaleza2J1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(naturaleza2J2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(medioJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(medioJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(jLabel20)
+                        .addComponent(naturaleza2J1Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(naturaleza2J2Selecc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(medioJ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bJugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -430,6 +440,9 @@ public class VPreJugar extends javax.swing.JFrame {
     private void puntosJ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntosJ1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_puntosJ1ActionPerformed
+
+    private void cortoJ1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cortoJ1StateChanged
+    }//GEN-LAST:event_cortoJ1StateChanged
 
     /**
      * @param args the command line arguments
@@ -503,10 +516,10 @@ public class VPreJugar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner medioJ1;
     private javax.swing.JSpinner medioJ2;
-    private javax.swing.JComboBox naturaleza1J1;
-    private javax.swing.JComboBox naturaleza1J2;
-    private javax.swing.JComboBox naturaleza2J1;
-    private javax.swing.JComboBox naturaleza2J2;
+    private javax.swing.JComboBox naturaleza1J1Selecc;
+    private javax.swing.JComboBox naturaleza1J2Selecc;
+    private javax.swing.JComboBox naturaleza2J1Selecc;
+    private javax.swing.JComboBox naturaleza2J2Selecc;
     private javax.swing.JTextField nombre1;
     private javax.swing.JTextField nombre2;
     private javax.swing.JSpinner oroInicio;
