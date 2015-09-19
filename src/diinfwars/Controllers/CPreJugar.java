@@ -33,25 +33,21 @@ public class CPreJugar implements ActionListener{
     public void run(){
         if (this.v == null){this.v = new VPreJugar(this);}
         this.v.setVisible(true);
-        
-        //Profesor
-//        int puntos = Integer.parseInt(v.getPuntosJ1().getText());
-//        if(puntos >= 30){
-            this.v.getCMasJ1().setEnabled(true);
-            this.v.getMMasJ1().setEnabled(true);
-            this.v.getCMasJ2().setEnabled(true);
-            this.v.getMMasJ2().setEnabled(true);
-            this.v.getCMenosJ1().setEnabled(false);
-            this.v.getMMenosJ1().setEnabled(false);
-            this.v.getCMenosJ2().setEnabled(false);
-            this.v.getMMenosJ2().setEnabled(false);
-            this.v.getPuntosCJ1().setText("0");
-            this.v.getPuntosCJ2().setText("0");
-            this.v.getPuntosMJ1().setText("0");
-            this.v.getPuntosMJ2().setText("0");
-            this.v.getPuntosJ1().setText("30");
-            this.v.getPuntosJ2().setText("30");
-//        }
+        //Seteada de botones como corresponde
+        this.v.getCMasJ1().setEnabled(true);
+        this.v.getMMasJ1().setEnabled(true);
+        this.v.getCMasJ2().setEnabled(true);
+        this.v.getMMasJ2().setEnabled(true);
+        this.v.getCMenosJ1().setEnabled(false);
+        this.v.getMMenosJ1().setEnabled(false);
+        this.v.getCMenosJ2().setEnabled(false);
+        this.v.getMMenosJ2().setEnabled(false);
+        this.v.getPuntosCJ1().setText("0");
+        this.v.getPuntosCJ2().setText("0");
+        this.v.getPuntosMJ1().setText("0");
+        this.v.getPuntosMJ2().setText("0");
+        this.v.getPuntosJ1().setText("30");
+        this.v.getPuntosJ2().setText("30");
     }
              
     public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            
