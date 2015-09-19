@@ -12,6 +12,7 @@ import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -33,6 +34,15 @@ public class CPreJugar implements ActionListener{
         if (this.v == null){
             this.v = new VPreJugar(this);}
         this.v.setVisible(true);
+        
+        //Profesor
+//        int puntos = Integer.parseInt(v.getPuntosJ1().getText());
+//        if(puntos >= 30){
+            this.v.getCMenosJ1().setEnabled(false);
+            this.v.getMMenosJ1().setEnabled(false);
+            this.v.getCMenosJ2().setEnabled(false);
+            this.v.getMMenosJ2().setEnabled(false);
+//        }
     }
              
     public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            
@@ -40,10 +50,10 @@ public class CPreJugar implements ActionListener{
         String j1 = v.getNombre1().getText();
         String j2 = v.getNombre2().getText();
         //Obtener valores de ataques Corto y Medio para Unidad Profesor
-        int cortoJ1 = (int)v.getCortoJ1().getValue();
-        int medioJ1 = (int)v.getMedioJ1().getValue();
-        int cortoJ2 = (int)v.getCortoJ2().getValue();
-        int medioJ2 = (int)v.getMedioJ2().getValue();
+        int cortoJ1 = Integer.parseInt(v.getPuntosCJ1().getText());
+        int medioJ1 = Integer.parseInt(v.getPuntosMJ1().getText());
+        int cortoJ2 = Integer.parseInt(v.getPuntosCJ2().getText());
+        int medioJ2 = Integer.parseInt(v.getPuntosMJ2().getText());
         //Obtener Naturalezas de Unidad Profesor
         String nat1J1 = null;
         String nat2J1 = null;
@@ -98,9 +108,66 @@ public class CPreJugar implements ActionListener{
         v.setVisible(false);
         cEnfrentamiento.run();
     }
-   
+    //Verifica que esten bien dados los puntos
+    public void verificar(int puntosRestantes, int puntosC, int puntosM){
+
+        if(puntosRestantes >= 30 ){
+            v.getCMenosJ1().setEnabled(false);
+            v.getMMenosJ1().setEnabled(false);
+        }
+        if(puntosRestantes <= 0){
+            v.getCMasJ1().setEnabled(false);
+            v.getMMasJ1().setEnabled(false);
+        }
+  
+        if (puntosRestantes<30){
+            v.getCMenosJ1().setEnabled(true);
+            v.getCMasJ1().setEnabled(true);
+            v.getMMenosJ1().setEnabled(true);
+            v.getMMasJ1().setEnabled(true);
+            if(puntosC == 0){v.getCMenosJ1().setEnabled(false);}
+            if(puntosM == 0){v.getMMenosJ1().setEnabled(false);}
+            if(puntosRestantes<2){v.getCMasJ1().setEnabled(false);}
+            if(puntosRestantes<3){v.getMMasJ1().setEnabled(false);}
+            if (puntosRestantes <= 0){
+                if (puntosC <=15){
+                    v.getCMasJ1().setEnabled(false);}
+                if (puntosM <=10){
+                    v.getMMasJ1().setEnabled(false);}
+            }
+        }     
+    }
+    public void verificar2(int puntosRestantes, int puntosC, int puntosM){
+
+        if(puntosRestantes >= 30 ){
+            v.getCMenosJ2().setEnabled(false);
+            v.getMMenosJ2().setEnabled(false);
+        }
+        if(puntosRestantes <= 0){
+            v.getCMasJ2().setEnabled(false);
+            v.getMMasJ2().setEnabled(false);
+        }
+        if (puntosRestantes<30){
+            v.getCMenosJ2().setEnabled(true);
+            v.getCMasJ2().setEnabled(true);
+            v.getMMenosJ2().setEnabled(true);
+            v.getMMasJ2().setEnabled(true);
+            if(puntosC == 0){v.getCMenosJ2().setEnabled(false);}
+            if(puntosM == 0){v.getMMenosJ2().setEnabled(false);}
+            if(puntosRestantes<2){v.getCMasJ2().setEnabled(false);}
+            if(puntosRestantes<3){v.getMMasJ2().setEnabled(false);}
+            if (puntosRestantes <= 0){
+                if (puntosC <=15){
+                    v.getCMasJ2().setEnabled(false);}
+                if (puntosM <=10){
+                    v.getMMasJ2().setEnabled(false);}
+            }
+        }     
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
+//        verificar();
         Object source = e.getSource();  
         // En caso de que sean botones
         if( source instanceof JButton){
@@ -114,6 +181,93 @@ public class CPreJugar implements ActionListener{
                 int oroInicioKisco = (int)v.getOroKiosco().getValue();
                 comenzarPartida(valorMapa, oroInicio, oroInicioKisco);           
             }
+            
+            //Puntos para ataques de Profesor
+            //Jugador 1
+            //Añadir puntos de ataque a rango Corto
+            int puntosRestantes = Integer.parseInt(v.getPuntosJ1().getText());
+            if(boton == v.getCMasJ1()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ1().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ1().getText());
+                puntosRestantes = puntosRestantes - 2;
+                puntosC = puntosC + 1;
+                v.getPuntosJ1().setText(Integer.toString(puntosRestantes));
+                v.getPuntosCJ1().setText(Integer.toString(puntosC));
+                verificar(puntosRestantes, puntosC, puntosM);
+            }
+            //Quitar puntos de ataque a rango Corto
+            if(boton == v.getCMenosJ1()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ1().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ1().getText());
+                puntosRestantes = puntosRestantes + 2;
+                puntosC = puntosC - 1;
+                v.getPuntosJ1().setText(Integer.toString(puntosRestantes));
+                v.getPuntosCJ1().setText(Integer.toString(puntosC));
+                verificar(puntosRestantes, puntosC, puntosM);
+            }
+            //Añadir puntos de ataque a rango Medio
+            if(boton == v.getMMasJ1()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ1().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ1().getText());
+                puntosRestantes = puntosRestantes - 3;
+                puntosM = puntosM + 1;
+                v.getPuntosJ1().setText(Integer.toString(puntosRestantes));
+                v.getPuntosMJ1().setText(Integer.toString(puntosM));
+                verificar(puntosRestantes, puntosC, puntosM);
+            }
+            //Quitar puntos de ataque a rango Medio
+            if(boton == v.getMMenosJ1()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ1().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ1().getText());
+                puntosRestantes = puntosRestantes + 3;
+                puntosM = puntosM - 1;
+                v.getPuntosJ1().setText(Integer.toString(puntosRestantes));
+                v.getPuntosMJ1().setText(Integer.toString(puntosM));
+                verificar(puntosRestantes, puntosC, puntosM);
+            }
+            //Jugador 2
+            //Añadir puntos de ataque a rango Corto
+            int puntosRestantes2 = Integer.parseInt(v.getPuntosJ2().getText());
+            if(boton == v.getCMasJ2()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ2().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ2().getText());
+                puntosRestantes2 = puntosRestantes2 - 2;
+                puntosC = puntosC + 1;
+                v.getPuntosJ2().setText(Integer.toString(puntosRestantes2));
+                v.getPuntosCJ2().setText(Integer.toString(puntosC));
+                verificar2(puntosRestantes2, puntosC, puntosM);
+            }
+            //Quitar puntos de ataque a rango Corto
+            if(boton == v.getCMenosJ2()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ2().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ2().getText());
+                puntosRestantes2 = puntosRestantes2 + 2;
+                puntosC = puntosC - 1;
+                v.getPuntosJ2().setText(Integer.toString(puntosRestantes2));
+                v.getPuntosCJ2().setText(Integer.toString(puntosC));
+                verificar2(puntosRestantes2, puntosC, puntosM);
+            }
+            //Añadir puntos de ataque a rango Medio
+            if(boton == v.getMMasJ2()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ2().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ2().getText());
+                puntosRestantes2 = puntosRestantes2 - 3;
+                puntosM = puntosM + 1;
+                v.getPuntosJ2().setText(Integer.toString(puntosRestantes2));
+                v.getPuntosMJ2().setText(Integer.toString(puntosM));
+                verificar2(puntosRestantes2, puntosC, puntosM);
+            }
+            //Quitar puntos de ataque a rango Medio
+            if(boton == v.getMMenosJ2()){
+                int puntosC = Integer.parseInt(v.getPuntosCJ2().getText());
+                int puntosM = Integer.parseInt(v.getPuntosMJ2().getText());
+                puntosRestantes2 = puntosRestantes2 + 3;
+                puntosM = puntosM - 1;
+                v.getPuntosJ2().setText(Integer.toString(puntosRestantes2));
+                v.getPuntosMJ2().setText(Integer.toString(puntosM));
+                verificar2(puntosRestantes2, puntosC, puntosM);
+            }
+            
         }
     }    
 }
