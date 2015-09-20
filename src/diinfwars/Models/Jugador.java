@@ -32,6 +32,8 @@ public class Jugador {
     
     
     public String getNombre(){return this.nombre;}
+    public int getVictorias(){return this.victorias;}
+    public int getDerrotas(){return this.derrotas;}
     public boolean isCpu(){return this.isCpu;}
     
 }

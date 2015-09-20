@@ -10,6 +10,7 @@ import diinfwars.Models.Edificio;
 import diinfwars.Models.Estratega;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
+import diinfwars.Models.Registro;
 import diinfwars.Models.Unidad;
 import diinfwars.Views.VEnfrentamiento;
 import diinfwars.Views.VPreJugar;
@@ -17,9 +18,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -35,6 +39,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     /**Controlador padre*/
     private CPreJugar pJugar;
     private CPreTorneo pTorneo;
+    private Registro r;
     /**Instancia de la vista asociada*/
     private VEnfrentamiento v;
     /**Jugador asociado*/
@@ -45,7 +50,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
     private Mapa mapa;
     /**Datos de la batalla*/
     private Batalla batalla;
-    
+       
     private ArrayList<Unidad> uMovidas = new ArrayList<Unidad>();
     private ArrayList<Unidad> uAtacantes = new ArrayList<Unidad>();
     
@@ -164,8 +169,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
     }
     
-    public void finPartida(String ganador){
-        
+    
+    
+    public void finPartida(String ganador,String perdedor) throws IOException{
+        String[] info = new String[]{ganador,perdedor};
         v.setModo(0);
         this.v.getBotonAtacar().setEnabled(false);
         this.v.getBotonMover().setEnabled(false);
@@ -175,11 +182,27 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.v.getBotonRendirse().setEnabled(false);
         this.v.getBotonSalir().setVisible(true);
         this.v.getBotonRendirse().setVisible(false);
-        
+//        int victoriasJ1 = this.jugador1.getVictorias();
+//        int victoriasJ2 = this.jugador2.getVictorias();
+//        int derrotasJ1 = this.jugador1.getDerrotas();
+//        int derrotasJ2 = this.jugador2.getDerrotas();
+//        if (jugador == jugador1.getNombre()){
+//            victoriasJ1 = victoriasJ1 + 1;
+//            derrotasJ2 = derrotasJ2 +1;
+//        }
+//        else{
+//            victoriasJ2 = victoriasJ2+1;
+//            derrotasJ1 = derrotasJ1+1;
+//        }
+//        System.out.println("VJ1: "+victoriasJ1);
+//        System.out.println("DJ1: "+derrotasJ1);
+//        System.out.println("VJ2: "+victoriasJ2);
+//        System.out.println("DJ2: "+derrotasJ2);
         
         this.v.gettextoGanador().setText("GANADOR: "+(ganador));
 
         System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES "+(ganador));
+        Registro registro = new Registro(ganador, perdedor);
     }
     
     @Override
@@ -201,10 +224,18 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             //Rendirse
             if(boton.getText() == "Rendirse"){
                 if (nombreJugador == jugador2.getNombre()){
-                    finPartida(jugador2.getNombre());
+                    try {
+                        finPartida(jugador2.getNombre(),jugador1.getNombre());
+                    } catch (IOException ex) {
+                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }           
                 else if (nombreJugador == jugador1.getNombre()){
-                    finPartida(jugador1.getNombre());
+                    try {
+                        finPartida(jugador1.getNombre(),jugador2.getNombre());
+                    } catch (IOException ex) {
+                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
             
@@ -330,10 +361,18 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 
                 //TERMINO DE LA PARTIDA
                 if(estratega1.getProfesor().isDead()){
-                    finPartida(jugador2.getNombre());
+                    try {
+                        finPartida(jugador2.getNombre(),jugador1.getNombre());
+                    } catch (IOException ex) {
+                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 if(estratega2.getProfesor().isDead()){
-                    finPartida(jugador1.getNombre());
+                    try {
+                        finPartida(jugador1.getNombre(),jugador2.getNombre());
+                    } catch (IOException ex) {
+                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }
@@ -491,6 +530,8 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         boolean[][] rango = mapa.getRango(v.getModo(),casillaActual[0],casillaActual[1],v.getJugador(),v.getRangoAtaque());
         v.dibujarRango(rango);
     }
+    
+
 
     @Override
     public void mouseClicked(MouseEvent e) {}

@@ -12,7 +12,6 @@ import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -48,7 +47,8 @@ public class CPreJugar implements ActionListener{
         this.v.getPuntosMJ2().setText("0");
         this.v.getPuntosJ1().setText("30");
         this.v.getPuntosJ2().setText("30");
-    }
+        }
+    
              
     public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            
         //Obtener nombres

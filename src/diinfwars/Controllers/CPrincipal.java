@@ -8,6 +8,9 @@ package diinfwars.Controllers;
 import diinfwars.Views.VPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -43,7 +46,11 @@ public class CPrincipal implements ActionListener{
         if (boton == v.getBoton("Estadisticas")){
             if (cEstadisticas == null){cEstadisticas = new CEstadisticas(this);}
             v.setVisible(false);
-            cEstadisticas.run();
+            try {
+                cEstadisticas.run();
+            } catch (IOException ex) {
+                Logger.getLogger(CPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else if (boton == v.getBoton("Torneo")){
             cTorneo = new CPreTorneo(this);
             v.setVisible(false);

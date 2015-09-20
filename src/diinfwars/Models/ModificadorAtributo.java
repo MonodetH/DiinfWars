@@ -33,7 +33,7 @@ public class ModificadorAtributo {
         else if (aleatorio == 2)
         { // Estudioso, modifica el daño
             this.atributo = "dano";
-            this.modificacion = 1;
+            this.modificacion = 99;
             this.turnosRestantes = -1;
         }
         else if (aleatorio == 3)
