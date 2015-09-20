@@ -25,7 +25,7 @@ public class Registro {
     
  
     public Registro(String ganador, String perdedor) throws IOException{
-        File uno = new File("/logs/log.txt");
+        File uno = new File("src/logs/log.txt");
         modificarArchivoGanador(ganador, uno);
         modificarArchivoPerdedor(perdedor,uno);
     }
@@ -90,7 +90,7 @@ public class Registro {
     }
     
     public void modificarArchivoPerdedor(String perdedor,File f1) throws FileNotFoundException, IOException{
-        File log2 = new File("C:\\Users\\Zen\\Documents\\NetBeansProjects\\DiinfWars\\src\\logs\\log2.txt");
+        File log2 = new File("src/logslog2.txt");
         FileReader fr1 = new FileReader(f1);
         BufferedReader br = new BufferedReader(fr1);
         String linea;
@@ -136,7 +136,7 @@ public class Registro {
     }
 
     public void modificarArchivoGanador(String ganador,File f1) throws FileNotFoundException, IOException{
-        File log2 = new File("C:\\Users\\Zen\\Documents\\NetBeansProjects\\DiinfWars\\src\\logs\\log2.txt");
+        File log2 = new File("src/logs/log2.txt");
         FileReader fr1 = new FileReader(f1);
         BufferedReader br = new BufferedReader(fr1);
         String linea;
