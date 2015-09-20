@@ -25,7 +25,7 @@ public class Registro {
     
  
     public Registro(String ganador, String perdedor) throws IOException{
-        File uno = new File("C:\\Users\\Zen\\Documents\\NetBeansProjects\\DiinfWars\\src\\logs\\log.txt");
+        File uno = new File("/logs/log.txt");
         modificarArchivoGanador(ganador, uno);
         modificarArchivoPerdedor(perdedor,uno);
     }

@@ -475,9 +475,9 @@ public class Mapa {
                     else j++;
                 }
             }
-            if(Math.abs(dI) > movRestante){//mover verticalmente
+            if(movRestante>0 && Math.abs(dI) > movRestante){//mover verticalmente
                 for(int i=(dI>0)?movRestante:-movRestante;i!=0;){
-                    if(matrizCasillas[posInicial[0]][posInicial[1]+i].getUnidad()==null && matrizCasillas[posInicial[0]][posInicial[1]+i].isHabilitada()){
+                    if(matrizCasillas[posInicial[0]+i][posInicial[1]].getUnidad()==null && matrizCasillas[posInicial[0]+i][posInicial[1]].isHabilitada()){
                         moverUnidad(posInicial[0], posInicial[1], posInicial[0]+i,posInicial[1]);
                         posInicial[0]+=i;
                         movRestante -= Math.abs(i);
