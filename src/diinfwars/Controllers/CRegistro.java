@@ -8,6 +8,7 @@ package diinfwars.Controllers;
 import diinfwars.Views.VRegistro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -34,7 +35,19 @@ public class CRegistro implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    
+        Object source = e.getSource();
+        //Botones
+        if( source instanceof JButton){
+            JButton boton = (JButton) e.getSource();
+            if (boton.getText() == "Volver"){
+                v.setVisible(false);
+                parentLogin.run();
+            }
+        
+//        v.setVisible(false);
+//        p.run();
+        
     }
     
+}
 }

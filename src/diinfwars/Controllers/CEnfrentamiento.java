@@ -468,6 +468,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             //Salir
             if(boton.getText()== "Salir"){
                 v.setVisible(false);
+                v.dispose();
                 pJugar.run();
             }
 

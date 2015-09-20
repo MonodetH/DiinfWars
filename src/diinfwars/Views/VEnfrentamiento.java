@@ -402,6 +402,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         hpAActual = new javax.swing.JLabel();
         hpSeleccionado1 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
+        expActual = new javax.swing.JLabel();
         capaAsTactico = new javax.swing.JPanel();
         panelInfoAs = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -727,6 +728,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
         jLabel44.setForeground(new java.awt.Color(255, 0, 0));
         jLabel44.setText("20");
 
+        expActual.setText("0");
+
         javax.swing.GroupLayout panelAtacarLayout = new javax.swing.GroupLayout(panelAtacar);
         panelAtacar.setLayout(panelAtacarLayout);
         panelAtacarLayout.setHorizontalGroup(
@@ -783,10 +786,13 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                                                         .addGap(18, 18, 18)
                                                         .addComponent(nivelAtacante)))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(hpSeleccionado1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel44)))))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                                        .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelAtacarLayout.createSequentialGroup()
+                                                .addComponent(hpSeleccionado1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel44))
+                                            .addComponent(expActual))))))))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         panelAtacarLayout.setVerticalGroup(
             panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -823,7 +829,8 @@ public class VEnfrentamiento extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel39)
-                                    .addComponent(nivelAtacante))
+                                    .addComponent(nivelAtacante)
+                                    .addComponent(expActual))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelAtacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel41)
@@ -1211,6 +1218,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     private javax.swing.JPanel capaRango;
     private javax.swing.JPanel capaReclutar;
     private javax.swing.JPanel capaUnidad;
+    private javax.swing.JLabel expActual;
     private javax.swing.JLabel hpAActual;
     private javax.swing.JLabel hpSeleccionado;
     private javax.swing.JLabel hpSeleccionado1;
