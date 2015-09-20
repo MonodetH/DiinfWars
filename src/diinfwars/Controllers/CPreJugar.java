@@ -12,6 +12,7 @@ import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -20,6 +21,7 @@ import javax.swing.JButton;
 public class CPreJugar implements ActionListener{
     /**Controlador padre*/
     private CPrincipal p;
+    private CTorneo pT;
     /**Vista*/
     private VPreJugar v;
     
@@ -27,6 +29,10 @@ public class CPreJugar implements ActionListener{
     
     public CPreJugar(CPrincipal parent){
         p = parent;
+    }
+    public CPreJugar(CTorneo parent){
+        pT = parent;
+        //v.setTorneo();
     }
 
     public void run(){
@@ -103,7 +109,7 @@ public class CPreJugar implements ActionListener{
         
         
         // Se prepara el objeto Batalla
-        Jugador jug1=new Jugador(j1,true), jug2 = new Jugador(j2,true);
+        Jugador jug1=new Jugador(j1,v.j1Cpu()), jug2 = new Jugador(j2,v.j2Cpu());
         Mapa mapa1 = new Mapa(valorMapa);
 
         // estos datos se sacan de login, preJugar y configuracion profesor

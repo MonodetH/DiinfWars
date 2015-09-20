@@ -24,6 +24,7 @@ public class CPreTorneo implements ActionListener{
         p = padre;
     }
     
+    
     public void run(){
         if (this.v == null){this.v = new VPreTorneo(this);}
         this.v.setVisible(true);

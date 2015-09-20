@@ -153,7 +153,18 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     }
     
     
-    
+    public void activarAcciones(){
+        botonMover.setEnabled(true);
+        botonAtacar.setEnabled(true);
+        botonAsTactico.setEnabled(true);
+        botonReclutar.setEnabled(true);
+    }
+    public void desactivarAcciones(){
+        botonMover.setEnabled(false);
+        botonAtacar.setEnabled(false);
+        botonAsTactico.setEnabled(false);
+        botonReclutar.setEnabled(false);
+    }
     
     // SETS
     /**
@@ -275,7 +286,7 @@ public class VEnfrentamiento extends javax.swing.JFrame {
     public int[] getCasillaSeleccionada(){return this.casillaSeleccionada;}
     public int[] getCasillaObjetivo(){return this.casillaObjetivo;}
     public int getJugador(){return this.jActivo;}
-    
+
     public JLabel[][] getMatrizUnidad(){return this.matrizUnidad;}
     // Get GUI component
     public JPanel getPanelReclutar(){return this.panelReclutar;}

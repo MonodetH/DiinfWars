@@ -173,12 +173,15 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
 
         v.dibujarUnidades(mapa.unidadesToString());
         v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
-        
+        v.activarAcciones();
         if(v.getJugador()==1 && jugador1.isCpu()){
+            v.desactivarAcciones();
             this.rutinaIA(1);
         }else if(v.getJugador()==2 && jugador2.isCpu()){
+            v.desactivarAcciones();
             this.rutinaIA(2);
         }
+        
     }
     
     
@@ -321,7 +324,9 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 Unidad objetivo = mapa.getObjetivo(unidad);
                 int[] ataque = mapa.mejorAtaque(unidad,objetivo);
                 if(objetivo!=null){
-                    if(this.atacar(unidad, objetivo, ataque))break;
+                    if(this.atacar(unidad, objetivo, ataque)){
+                        uAtacantes.add(unidad);
+                    }
                 }
             }
         }
@@ -354,7 +359,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(!uAtacantes.contains(unidad) && !unidad.isDead()){
                 Unidad objetivo = mapa.getObjetivo(unidad);
                 int[] ataque = mapa.mejorAtaque(unidad,objetivo);
-                if(this.atacar(unidad, objetivo, ataque))break;
+                if(objetivo!=null){
+                    if(this.atacar(unidad, objetivo, ataque)){
+                        uAtacantes.add(unidad);
+                    }
+                }
             }
         }
         

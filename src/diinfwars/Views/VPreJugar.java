@@ -49,6 +49,10 @@ public class VPreJugar extends javax.swing.JFrame {
         this.mMasJ2.addActionListener(al);
         this.mMenosJ2.addActionListener(al);
     }
+    
+    public void setTorneo(String nombreJ1,boolean Cpu1, String nombreJ2,boolean Cpu2, int orok,int okoi,int mapa){
+        
+    }
                
     public JButton getBVolver(){return this.bVolver;}
     public JButton getBJugar(){return this.bJugar;}
@@ -67,6 +71,9 @@ public class VPreJugar extends javax.swing.JFrame {
     public JComboBox getNaturaleza2J1(){return this.naturaleza2J1Selecc;}
     public JComboBox getNaturaleza1J2(){return this.naturaleza1J2Selecc;}
     public JComboBox getNaturaleza2J2(){return this.naturaleza2J2Selecc;}
+    
+    public boolean j1Cpu(){return jCheckBox1.isSelected();}
+    public boolean j2Cpu(){return jCheckBox2.isSelected();}
     
     public JLabel getPuntosCJ1(){return this.puntosCJ1;}
     public JLabel getPuntosMJ1(){return this.puntosMJ1;}

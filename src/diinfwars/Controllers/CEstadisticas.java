@@ -31,7 +31,7 @@ public class CEstadisticas implements ActionListener {
     public void run() throws IOException{
         if (this.v == null){this.v = new VEstadisticas(this);}
         this.v.setVisible(true);
-        File uno = new File("C:\\Users\\Zen\\Documents\\NetBeansProjects\\DiinfWars\\src\\logs\\log.txt");
+        File uno = new File("src/logs/log.txt");
         escritor(lector(uno));;
     }
  
