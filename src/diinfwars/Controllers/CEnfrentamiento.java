@@ -12,6 +12,8 @@ import diinfwars.Models.Jugador;
 import diinfwars.Models.Mapa;
 import diinfwars.Models.Registro;
 import diinfwars.Models.Unidad;
+import diinfwars.Models.Unidades.CoordinadorAyudantes;
+import diinfwars.Models.Unidades.Pame;
 import diinfwars.Views.VEnfrentamiento;
 import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
@@ -111,11 +113,15 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             }
         this.v.setVisible(true);
         this.v.getBotonSalir().setVisible(false);
-        this.rutinaNuevoTurno();
+        try {
+            this.rutinaNuevoTurno();
+        } catch (IOException ex) {
+            Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
-    public void rutinaNuevoTurno(){
+    public void rutinaNuevoTurno() throws IOException{
         String nombreJugador = (v.getJugador()==1)?jugador2.getNombre():jugador1.getNombre();
         v.toggleJugador(nombreJugador);
         v.setModo(0);
@@ -167,12 +173,18 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
 
         v.dibujarUnidades(mapa.unidadesToString());
         v.actualizarTerrenoToolTip(mapa.terrenoToolTip(jugador1.getNombre(),jugador2.getNombre()));
+        
+        if(v.getJugador()==1 && jugador1.isCpu()){
+            this.rutinaIA(1);
+        }else if(v.getJugador()==2 && jugador2.isCpu()){
+            this.rutinaIA(2);
+        }
     }
     
     
     
     public void finPartida(String ganador,String perdedor) throws IOException{
-        String[] info = new String[]{ganador,perdedor};
+        Registro registro = new Registro(ganador, perdedor);
         v.setModo(0);
         this.v.getBotonAtacar().setEnabled(false);
         this.v.getBotonMover().setEnabled(false);
@@ -202,7 +214,273 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.v.gettextoGanador().setText("GANADOR: "+(ganador));
 
         System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES "+(ganador));
-        Registro registro = new Registro(ganador, perdedor);
+    }
+    
+    protected void rutinaIA(int equipo) throws IOException{
+        Estratega estratega = (equipo == 1)?estratega1:estratega2;
+        Estratega estrategaEnemigo = (equipo == 2)?estratega1:estratega2;
+        // Casos particulares
+        //Profesor
+        uMovidas.add(estratega.getProfesor());
+        //Coordinador de ayudantes
+        ArrayList<Unidad> unidades = estratega.getUnidades();
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad coordinador = iterador.next();
+            if (coordinador instanceof CoordinadorAyudantes){
+                int[] pos = mapa.getPos(coordinador),destino=new int[2];
+                int col = (equipo == 1)?1:18;
+                if(pos[1]!=col && !uMovidas.contains(coordinador) && !coordinador.isDead()){
+                    destino[1]=col;
+                    if(mapa.getUnidad(4, col)==null && mapa.getCasilla(4,col).isHabilitada() ){
+                        destino[0]=4;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(3, col)==null && mapa.getCasilla(3,col).isHabilitada()){
+                        destino[0]=3;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(5, col)==null && mapa.getCasilla(5,col).isHabilitada()){
+                        destino[0]=5;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(2, col)==null && mapa.getCasilla(2,col).isHabilitada()){
+                        destino[0]=2;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(6, col)==null && mapa.getCasilla(6,col).isHabilitada()){
+                        destino[0]=6;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(1, col)==null && mapa.getCasilla(1,col).isHabilitada()){
+                        destino[0]=1;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }else if(mapa.getUnidad(7, col)==null && mapa.getCasilla(7,col).isHabilitada()){
+                        destino[0]=7;
+                        if(mapa.moverHacia(pos,destino,true)){
+                            uMovidas.add(coordinador);
+                            coordinador.setInmovil(false);
+                            v.dibujarUnidades(mapa.unidadesToString());
+                        }
+                    }
+                }else{
+                    if(!uMovidas.contains(coordinador)){uMovidas.add(coordinador);} //Para que no se mueva hacia el oponente
+                }
+            }
+        }
+        //Pame
+        iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad pame = iterador.next();
+            if (pame instanceof Pame && !uMovidas.contains(pame)&&!pame.isDead()){
+                Iterator<Unidad> iterador2 = unidades.iterator();
+                Unidad danada = null;
+                while(iterador2.hasNext()){
+                    Unidad unidad = iterador2.next();
+                    if(danada == null || (danada.getDano() < unidad.getDano() && !mapa.tienePame(unidad))){
+                        danada = unidad;
+                    }
+                }
+                if(danada.getDano()!=0){
+                    if(mapa.moverHacia(mapa.getPos(pame),mapa.getPos(danada),false)){
+                        uMovidas.add(pame);
+                        pame.setInmovil(false);
+                        v.dibujarUnidades(mapa.unidadesToString());
+                    }
+                }
+                
+            }
+        }
+        
+        
+        // Comportamiento general
+        //Atacar
+        iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(!uAtacantes.contains(unidad) && !unidad.isDead()){
+                Unidad objetivo = mapa.getObjetivo(unidad);
+                int[] ataque = mapa.mejorAtaque(unidad,objetivo);
+                if(objetivo!=null){
+                    this.atacar(unidad, objetivo, ataque);
+                }
+            }
+        }
+        
+        //Mover
+        iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(!uMovidas.contains(unidad) && !unidad.isDead()){
+                if(unidad.porcentajeVida() >= 25){
+                    if(mapa.moverHacia(mapa.getPos(unidad),mapa.getPos(estrategaEnemigo.getProfesor()),false)){       
+                        uMovidas.add(unidad);
+                        unidad.setInmovil(false);
+                        v.dibujarUnidades(mapa.unidadesToString());
+                    }
+                }else{
+                    if(mapa.moverHacia(mapa.getPos(unidad),mapa.getPos(estratega.getProfesor()),false)){       
+                        uMovidas.add(unidad);
+                        unidad.setInmovil(false);
+                        v.dibujarUnidades(mapa.unidadesToString());
+                    }
+                }
+            }
+        }
+        
+        //Intentar atacar de nuevo
+        iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(!uAtacantes.contains(unidad) && !unidad.isDead()){
+                Unidad objetivo = mapa.getObjetivo(unidad);
+                int[] ataque = mapa.mejorAtaque(unidad,objetivo);
+                this.atacar(unidad, objetivo, ataque);
+            }
+        }
+        
+        // Reclutar
+        while(estratega.getOro()>=4 && mapa.getPosReclutar(equipo)!=null){
+            int[] pos = mapa.getPosReclutar(equipo);
+            int oro = estratega.getOro();
+            
+            String tipoUnidad = "Cachorro";
+            if(oro >= 12 && estratega.porcentajePame()<20){tipoUnidad = "Pame";}
+            else if(oro>=10 && estratega.cantidadCoordinador()<3){tipoUnidad = "CoordinadorAyudantes";}
+            else if(oro>=8){tipoUnidad = (rand.nextBoolean())?"Ayudante":"AlumnoNivelSuperior";}
+            else if(oro>=6){tipoUnidad = "Alumno";}
+            
+            Unidad unidad = estratega.reclutar(tipoUnidad);
+            mapa.ubicarUnidad(unidad,pos[0], pos[1]);
+            uMovidas.add(unidad);
+            uAtacantes.add(unidad);
+
+            v.dibujarUnidades(mapa.unidadesToString());
+            v.actualizarPanelReclutar(estratega.getOro());
+            
+        }
+        
+    }
+    
+    public void atacar(Unidad atacante, Unidad defensora,int[] ataque) throws IOException{
+        if(atacante != null && defensora != null && !atacante.isDead() && !defensora.isDead() && !uAtacantes.contains(atacante) && atacante.getEquipo() != defensora.getEquipo()){
+            // OBTENER ATAQUES
+            int[] contra = defensora.getAtaque(ataque[0]); // Mismo rango que atacante
+            if(contra == null){contra = defensora.getAtaque(1);} // pedir ataque corto
+            if(contra == null){contra = defensora.getAtaque(2);} // pedir ataque medio
+            if(contra == null){contra = defensora.getAtaque(3);} // pedir ataque largo
+            if(contra == null){contra = new int[3];contra[0]=1;contra[1]=0;contra[2]=0;} // ataque nulo
+
+            // Atacar
+            int golpesA = ataque[2], golpesD = contra[2]; // numero de golpes
+            int danoA = 0, danoD = 0; // daño hecho
+            int missA = 0; // cantidad de fallas
+            int critMissA = 0; // cantidad de fallas criticas
+            int danoCritMissA = 0;
+            int[] posA = mapa.getPos(atacante), posD = mapa.getPos(defensora);
+            int defensaA = mapa.getDefensa(posA[0],posA[1]), defensaD = mapa.getDefensa(posD[0],posD[1]); // Defensa de la unidad en su casilla
+            while((golpesA != 0 || golpesD != 0) && (!atacante.isDead() && !defensora.isDead())){
+                //ATAQUE
+                if(golpesA > 0){
+                    if(rand.nextInt(100) >= defensaD){//ATACAR
+                        danoA += ataque[1];
+                        atacante.otorgarExp(ataque[1]);
+                        if(defensora.recibirDano(ataque[1])){
+                            atacante.otorgarExp(defensora.getExpMuerte());
+                        }
+                    }else if (rand.nextInt(100) < atacante.getCritMiss()){// Critical miss
+                        danoCritMissA += (ataque[1]+1)/2;
+                        critMissA++;
+                        atacante.recibirDano((ataque[1]+1)/2);
+                    }else{missA++;}// miss
+                    golpesA--;
+
+
+                }
+                //CONTRAATAQUE
+                if(golpesD >0 && !atacante.isDead() && !defensora.isDead()){
+                    if(rand.nextInt(100) >= defensaA){
+                        danoD += contra[1];
+                        defensora.otorgarExp(contra[1]);
+                        if(atacante.recibirDano(contra[1])){
+                            defensora.otorgarExp(atacante.getExpMuerte());
+                        }
+                    }
+                    golpesD--;
+                } 
+            }
+            // Imprimir resultado por pantalla
+
+            this.v.getTextoAtacar().append("La unidad ha hecho ");
+            this.v.getTextoAtacar().append(String.valueOf(danoA));
+            this.v.getTextoAtacar().append(" de daño, fallando ");
+            this.v.getTextoAtacar().append(String.valueOf(missA));
+            this.v.getTextoAtacar().append(" golpes de ");
+            this.v.getTextoAtacar().append(String.valueOf(ataque[2] - golpesA));
+            this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+
+            this.v.getTextoAtacar().append("Se han producido ");
+            this.v.getTextoAtacar().append(String.valueOf(critMissA));
+            this.v.getTextoAtacar().append(" fallas criticas, autoinflingiendose ");
+            this.v.getTextoAtacar().append(String.valueOf(danoCritMissA));
+            this.v.getTextoAtacar().append(" de daño.");
+            this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+
+            this.v.getTextoAtacar().append("El oponente hizo ");
+            this.v.getTextoAtacar().append(String.valueOf(danoD));
+            this.v.getTextoAtacar().append(" de daño como contraataque.");
+            this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+            this.v.getTextoAtacar().append(System.getProperty("line.separator"));
+
+            System.out.print("La unidad ha hecho ");
+            System.out.print(danoA);
+            System.out.print(" de daño, fallando ");
+            System.out.print(missA);
+            System.out.print(" golpes de ");
+            System.out.println(ataque[2] - golpesA);
+            System.out.print("Se han producido ");
+            System.out.print(critMissA);
+            System.out.print(" fallas criticas, autoinflingiendose ");
+            System.out.print(danoCritMissA);
+            System.out.println(" de daño ");
+            System.out.print("El oponente hizo ");
+            System.out.print(danoD);
+            System.out.println(" de daño como contraataque");
+            
+            
+            uAtacantes.add(atacante);
+        }
+        
+        v.dibujarUnidades(mapa.unidadesToString());
+        v.setEnableAtacar(false);
+
+        //TERMINO DE LA PARTIDA
+        if(estratega1.getProfesor().isDead()){
+            finPartida(jugador2.getNombre(),jugador1.getNombre());
+        }
+        if(estratega2.getProfesor().isDead()){
+            finPartida(jugador1.getNombre(),jugador2.getNombre());
+        }
+        
     }
     
     @Override
@@ -241,7 +519,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             
             // finalizar turno
             if(boton.getText() == "Finalizar Turno"){
-                this.rutinaNuevoTurno();
+                try {
+                    this.rutinaNuevoTurno();
+                } catch (IOException ex) {
+                    Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             
@@ -270,109 +552,10 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             }
             
             else if(boton == v.getBConfirmarAtaque()){
-                if(this.unidadAtacante != null && this.unidadDefensora != null && !uAtacantes.contains(unidadAtacante)){
-                    // OBTENER ATAQUES
-                    int[] ataque = v.getAtaqueSeleccionado();
-                    int[] contra = unidadDefensora.getAtaque(ataque[0]); // Mismo rango que atacante
-                    if(contra == null){contra = unidadDefensora.getAtaque(1);} // pedir ataque corto
-                    if(contra == null){contra = unidadDefensora.getAtaque(2);} // pedir ataque medio
-                    if(contra == null){contra = unidadDefensora.getAtaque(3);} // pedir ataque largo
-                    if(contra == null){contra = new int[3];contra[0]=1;contra[1]=0;contra[2]=0;} // ataque nulo
-                    
-                    // Atacar
-                    int golpesA = ataque[2], golpesD = contra[2]; // numero de golpes
-                    int danoA = 0, danoD = 0; // daño hecho
-                    int missA = 0; // cantidad de fallas
-                    int critMissA = 0; // cantidad de fallas criticas
-                    int danoCritMissA = 0;
-                    int[] posA = v.getCasillaSeleccionada(), posD = v.getCasillaObjetivo();
-                    int defensaA = mapa.getDefensa(posA[0],posA[1]), defensaD = mapa.getDefensa(posD[0],posD[1]); // Defensa de la unidad en su casilla
-                    while((golpesA != 0 || golpesD != 0) && (!unidadAtacante.isDead() && !unidadDefensora.isDead())){
-                        //ATAQUE
-                        if(golpesA > 0){
-                            if(rand.nextInt(100) >= defensaD){//ATACAR
-                                danoA += ataque[1];
-                                unidadAtacante.otorgarExp(ataque[1]);
-                                if(unidadDefensora.recibirDano(ataque[1])){
-                                    unidadAtacante.otorgarExp(unidadDefensora.getExpMuerte());
-                                }
-                            }else if (rand.nextInt(100) < unidadAtacante.getCritMiss()){// Critical miss
-                                danoCritMissA += (ataque[1]+1)/2;
-                                critMissA++;
-                                unidadAtacante.recibirDano((ataque[1]+1)/2);
-                            }else{missA++;}// miss
-                            golpesA--;
-                            
-                            
-                        }
-                        //CONTRAATAQUE
-                        if(golpesD >0 && !unidadAtacante.isDead() && !unidadDefensora.isDead()){
-                            if(rand.nextInt(100) >= defensaA){
-                                danoD += contra[1];
-                                unidadDefensora.otorgarExp(contra[1]);
-                                if(unidadAtacante.recibirDano(contra[1])){
-                                    unidadDefensora.otorgarExp(unidadAtacante.getExpMuerte());
-                                }
-                            }
-                            golpesD--;
-                        } 
-                    }
-                    // Imprimir resultado por pantalla
-                    
-                    this.v.getTextoAtacar().append("La unidad ha hecho ");
-                    this.v.getTextoAtacar().append(String.valueOf(danoA));
-                    this.v.getTextoAtacar().append(" de daño, fallando ");
-                    this.v.getTextoAtacar().append(String.valueOf(missA));
-                    this.v.getTextoAtacar().append(" golpes de ");
-                    this.v.getTextoAtacar().append(String.valueOf(ataque[2] - golpesA));
-                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
-
-                    this.v.getTextoAtacar().append("Se han producido ");
-                    this.v.getTextoAtacar().append(String.valueOf(critMissA));
-                    this.v.getTextoAtacar().append(" fallas criticas, autoinflingiendose ");
-                    this.v.getTextoAtacar().append(String.valueOf(danoCritMissA));
-                    this.v.getTextoAtacar().append(" de daño.");
-                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
-                    
-                    this.v.getTextoAtacar().append("El oponente hizo ");
-                    this.v.getTextoAtacar().append(String.valueOf(danoD));
-                    this.v.getTextoAtacar().append(" de daño como contraataque.");
-                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
-                    this.v.getTextoAtacar().append(System.getProperty("line.separator"));
-                    
-                    System.out.print("La unidad ha hecho ");
-                    System.out.print(danoA);
-                    System.out.print(" de daño, fallando ");
-                    System.out.print(missA);
-                    System.out.print(" golpes de ");
-                    System.out.println(ataque[2] - golpesA);
-                    System.out.print("Se han producido ");
-                    System.out.print(critMissA);
-                    System.out.print(" fallas criticas, autoinflingiendose ");
-                    System.out.print(danoCritMissA);
-                    System.out.println(" de daño ");
-                    System.out.print("El oponente hizo ");
-                    System.out.print(danoD);
-                    System.out.println(" de daño como contraataque");
-                }
-                uAtacantes.add(unidadAtacante);
-                v.dibujarUnidades(mapa.unidadesToString());
-                v.setEnableAtacar(false);
-                
-                //TERMINO DE LA PARTIDA
-                if(estratega1.getProfesor().isDead()){
-                    try {
-                        finPartida(jugador2.getNombre(),jugador1.getNombre());
-                    } catch (IOException ex) {
-                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                if(estratega2.getProfesor().isDead()){
-                    try {
-                        finPartida(jugador1.getNombre(),jugador2.getNombre());
-                    } catch (IOException ex) {
-                        Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                try {
+                    this.atacar(this.unidadAtacante,this.unidadDefensora,v.getAtaqueSeleccionado());
+                } catch (IOException ex) {
+                    Logger.getLogger(CEnfrentamiento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

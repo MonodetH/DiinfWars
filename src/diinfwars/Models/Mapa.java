@@ -36,19 +36,19 @@ public class Mapa {
      */
     public Mapa(int pred){
         // CASILLAS ESENCIALES
-        // Lab inicial 1
+        // Lab Inicial 1
         matrizCasillas[2][0] = new Laboratorio();
         matrizCasillas[3][0] = new Laboratorio();
         matrizCasillas[4][0] = new Laboratorio();
         matrizCasillas[5][0] = new Laboratorio();
         matrizCasillas[6][0] = new Laboratorio();
-        // Lab inicial 2
+        // Lab Inicial 2
         matrizCasillas[2][19] = new Laboratorio();
         matrizCasillas[3][19] = new Laboratorio();
         matrizCasillas[4][19] = new Laboratorio();
         matrizCasillas[5][19] = new Laboratorio();
         matrizCasillas[6][19] = new Laboratorio();
-        // esquinas
+        // Esquinas
         matrizCasillas[0][0] = new Sherwood(false);
         matrizCasillas[0][19] = new Sherwood(false);
         matrizCasillas[1][0] = new Sherwood(false);
@@ -59,30 +59,10 @@ public class Mapa {
         matrizCasillas[8][19] = new Sherwood(false);
         
         //CAMBIOS POR MAPA
-        if (pred == 0){ // Mapa aleatorio
+        if (pred == 0){
+            // Mapa aleatorio
             //90% Aleatorio
-            // Lab Inicial
-            matrizCasillas[2][0] = new Laboratorio();
-            matrizCasillas[3][0] = new Laboratorio();
-            matrizCasillas[4][0] = new Laboratorio();
-            matrizCasillas[5][0] = new Laboratorio();
-            matrizCasillas[6][0] = new Laboratorio();
-            // Lab inicial 2
-            matrizCasillas[2][19] = new Laboratorio();
-            matrizCasillas[3][19] = new Laboratorio();
-            matrizCasillas[4][19] = new Laboratorio();
-            matrizCasillas[5][19] = new Laboratorio();
-            matrizCasillas[6][19] = new Laboratorio();
-            // Esquinas
-            matrizCasillas[0][0] = new Sherwood(false);
-            matrizCasillas[0][19] = new Sherwood(false);
-            matrizCasillas[1][0] = new Sherwood(false);
-            matrizCasillas[1][19] = new Sherwood(false);
-            matrizCasillas[7][0] = new Sherwood(false);
-            matrizCasillas[7][19] = new Sherwood(false);
-            matrizCasillas[8][0] = new Sherwood(false);
-            matrizCasillas[8][19] = new Sherwood(false);
-
+            
             //Laboratorio Unico
             Edificio nuevoEdif = new Edificio("Laboratorio");
             matrizCasillas[3][9] = new Laboratorio(nuevoEdif);
@@ -104,6 +84,7 @@ public class Mapa {
                 matrizCasillas[x][y+1]= new Kiosco(nuevoEdif);
                 matrizCasillas[x+1][y+1]= new Kiosco(nuevoEdif);
                 }
+            
             //Kiosco Jugador 2
             for (int k=0;k<1;k++){
                 int x =rand.nextInt(8);
@@ -120,14 +101,17 @@ public class Mapa {
             for (int k=0;k<1;k++){
                 int x =rand.nextInt(8);
                 int y =(rand.nextInt(6)+1);
+                
                 if(matrizCasillas[x][y] == null){
                     matrizCasillas[x][y] = new Casitas();
                 }
             }
+            
             //Casitas Jugador 2
             for (int k=0;k<1;k++){
                 int x =rand.nextInt(8);
                 int y =(rand.nextInt(6)+11);
+                
                 if(matrizCasillas[x][y] == null){
                     matrizCasillas[x][y] = new Casitas();
                 }
@@ -137,7 +121,6 @@ public class Mapa {
             for (int k=0;k<2;k++){
                 int x =rand.nextInt(8);
                 int y =(rand.nextInt(18));
-                
                 
                 if (matrizCasillas[x][y]== null){
                     if (matrizCasillas[x+1][y]== null){
@@ -159,6 +142,7 @@ public class Mapa {
             for (int k=0;k<10;k++){
                 int x=rand.nextInt(9);
                 int y=rand.nextInt(18)+1;
+                
                 if (matrizCasillas[x][y]== null){
                     matrizCasillas[x][y]= new Sherwood(false);}
             }
@@ -167,6 +151,7 @@ public class Mapa {
             for (int k=0;k<4;k++){
                 int x=rand.nextInt(9);
                 int y=rand.nextInt(18)+1;
+                
                 if(matrizCasillas[x][y]==null){
                     matrizCasillas[x][y]= new Diinf();}
             }
@@ -175,6 +160,7 @@ public class Mapa {
             for (int k=0;k<4;k++){
                 int x=rand.nextInt(9);
                 int y=rand.nextInt(18)+1;
+                
                 if(matrizCasillas[x][y]==null){
                     matrizCasillas[x][y]= new CiteCamp();}
             }
@@ -183,47 +169,21 @@ public class Mapa {
             for (int k=0;k<40;k++){
                 int x=rand.nextInt(9);
                 int y=rand.nextInt(18)+1;
+                
                 if(matrizCasillas[x][y]==null){
                     matrizCasillas[x][y]= new Pastos();}
-            }
-            //Rellenar con Calle
-            for(int i = 0;i<9;i++){
-                for(int j = 0;j<20;j++){
-                    if (matrizCasillas[i][j] == null){
-                        matrizCasillas[i][j] = new Calle();}
-                }
             }
         }
         
         else if(pred == 1){
-            // Lab inicial 1
-            matrizCasillas[2][0] = new Laboratorio();
-            matrizCasillas[3][0] = new Laboratorio();
-            matrizCasillas[4][0] = new Laboratorio();
-            matrizCasillas[5][0] = new Laboratorio();
-            matrizCasillas[6][0] = new Laboratorio();
-            // Lab inicial 2
-            matrizCasillas[2][19] = new Laboratorio();
-            matrizCasillas[3][19] = new Laboratorio();
-            matrizCasillas[4][19] = new Laboratorio();
-            matrizCasillas[5][19] = new Laboratorio();
-            matrizCasillas[6][19] = new Laboratorio();
-            // Esquinas
-            matrizCasillas[0][0] = new Sherwood(false);
+            // Sherwoods
             matrizCasillas[0][3] = new Sherwood(false);
             matrizCasillas[0][4] = new Sherwood(false);
-            matrizCasillas[0][19] = new Sherwood(false);
-            matrizCasillas[1][0] = new Sherwood(false);
-            matrizCasillas[1][19] = new Sherwood(false);
-            matrizCasillas[7][0] = new Sherwood(false);
-            matrizCasillas[7][19] = new Sherwood(false);
-            matrizCasillas[8][0] = new Sherwood(false);
-            matrizCasillas[8][19] = new Sherwood(false); 
-            // Sherwoods
             matrizCasillas[1][8] = new Sherwood(false);
             matrizCasillas[1][17] = new Sherwood(false);
             matrizCasillas[7][5] = new Sherwood(false);
             matrizCasillas[7][14] = new Sherwood(false);
+            
             // Otros
             matrizCasillas[1][12] = new Foro();
             matrizCasillas[0][2] = new Pastos();
@@ -284,46 +244,16 @@ public class Mapa {
             matrizCasillas[7][16] = new EAO(nuevoEdif);
             matrizCasillas[7][17] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
-            
-            //Rellenar con Calle
-            for(int i = 0;i<9;i++){
-                for(int j = 0;j<20;j++){
-                    if (matrizCasillas[i][j] == null){
-                        matrizCasillas[i][j] = new Calle();
-                    }
-                }
-            }
         }
-        // MAPAS PREDETERMINADOS ANTERIORES MODIFICADOS A LA NUEVA ESTRUCTURA Y NUEVO DISEÑO.
         
         else if(pred == 2){
-            // Lab inicial 1
-            matrizCasillas[2][0] = new Laboratorio();
-            matrizCasillas[3][0] = new Laboratorio();
-            matrizCasillas[4][0] = new Laboratorio();
-            matrizCasillas[5][0] = new Laboratorio();
-            matrizCasillas[6][0] = new Laboratorio();
-            // Lab inicial 2
-            matrizCasillas[2][19] = new Laboratorio();
-            matrizCasillas[3][19] = new Laboratorio();
-            matrizCasillas[4][19] = new Laboratorio();
-            matrizCasillas[5][19] = new Laboratorio();
-            matrizCasillas[6][19] = new Laboratorio();
-            // Esquinas
-            matrizCasillas[0][0] = new Sherwood(false);
-            matrizCasillas[0][19] = new Sherwood(false);
-            matrizCasillas[1][0] = new Sherwood(false);
-            matrizCasillas[1][19] = new Sherwood(false);
-            matrizCasillas[7][0] = new Sherwood(false);
-            matrizCasillas[7][19] = new Sherwood(false);
-            matrizCasillas[8][0] = new Sherwood(false);
-            matrizCasillas[8][19] = new Sherwood(false);
             // Sherwoods
             matrizCasillas[1][5] = new Sherwood(false);
             matrizCasillas[1][13] = new Sherwood(false);
             matrizCasillas[6][5] = new Sherwood(false);
             matrizCasillas[6][13] = new Sherwood(false);
             matrizCasillas[8][7] = new Sherwood(false);
+            
             // Otros
             matrizCasillas[6][9] = new Foro();
             matrizCasillas[0][7] = new Pastos();
@@ -380,45 +310,16 @@ public class Mapa {
             matrizCasillas[8][11] = new EAO(nuevoEdif);
             matrizCasillas[8][12] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
-            
-            //Rellenar con Calle
-            for(int i = 0;i<9;i++){
-                for(int j = 0;j<20;j++){
-                    if (matrizCasillas[i][j] == null){
-                        matrizCasillas[i][j] = new Calle();
-                    }
-                }
-            }
         }
         
         else if(pred == 3){
-            // Lab inicial 1
-            matrizCasillas[2][0] = new Laboratorio();
-            matrizCasillas[3][0] = new Laboratorio();
-            matrizCasillas[4][0] = new Laboratorio();
-            matrizCasillas[5][0] = new Laboratorio();
-            matrizCasillas[6][0] = new Laboratorio();
-            // Lab inicial 2
-            matrizCasillas[2][19] = new Laboratorio();
-            matrizCasillas[3][19] = new Laboratorio();
-            matrizCasillas[4][19] = new Laboratorio();
-            matrizCasillas[5][19] = new Laboratorio();
-            matrizCasillas[6][19] = new Laboratorio();
-            // Esquinas
-            matrizCasillas[0][0] = new Sherwood(false);
-            matrizCasillas[0][19] = new Sherwood(false);
-            matrizCasillas[1][0] = new Sherwood(false);
-            matrizCasillas[1][19] = new Sherwood(false);
-            matrizCasillas[7][0] = new Sherwood(false);
-            matrizCasillas[7][19] = new Sherwood(false);
-            matrizCasillas[8][0] = new Sherwood(false);
-            matrizCasillas[8][19] = new Sherwood(false);
             // Sherwoods
             matrizCasillas[2][8] = new Sherwood(false);
             matrizCasillas[2][12] = new Sherwood(false);
             matrizCasillas[5][6] = new Sherwood(false);
             matrizCasillas[5][10] = new Sherwood(false);
             matrizCasillas[5][14] = new Sherwood(false);
+            
             // Otros
             matrizCasillas[7][13] = new Foro();
             matrizCasillas[0][2] = new Pastos();
@@ -483,7 +384,7 @@ public class Mapa {
             matrizCasillas[8][6] = new EAO(nuevoEdif);
             matrizCasillas[8][7] = new EAO(nuevoEdif);
             listaEdificios.add(nuevoEdif);
-            
+        }
             //Rellenar con Calle
             for(int i = 0;i<9;i++){
                 for(int j = 0;j<20;j++){
@@ -492,112 +393,8 @@ public class Mapa {
                     }
                 }
             }
-        }
-        
-        
-        else if(pred == 2){
-            //Sherwood
-            matrizCasillas[1][5] = new Sherwood(false);
-            matrizCasillas[6][13] = new Sherwood(false);
-            matrizCasillas[1][13] = new Sherwood(false);
-            matrizCasillas[6][5] = new Sherwood(false);
-            // Otros
-            matrizCasillas[2][16] = new Casitas();
-            matrizCasillas[3][9] = new Pastos();
-            matrizCasillas[6][9] = new Foro();
-            matrizCasillas[6][16] = new Diinf();
-            matrizCasillas[7][6] = new CiteCamp();
-            
-            //Edificios Capturables
-            Edificio nuevoEdif = new Edificio("Kiosco");
-            matrizCasillas[3][2] = new Kiosco(nuevoEdif);
-            matrizCasillas[3][3] = new Kiosco(nuevoEdif);
-            matrizCasillas[4][2] = new Kiosco(nuevoEdif);
-            matrizCasillas[4][3] = new Kiosco(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("Kiosco");
-            matrizCasillas[3][16] = new Kiosco(nuevoEdif);
-            matrizCasillas[3][17] = new Kiosco(nuevoEdif);
-            matrizCasillas[4][16] = new Kiosco(nuevoEdif);
-            matrizCasillas[4][17] = new Kiosco(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("Laboratorio");
-            matrizCasillas[0][8] = new Laboratorio(nuevoEdif);
-            matrizCasillas[0][9] = new Laboratorio(nuevoEdif);
-            matrizCasillas[0][10] = new Laboratorio(nuevoEdif);
-            matrizCasillas[1][8] = new Laboratorio(nuevoEdif);
-            matrizCasillas[1][9] = new Laboratorio(nuevoEdif);
-            matrizCasillas[1][10] = new Laboratorio(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("EAO");
-            matrizCasillas[7][11] = new EAO(nuevoEdif);
-            matrizCasillas[7][12] = new EAO(nuevoEdif);
-            matrizCasillas[8][11] = new EAO(nuevoEdif);
-            matrizCasillas[8][12] = new EAO(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-        }
-        
-        else if(pred == 3){
-            // Sherwood
-            matrizCasillas[2][8] = new Sherwood(false);
-            matrizCasillas[5][6] = new Sherwood(false);
-            matrizCasillas[5][10] = new Sherwood(false);
-            matrizCasillas[5][14] = new Sherwood(false);
-            // Otros
-            matrizCasillas[0][9] = new Pastos();
-            matrizCasillas[3][4] = new Casitas();
-            matrizCasillas[3][13] = new Diinf();
-            matrizCasillas[3][4] = new Casitas();
-            matrizCasillas[3][13] = new Diinf();
-            matrizCasillas[7][13] = new Foro();
-            matrizCasillas[7][16] = new CiteCamp();
-            
-            // Edificios Capturables
-            Edificio nuevoEdif = new Edificio("Kiosco");
-            matrizCasillas[0][2] = new Kiosco(nuevoEdif);
-            matrizCasillas[0][3] = new Kiosco(nuevoEdif);
-            matrizCasillas[1][2] = new Kiosco(nuevoEdif);
-            matrizCasillas[1][3] = new Kiosco(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("Kiosco");
-            matrizCasillas[0][15] = new Kiosco(nuevoEdif);
-            matrizCasillas[0][16] = new Kiosco(nuevoEdif);
-            matrizCasillas[1][15] = new Kiosco(nuevoEdif);
-            matrizCasillas[1][16] = new Kiosco(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("Laboratorio");
-            matrizCasillas[7][9] = new Laboratorio(nuevoEdif);
-            matrizCasillas[7][10] = new Laboratorio(nuevoEdif);
-            matrizCasillas[7][11] = new Laboratorio(nuevoEdif);
-            matrizCasillas[8][9] = new Laboratorio(nuevoEdif);
-            matrizCasillas[8][10] = new Laboratorio(nuevoEdif);
-            matrizCasillas[8][11] = new Laboratorio(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-            
-            nuevoEdif = new Edificio("EAO");
-            matrizCasillas[7][6] = new EAO(nuevoEdif);
-            matrizCasillas[7][7] = new EAO(nuevoEdif);
-            matrizCasillas[8][6] = new EAO(nuevoEdif);
-            matrizCasillas[8][7] = new EAO(nuevoEdif);
-            listaEdificios.add(nuevoEdif); 
-        }
-        
-        
-//        Se rellena las casillas vacias con Calles
-        for(int i = 0;i<9;i++){
-            for(int j = 0;j<20;j++){
-                if (matrizCasillas[i][j] == null){
-                    matrizCasillas[i][j] = new Calle();
-                }
-            }
-        }
-    }        
-
+    }
+   
     /**
      * Esta funcion toma una unidad de una casilla inicial y la reubica en una
      * casilla final
@@ -619,7 +416,121 @@ public class Mapa {
         }
         return false;
     }
+    public boolean moverHacia(int[] posInicial, int[] posFinal, boolean destinoExacto){
+        Unidad unidad = matrizCasillas[posInicial[0]][posInicial[1]].getUnidad();
+        int movimiento = unidad.getMovimientos();
+        int dI = posFinal[0]-posInicial[0];
+        int dJ = posFinal[1]-posInicial[1];
+        // Si ya es adyacente
+        if((!destinoExacto && Math.abs(dI)+Math.abs(dJ) == 1)||(destinoExacto && Math.abs(dI)+Math.abs(dJ) == 0))return false;
+        // Si esta dentro del rango
+        if(Math.abs(dI)+Math.abs(dJ) <= movimiento){
+            // Si se debe mover exactamente a ese punto
+            if(destinoExacto && matrizCasillas[posFinal[0]][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0],posFinal[1]);
+            }
+            // Se busca un lugar adyacente
+            if(dI>0 && posFinal[0]>0){
+                if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]-1][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]+1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]+1);
+                }
+                if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]-1][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]-1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]-1);
+                }
+                if(matrizCasillas[posFinal[0]-1][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]);
+                }
+            }
+            if(dI<0 && posFinal[0]<8){
+                if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]+1][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]+1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]+1);
+                }
+                if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]+1][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]-1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]-1);
+                }
+                if(matrizCasillas[posFinal[0]+1][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]);
+                }
+            }
+            if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]+1].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]+1);
+            }
+            if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]-1].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]-1);
+            }
+            if(matrizCasillas[posFinal[0]][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0],posFinal[1]);
+            }
+        }else{
+            int movRestante = movimiento;
+            if(Math.abs(dJ) > movRestante){//mover horizontalmente
+                for(int j=(dJ>0)?movRestante:-movRestante;j!=0;){
+                    if(matrizCasillas[posInicial[0]][posInicial[1]+j].getUnidad()==null && matrizCasillas[posInicial[0]][posInicial[1]+j].isHabilitada()){
+                        moverUnidad(posInicial[0], posInicial[1], posInicial[0],posInicial[1]+j);
+                        posInicial[1]+=j;
+                        movRestante -= Math.abs(j);
+                        break;
+                    }
+                    if(dJ>0)j--;
+                    else j++;
+                }
+            }
+            if(Math.abs(dI) > movRestante){//mover verticalmente
+                for(int i=(dI>0)?movRestante:-movRestante;i!=0;){
+                    if(matrizCasillas[posInicial[0]][posInicial[1]+i].getUnidad()==null && matrizCasillas[posInicial[0]][posInicial[1]+i].isHabilitada()){
+                        moverUnidad(posInicial[0], posInicial[1], posInicial[0]+i,posInicial[1]);
+                        posInicial[0]+=i;
+                        movRestante -= Math.abs(i);
+                        break;
+                    }
+                    if(dJ>0)i--;
+                    else i++;
+                }
+            }
+            if(movRestante != movimiento)return true;
+        }
+        return false;
+    }
     
+    public Unidad getObjetivo(Unidad atacante){
+        int[] pos = getPos(atacante);
+        int[] rangoMejoresAtaques = atacante.getOrdenMejoresAtaques();
+        // Se obtiene onjetivo
+        for(int x = 0;x<3;x++){
+            if(atacante.tieneRango(rangoMejoresAtaques[x])){
+                boolean[][] rango = rangoAtaque(pos[0],pos[1],rangoMejoresAtaques[x]);
+                for(int i=0;i<9;i++){
+                    for(int j=0;j<20;j++){
+                        if(rango[i][j] && matrizCasillas[i][j].getUnidad()!=null){
+                            Unidad objetivo = matrizCasillas[i][j].getUnidad();
+                            if(atacante.getEquipo()!=objetivo.getEquipo())return objetivo;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    public int[] mejorAtaque(Unidad atacante,Unidad objetivo){
+        int[] pos = getPos(atacante);
+        int[] rangoMejoresAtaques = atacante.getOrdenMejoresAtaques();
+        // Se obtiene onjetivo
+        for(int x = 0;x<3;x++){
+            if(atacante.tieneRango(rangoMejoresAtaques[x])){
+                boolean[][] rango = rangoAtaque(pos[0],pos[1],rangoMejoresAtaques[x]);
+                for(int i=0;i<9;i++){
+                    for(int j=0;j<20;j++){
+                        if(rango[i][j] && matrizCasillas[i][j].getUnidad()==objetivo){
+                            return atacante.getMejorAtaque(rangoMejoresAtaques[x]);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+            
     public boolean ubicarUnidad(Unidad unidad,int fila,int col){
         matrizCasillas[fila][col].setUnidad(unidad); //trata de ubicar la unidad
         if (matrizCasillas[fila][col].getUnidad()!= null){return true;}
@@ -636,7 +547,35 @@ public class Mapa {
             }
         }
     }
-    
+    public boolean tienePame(Unidad unidad){
+        int i = getPos(unidad)[0], j = getPos(unidad)[1];
+        if(i-1 >= 0){ //Arriba
+            if(j-1 >= 0){
+                if(matrizCasillas[i-1][j-1].getUnidad() instanceof Pame){return true;}
+            }
+            if(j+1<20){
+                if(matrizCasillas[i-1][j+1].getUnidad() instanceof Pame){return true;}
+            }
+            if(matrizCasillas[i-1][j].getUnidad() instanceof Pame){return true;}
+        }
+        if(i+1 < 9){ //Abajo
+            if(j-1 >= 0){
+                if(matrizCasillas[i+1][j-1].getUnidad() instanceof Pame){return true;}
+            }
+            if(j+1<20){
+                if(matrizCasillas[i+1][j+1].getUnidad() instanceof Pame){return true;}
+            }
+            if(matrizCasillas[i+1][j].getUnidad() instanceof Pame){return true;}
+        }
+        //al medio
+        if(j-1 >= 0){
+            if(matrizCasillas[i][j-1].getUnidad() instanceof Pame){return true;}
+        }
+        if(j+1<20){
+            if(matrizCasillas[i][j+1].getUnidad() instanceof Pame){return true;}
+        }
+        return false;
+    }
     public void curaPorPame(int equipo){
         for(int i = 0;i<9;i++){
             for(int j = 0;j<20;j++){
@@ -710,12 +649,7 @@ public class Mapa {
         }
     }
     
-    /**Retorna la matriz de casillas*/
-    public Casilla[][] getCasillas(){return this.matrizCasillas;}
     
-    public int getDefensa(int fil,int col){
-        return matrizCasillas[fil][col].getDefensa();
-    }
     
     /**
      * Esta funcion genera una matriz de 9x20 con la direccion a los sprites
@@ -868,9 +802,37 @@ public class Mapa {
         return retorno;
     }
     
+    public int[] getPosReclutar(int equipo){
+        int[] retorno = new int[2];
+        // Si no existe profesor en el trono
+        int columna = (equipo == 1)?0:19;
+        if (!(matrizCasillas[4][columna].getUnidad() instanceof Profesor)){
+            return null;
+        }
+        retorno[1]=columna;
+        // Laboratorios iniciales
+        if (matrizCasillas[2][columna].getUnidad() == null){retorno[0]=2;return retorno;}
+        if (matrizCasillas[3][columna].getUnidad() == null){retorno[0]=3;return retorno;}
+        if (matrizCasillas[5][columna].getUnidad() == null){retorno[0]=5;return retorno;}
+        if (matrizCasillas[6][columna].getUnidad() == null){retorno[0]=6;return retorno;}
+        
+        for (int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(matrizCasillas[i][j].getTipo()=="Laboratorio" && matrizCasillas[i][j].getDueno() == equipo && matrizCasillas[i][j].getUnidad() == null){
+                    retorno[0]=i;
+                    retorno[1]=j;
+                    return retorno;
+                }
+            }
+        }
+        return null;
+    }
+    
     private boolean[][] rangoAtaque(int fila,int col, int rango){
         boolean[][] retorno = new boolean[9][20];
         if(matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
+            
+            // Rango Corto
             if(rango == 1){
                 int filaCambio = fila-1; 
                 int filaFinal = fila+1;
@@ -889,6 +851,7 @@ public class Mapa {
                     filaCambio+=1;           
                 }
             }
+            
             // Rango Medio
             else if (rango == 2){
                 int filaCambio = fila-2;
@@ -908,6 +871,7 @@ public class Mapa {
                     filaCambio+=1;
                 }
             }  
+            
             // Rango Largo
             else if (rango == 3){
                 int filaNula1 = fila-1;
@@ -946,7 +910,25 @@ public class Mapa {
         retorno[fila][col] = false; // no se puede atacar a si mismo
         return retorno;
     }
-        
+    
+    /**Retorna la matriz de casillas*/
+    public Casilla[][] getCasillas(){return this.matrizCasillas;}
+    public int[] getPos(Unidad unidad){
+        int[] retorno = {0,0};
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(matrizCasillas[i][j].getUnidad() == unidad){
+                    retorno[0]=i;retorno[1]=j;
+                    return retorno;
+                }
+            }
+        }
+        return retorno;
+    }
+    public int getDefensa(int fil,int col){
+        return matrizCasillas[fil][col].getDefensa();
+    }
+    public Casilla getCasilla(int fil, int col){return matrizCasillas[fil][col];}
     public Unidad getUnidad(int fila, int col) {
         return matrizCasillas[fila][col].getUnidad();
     }

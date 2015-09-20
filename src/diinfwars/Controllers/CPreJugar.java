@@ -103,7 +103,7 @@ public class CPreJugar implements ActionListener{
         
         
         // Se prepara el objeto Batalla
-        Jugador jug1=new Jugador(j1), jug2 = new Jugador(j2);
+        Jugador jug1=new Jugador(j1), jug2 = new Jugador(j2,true);
         Mapa mapa1 = new Mapa(valorMapa);
 
         // estos datos se sacan de login, preJugar y configuracion profesor
