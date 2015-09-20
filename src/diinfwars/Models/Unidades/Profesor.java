@@ -47,26 +47,9 @@ public class Profesor extends Unidad {
             modificadores.add(new ModificadorAtributo("cantidadGolpes",1,-1));
             System.out.println("Profe Incoherente");
         }
-        if (naturaleza1 == "Tortuga" || naturaleza2 == "Tortuga")
-        {
-            modificadores.add(new ModificadorAtributo("movimiento",-1,-1));
-            System.out.println("Profe Tortuga");
-        }
-        if (naturaleza1 == "Deprimido" || naturaleza2 == "Deprimido")
-        {
-            modificadores.add(new ModificadorAtributo("dano",-1,-1));
-            System.out.println("Profe Deprimido");
-        }
-        if (naturaleza1 == "Carretero" || naturaleza2 == "Carretero")
-        {
-            modificadores.add(new ModificadorAtributo("cantidadGolpes",-1,-1));
-            System.out.println("Profe Carretero");
-        }
-        
-        
         if(naturaleza1 == naturaleza2){
             modificadores.add(new ModificadorAtributo());
-            System.out.println("Profe Aweonao");
+            System.out.println("Profesor Aweonao");
         }
 
         
