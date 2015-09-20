@@ -321,7 +321,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                 Unidad objetivo = mapa.getObjetivo(unidad);
                 int[] ataque = mapa.mejorAtaque(unidad,objetivo);
                 if(objetivo!=null){
-                    this.atacar(unidad, objetivo, ataque);
+                    if(this.atacar(unidad, objetivo, ataque))break;
                 }
             }
         }
@@ -354,7 +354,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             if(!uAtacantes.contains(unidad) && !unidad.isDead()){
                 Unidad objetivo = mapa.getObjetivo(unidad);
                 int[] ataque = mapa.mejorAtaque(unidad,objetivo);
-                this.atacar(unidad, objetivo, ataque);
+                if(this.atacar(unidad, objetivo, ataque))break;
             }
         }
         
@@ -381,7 +381,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.rutinaNuevoTurno();
     }
     
-    public void atacar(Unidad atacante, Unidad defensora,int[] ataque) throws IOException{
+    public boolean atacar(Unidad atacante, Unidad defensora,int[] ataque) throws IOException{
         if(atacante != null && defensora != null && !atacante.isDead() && !defensora.isDead() && !uAtacantes.contains(atacante) && atacante.getEquipo() != defensora.getEquipo()){
             // OBTENER ATAQUES
             int[] contra = defensora.getAtaque(ataque[0]); // Mismo rango que atacante
@@ -476,11 +476,13 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         //TERMINO DE LA PARTIDA
         if(estratega1.getProfesor().isDead()){
             finPartida(jugador2.getNombre(),jugador1.getNombre());
+            return true;
         }
         if(estratega2.getProfesor().isDead()){
             finPartida(jugador1.getNombre(),jugador2.getNombre());
+            return true;
         }
-        
+        return false;
     }
     
     @Override
