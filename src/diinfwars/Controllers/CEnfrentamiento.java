@@ -378,7 +378,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             v.actualizarPanelReclutar(estratega.getOro());
             
         }
-        
+        this.rutinaNuevoTurno();
     }
     
     public void atacar(Unidad atacante, Unidad defensora,int[] ataque) throws IOException{
