@@ -596,7 +596,7 @@ public class Mapa {
                 }
             }
         }
-    }        
+    }  
 
     /**
      * Esta funcion toma una unidad de una casilla inicial y la reubica en una
@@ -619,7 +619,121 @@ public class Mapa {
         }
         return false;
     }
+    public boolean moverHacia(int[] posInicial, int[] posFinal, boolean destinoExacto){
+        Unidad unidad = matrizCasillas[posInicial[0]][posInicial[1]].getUnidad();
+        int movimiento = unidad.getMovimientos();
+        int dI = posFinal[0]-posInicial[0];
+        int dJ = posFinal[1]-posInicial[1];
+        // Si ya es adyacente
+        if((!destinoExacto && Math.abs(dI)+Math.abs(dJ) == 1)||(destinoExacto && Math.abs(dI)+Math.abs(dJ) == 0))return false;
+        // Si esta dentro del rango
+        if(Math.abs(dI)+Math.abs(dJ) <= movimiento){
+            // Si se debe mover exactamente a ese punto
+            if(destinoExacto && matrizCasillas[posFinal[0]][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0],posFinal[1]);
+            }
+            // Se busca un lugar adyacente
+            if(dI>0 && posFinal[0]>0){
+                if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]-1][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]+1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]+1);
+                }
+                if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]-1][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]-1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]-1);
+                }
+                if(matrizCasillas[posFinal[0]-1][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]-1][posFinal[1]].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]-1,posFinal[1]);
+                }
+            }
+            if(dI<0 && posFinal[0]<8){
+                if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]+1][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]+1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]+1);
+                }
+                if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]+1][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]-1].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]-1);
+                }
+                if(matrizCasillas[posFinal[0]+1][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]+1][posFinal[1]].isHabilitada()){
+                    return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]);
+                }
+            }
+            if(dJ<0 && posFinal[1]<19 && matrizCasillas[posFinal[0]][posFinal[1]+1].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]+1].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]+1);
+            }
+            if(dJ>0 && posFinal[1]>0 && matrizCasillas[posFinal[0]][posFinal[1]-1].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]-1].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0]+1,posFinal[1]-1);
+            }
+            if(matrizCasillas[posFinal[0]][posFinal[1]].getUnidad()==null && matrizCasillas[posFinal[0]][posFinal[1]].isHabilitada()){
+                return moverUnidad(posInicial[0], posInicial[1], posFinal[0],posFinal[1]);
+            }
+        }else{
+            int movRestante = movimiento;
+            if(Math.abs(dJ) > movRestante){//mover horizontalmente
+                for(int j=(dJ>0)?movRestante:-movRestante;j!=0;){
+                    if(matrizCasillas[posInicial[0]][posInicial[1]+j].getUnidad()==null && matrizCasillas[posInicial[0]][posInicial[1]+j].isHabilitada()){
+                        moverUnidad(posInicial[0], posInicial[1], posInicial[0],posInicial[1]+j);
+                        posInicial[1]+=j;
+                        movRestante -= Math.abs(j);
+                        break;
+                    }
+                    if(dJ>0)j--;
+                    else j++;
+                }
+            }
+            if(Math.abs(dI) > movRestante){//mover verticalmente
+                for(int i=(dI>0)?movRestante:-movRestante;i!=0;){
+                    if(matrizCasillas[posInicial[0]][posInicial[1]+i].getUnidad()==null && matrizCasillas[posInicial[0]][posInicial[1]+i].isHabilitada()){
+                        moverUnidad(posInicial[0], posInicial[1], posInicial[0]+i,posInicial[1]);
+                        posInicial[0]+=i;
+                        movRestante -= Math.abs(i);
+                        break;
+                    }
+                    if(dJ>0)i--;
+                    else i++;
+                }
+            }
+            if(movRestante != movimiento)return true;
+        }
+        return false;
+    }
     
+    public Unidad getObjetivo(Unidad atacante){
+        int[] pos = getPos(atacante);
+        int[] rangoMejoresAtaques = atacante.getOrdenMejoresAtaques();
+        // Se obtiene onjetivo
+        for(int x = 0;x<3;x++){
+            if(atacante.tieneRango(rangoMejoresAtaques[x])){
+                boolean[][] rango = rangoAtaque(pos[0],pos[1],rangoMejoresAtaques[x]);
+                for(int i=0;i<9;i++){
+                    for(int j=0;j<20;j++){
+                        if(rango[i][j] && matrizCasillas[i][j].getUnidad()!=null){
+                            Unidad objetivo = matrizCasillas[i][j].getUnidad();
+                            if(atacante.getEquipo()!=objetivo.getEquipo())return objetivo;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    public int[] mejorAtaque(Unidad atacante,Unidad objetivo){
+        int[] pos = getPos(atacante);
+        int[] rangoMejoresAtaques = atacante.getOrdenMejoresAtaques();
+        // Se obtiene onjetivo
+        for(int x = 0;x<3;x++){
+            if(atacante.tieneRango(rangoMejoresAtaques[x])){
+                boolean[][] rango = rangoAtaque(pos[0],pos[1],rangoMejoresAtaques[x]);
+                for(int i=0;i<9;i++){
+                    for(int j=0;j<20;j++){
+                        if(rango[i][j] && matrizCasillas[i][j].getUnidad()==objetivo){
+                            return atacante.getMejorAtaque(rangoMejoresAtaques[x]);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+            
     public boolean ubicarUnidad(Unidad unidad,int fila,int col){
         matrizCasillas[fila][col].setUnidad(unidad); //trata de ubicar la unidad
         if (matrizCasillas[fila][col].getUnidad()!= null){return true;}
@@ -636,7 +750,35 @@ public class Mapa {
             }
         }
     }
-    
+    public boolean tienePame(Unidad unidad){
+        int i = getPos(unidad)[0], j = getPos(unidad)[1];
+        if(i-1 >= 0){ //Arriba
+            if(j-1 >= 0){
+                if(matrizCasillas[i-1][j-1].getUnidad() instanceof Pame){return true;}
+            }
+            if(j+1<20){
+                if(matrizCasillas[i-1][j+1].getUnidad() instanceof Pame){return true;}
+            }
+            if(matrizCasillas[i-1][j].getUnidad() instanceof Pame){return true;}
+        }
+        if(i+1 < 9){ //Abajo
+            if(j-1 >= 0){
+                if(matrizCasillas[i+1][j-1].getUnidad() instanceof Pame){return true;}
+            }
+            if(j+1<20){
+                if(matrizCasillas[i+1][j+1].getUnidad() instanceof Pame){return true;}
+            }
+            if(matrizCasillas[i+1][j].getUnidad() instanceof Pame){return true;}
+        }
+        //al medio
+        if(j-1 >= 0){
+            if(matrizCasillas[i][j-1].getUnidad() instanceof Pame){return true;}
+        }
+        if(j+1<20){
+            if(matrizCasillas[i][j+1].getUnidad() instanceof Pame){return true;}
+        }
+        return false;
+    }
     public void curaPorPame(int equipo){
         for(int i = 0;i<9;i++){
             for(int j = 0;j<20;j++){
@@ -710,12 +852,7 @@ public class Mapa {
         }
     }
     
-    /**Retorna la matriz de casillas*/
-    public Casilla[][] getCasillas(){return this.matrizCasillas;}
     
-    public int getDefensa(int fil,int col){
-        return matrizCasillas[fil][col].getDefensa();
-    }
     
     /**
      * Esta funcion genera una matriz de 9x20 con la direccion a los sprites
@@ -868,6 +1005,32 @@ public class Mapa {
         return retorno;
     }
     
+    public int[] getPosReclutar(int equipo){
+        int[] retorno = new int[2];
+        // Si no existe profesor en el trono
+        int columna = (equipo == 1)?0:19;
+        if (!(matrizCasillas[4][columna].getUnidad() instanceof Profesor)){
+            return null;
+        }
+        retorno[1]=columna;
+        // Laboratorios iniciales
+        if (matrizCasillas[2][columna].getUnidad() == null){retorno[0]=2;return retorno;}
+        if (matrizCasillas[3][columna].getUnidad() == null){retorno[0]=3;return retorno;}
+        if (matrizCasillas[5][columna].getUnidad() == null){retorno[0]=5;return retorno;}
+        if (matrizCasillas[6][columna].getUnidad() == null){retorno[0]=6;return retorno;}
+        
+        for (int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(matrizCasillas[i][j].getTipo()=="Laboratorio" && matrizCasillas[i][j].getDueno() == equipo && matrizCasillas[i][j].getUnidad() == null){
+                    retorno[0]=i;
+                    retorno[1]=j;
+                    return retorno;
+                }
+            }
+        }
+        return null;
+    }
+    
     private boolean[][] rangoAtaque(int fila,int col, int rango){
         boolean[][] retorno = new boolean[9][20];
         if(matrizCasillas[fila][col].getUnidad() != null && matrizCasillas[fila][col].getUnidad().tieneRango(rango)){
@@ -946,7 +1109,25 @@ public class Mapa {
         retorno[fila][col] = false; // no se puede atacar a si mismo
         return retorno;
     }
-        
+    
+    /**Retorna la matriz de casillas*/
+    public Casilla[][] getCasillas(){return this.matrizCasillas;}
+    public int[] getPos(Unidad unidad){
+        int[] retorno = {0,0};
+        for(int i=0;i<9;i++){
+            for(int j=0;j<20;j++){
+                if(matrizCasillas[i][j].getUnidad() == unidad){
+                    retorno[0]=i;retorno[1]=j;
+                    return retorno;
+                }
+            }
+        }
+        return retorno;
+    }
+    public int getDefensa(int fil,int col){
+        return matrizCasillas[fil][col].getDefensa();
+    }
+    public Casilla getCasilla(int fil, int col){return matrizCasillas[fil][col];}
     public Unidad getUnidad(int fila, int col) {
         return matrizCasillas[fila][col].getUnidad();
     }

@@ -148,6 +148,26 @@ public class Estratega {
         this.oro+=cantidad;
     }
     
+    public int porcentajePame(){
+        int contador = 0;
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(unidad instanceof Pame)contador++;
+        }
+        return (contador*100)/unidades.size();
+    }
+    public int cantidadCoordinador(){
+        int contador = 0;
+        Iterator<Unidad> iterador = unidades.iterator();
+        while(iterador.hasNext()){
+            Unidad unidad = iterador.next();
+            if(unidad instanceof CoordinadorAyudantes)contador++;
+        }
+        return contador;
+    }
+    
+    
     /**
      * Obtiene la unidad profesor
      * @return La unidad. null si no existe
@@ -168,4 +188,5 @@ public class Estratega {
         return mantencion;
     }
     public int getOro(){return this.oro;}
+    public ArrayList<Unidad> getUnidades(){return unidades;}
 }

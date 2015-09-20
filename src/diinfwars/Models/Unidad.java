@@ -109,6 +109,8 @@ public abstract class Unidad {
         }
     }
     
+    public int porcentajeVida(){return (hp*100)/hpMax;}
+    
     public String[] getListaAtaques(){
         ArrayList<String> listaAtaques = new ArrayList<String>();
         
@@ -139,6 +141,51 @@ public abstract class Unidad {
         return retorno;
     }
     
+    public int[] getMejorAtaque(int rango){
+        int[] retorno = null;
+        Ataque ataque = new Ataque(0,0,1);
+        Iterator<Ataque> iterador = ataques.iterator();
+        while(iterador.hasNext()){
+            Ataque a = iterador.next();
+            if (a.getRango() == rango){
+                if((a.getDano()*a.getGolpes())>(ataque.getDano()*ataque.getGolpes())){
+                    ataque=a;
+                }
+            }
+        }
+        if(ataque!=null){
+            retorno = ataque.toInt();
+        }
+        return retorno;
+    }
+    
+    public int[] getOrdenMejoresAtaques(){
+        int[] retorno = {1,2,3};
+        int[] dano = new int[3];
+        
+        Iterator<Ataque> iterador = ataques.iterator();
+        while(iterador.hasNext()){
+            Ataque a = iterador.next();
+            if ((a.getDano()*a.getGolpes()) > dano[a.getRango()-1]){
+                dano[a.getRango()-1] = (a.getDano()*a.getGolpes());
+            }
+        }
+        for(int i=0;i<3;i++){
+            for(int j=0;j<2-i;j++){
+                if(dano[j]<dano[j+1]){
+                    int aux = dano[j];
+                    dano[j]=dano[j+1];
+                    dano[j+1] = aux;
+                    aux = retorno[j];
+                    retorno[j]=retorno[j+1];
+                    retorno[j+1] = aux;
+                }
+            }
+        }
+        
+        return retorno;
+    }
+    
     public String getSprite(){
         if(dead == -1){
             if (equipo == 1){
@@ -163,6 +210,7 @@ public abstract class Unidad {
     public int getHeal(){return heal;}
     public int getNivel(){return nivel;}
     public int getHp(){return hp;}
+    public int getDano(){return hpMax-hp;}
     public boolean getInmovil(){return inmovil;}
     public boolean isDead(){return (dead != -1);}
     public boolean isReallyDead(){return (dead == 0);}
