@@ -27,7 +27,6 @@ public class CTorneo implements ActionListener{
     public CTorneo(CPreTorneo parent,Jugador[] jugadores, int oroi, int orok, int mapa){
         p=parent;
         datoTorneo=new Torneo(jugadores,oroi,orok,mapa);
-        
         /*
         v.setText10(datoTorneo.getJugador(0));
         v.setText9(datoTorneo.getJugador(1));
