@@ -24,6 +24,24 @@ public class VTorneo extends javax.swing.JFrame {
         
         
     }
+    
+    public void setText1(String text){jLabel2.setText(text);}
+    public void setText2(String text){jLabel3.setText(text);}
+    public void setText3(String text){jLabel4.setText(text);}
+    public void setText4(String text){jLabel5.setText(text);}
+    public void setText5(String text){jLabel6.setText(text);}
+    public void setText6(String text){jLabel7.setText(text);}
+    public void setText7(String text){jLabel8.setText(text);}
+    public void setText8(String text){jLabel9.setText(text);}
+    public void setText9(String text){jLabel10.setText(text);}
+    public void setText10(String text){jLabel11.setText(text);}
+    public void setText11(String text){jLabel12.setText(text);}
+    public void setText12(String text){jLabel13.setText(text);}
+    public void setText13(String text){jLabel14.setText(text);}
+    public void setText14(String text){jLabel15.setText(text);}
+    public void setText15(String text){jLabel16.setText(text);}
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
