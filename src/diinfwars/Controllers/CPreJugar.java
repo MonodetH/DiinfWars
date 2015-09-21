@@ -30,9 +30,13 @@ public class CPreJugar implements ActionListener{
     public CPreJugar(CPrincipal parent){
         p = parent;
     }
-    public CPreJugar(CTorneo parent){
+    public CPreJugar(CTorneo parent,Batalla data,int oroi,int mapa){
         pT = parent;
-        //v.setTorneo();
+        String j1=data.getJugador1().getNombre(),j2=data.getJugador2().getNombre();
+        boolean cpu1=data.getJugador1().isCpu(),cpu2=data.getJugador2().isCpu();
+        int orok=data.getOroKiosco();
+        
+        v.setTorneo(j1,cpu1,j2,cpu2,orok,oroi,mapa);
     }
 
     public void run(){
@@ -53,7 +57,7 @@ public class CPreJugar implements ActionListener{
         this.v.getPuntosMJ2().setText("0");
         this.v.getPuntosJ1().setText("30");
         this.v.getPuntosJ2().setText("30");
-        }
+    }
     
              
     public void comenzarPartida(int valorMapa, int oroInicio, int oroInicioKiosco){            

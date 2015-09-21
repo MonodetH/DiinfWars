@@ -29,9 +29,19 @@ public class VPreTorneo extends javax.swing.JFrame {
     }
     public void agregarActionListeners(ActionListener al){
         bVolver.addActionListener(al);
+        bComenzar.addActionListener(al);
     }
     
     public JButton getBVolver(){return this.bVolver;}
+    public JButton getBComenzar(){return this.bComenzar;}
+    public String getJugador1(){return this.jugador1.getText();}
+    
+    public boolean getCheckCpu1(){return this.checkCpu1.isSelected();}
+    
+    public int getMapa(){return boxTipoMapa.getSelectedIndex();}
+    public int getOroi(){return (int)oroInicio.getValue();}
+    public int getOrok(){return (int)oroInicioKiosco.getValue();}
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,13 +56,13 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         bVolver = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        bComenzar = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         nombre2 = new javax.swing.JTextField();
-        nombre1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jugador1 = new javax.swing.JTextField();
+        checkCpu1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         nombre3 = new javax.swing.JTextField();
         nombre4 = new javax.swing.JTextField();
@@ -92,7 +102,7 @@ public class VPreTorneo extends javax.swing.JFrame {
         bVolver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bVolver.setText("Volver");
 
-        jButton1.setText("Comenzar");
+        bComenzar.setText("Comenzar");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("Oro inicial");
@@ -107,13 +117,13 @@ public class VPreTorneo extends javax.swing.JFrame {
         nombre2.setText("Jugador 3");
         nombre2.setToolTipText("");
 
-        nombre1.setText("Jugador 1");
-        nombre1.setToolTipText("");
+        jugador1.setText("Jugador 1");
+        jugador1.setToolTipText("");
 
-        jCheckBox1.setText("¿Es IA?");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        checkCpu1.setText("¿Es IA?");
+        checkCpu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                checkCpu1ActionPerformed(evt);
             }
         });
 
@@ -215,7 +225,7 @@ public class VPreTorneo extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
@@ -244,9 +254,9 @@ public class VPreTorneo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox1)))
+                                .addComponent(checkCpu1)))
                         .addGap(18, 70, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -299,8 +309,8 @@ public class VPreTorneo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1)
+                            .addComponent(jugador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu1)
                             .addComponent(jLabel21))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,7 +361,7 @@ public class VPreTorneo extends javax.swing.JFrame {
                     .addComponent(boxTipoMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -359,9 +369,9 @@ public class VPreTorneo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void checkCpu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCpu1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_checkCpu1ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         // TODO add your handling code here:
@@ -426,10 +436,10 @@ public class VPreTorneo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bComenzar;
     private javax.swing.JButton bVolver;
     private javax.swing.JComboBox boxTipoMapa;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox checkCpu1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
@@ -449,7 +459,7 @@ public class VPreTorneo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JTextField nombre1;
+    private javax.swing.JTextField jugador1;
     private javax.swing.JTextField nombre2;
     private javax.swing.JTextField nombre3;
     private javax.swing.JTextField nombre4;

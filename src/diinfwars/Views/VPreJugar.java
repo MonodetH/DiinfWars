@@ -50,8 +50,22 @@ public class VPreJugar extends javax.swing.JFrame {
         this.mMenosJ2.addActionListener(al);
     }
     
-    public void setTorneo(String nombreJ1,boolean Cpu1, String nombreJ2,boolean Cpu2, int orok,int okoi,int mapa){
+    public void setTorneo(String nombreJ1,boolean Cpu1, String nombreJ2,boolean Cpu2, int orok,int oroi,int mapa){
+        nombre1.setText((Cpu1)?"Cpu":nombreJ1);
+        jCheckBox1.setSelected(Cpu1);
+        nombre1.setText((Cpu2)?"Cpu":nombreJ2);
+        jCheckBox1.setSelected(Cpu2);
+        oroInicio.setValue(oroi);
+        oroInicioKiosco.setValue(orok);
+        boxTipoMapa.setSelectedIndex(mapa);
         
+        nombre1.setEnabled(false);
+        jCheckBox1.setEnabled(false);
+        nombre1.setEnabled(false);
+        jCheckBox1.setEnabled(false);
+        oroInicio.setEnabled(false);
+        oroInicioKiosco.setEnabled(false);
+        boxTipoMapa.setEnabled(false);
     }
                
     public JButton getBVolver(){return this.bVolver;}

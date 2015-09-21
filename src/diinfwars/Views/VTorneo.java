@@ -24,6 +24,8 @@ public class VTorneo extends javax.swing.JFrame {
         
         
     }
+    
+    public void setText1(String text){jLabel1.setText(text);}
 
     /**
      * This method is called from within the constructor to initialize the form.
