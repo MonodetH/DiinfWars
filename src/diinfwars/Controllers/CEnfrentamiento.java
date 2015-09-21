@@ -691,7 +691,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
                     this.v.setInfoAtacante(sprite,lvl,hpActual);
                     //this.v.setInfoDefensor();
                 
-                    System.out.println("SE DEBE MOSTRAR LA INFO EN EL PANEL");
+                    
                     this.unidadAtacante = uAntigua;
                     this.unidadDefensora = uNueva;
                     

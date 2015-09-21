@@ -100,7 +100,7 @@ public class CPreJugar implements ActionListener{
         
         
         // Se prepara el objeto Batalla
-        Jugador jug1=new Jugador(j1,true), jug2 = new Jugador(j2,true);
+        Jugador jug1=new Jugador(v.j1Cpu()?"Cpu":j1,v.j1Cpu()), jug2 = new Jugador(v.j2Cpu()?"Cpu":j2,v.j2Cpu());
         Mapa mapa1 = new Mapa(valorMapa);
 
         // estos datos se sacan de login, preJugar y configuracion profesor
