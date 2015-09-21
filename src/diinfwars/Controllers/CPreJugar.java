@@ -20,6 +20,7 @@ import javax.swing.JButton;
 public class CPreJugar implements ActionListener{
     /**Controlador padre*/
     private CPrincipal p;
+    private CTorneo pT;
     /**Vista*/
     private VPreJugar v;
     
