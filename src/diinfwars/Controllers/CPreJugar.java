@@ -12,7 +12,6 @@ import diinfwars.Views.VPreJugar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 
 /**
  *
@@ -21,7 +20,6 @@ import javax.swing.JCheckBox;
 public class CPreJugar implements ActionListener{
     /**Controlador padre*/
     private CPrincipal p;
-    private CTorneo pT;
     /**Vista*/
     private VPreJugar v;
     
@@ -75,45 +73,33 @@ public class CPreJugar implements ActionListener{
         String nat1J2 = null;
         String nat2J2 = null;
         switch(v.getNaturaleza1J1().getSelectedIndex()){
-            case 0: nat1J1 = "Carretero";break;
-            case 1: nat1J1 = "Deportista";break;
-            case 2: nat1J1 = "Deprimido";break;
-            case 3: nat1J1 = "Estudioso";break;
-            case 4: nat1J1 = "Incoherente";break;
-            case 5: nat1J1 = "Normal";break;
-            case 6: nat1J1 = "Tortuga";break;    
+            case 0: nat1J1 = "Deportista";break;
+            case 1: nat1J1 = "Estudioso";break;
+            case 2: nat1J1 = "Incoherente";break;
+            case 3: nat1J1 = "Normal";break;
         }
         switch(v.getNaturaleza2J1().getSelectedIndex()){
-            case 0: nat2J1 = "Carretero";break;
-            case 1: nat2J1 = "Deportista";break;
-            case 2: nat2J1 = "Deprimido";break;
-            case 3: nat2J1 = "Estudioso";break;
-            case 4: nat2J1 = "Incoherente";break;
-            case 5: nat2J1 = "Normal";break;
-            case 6: nat2J1 = "Tortuga";break;    
+            case 0: nat2J1 = "Deportista";break;
+            case 1: nat2J1 = "Estudioso";break;
+            case 2: nat2J1 = "Incoherente";break;
+            case 3: nat2J1 = "Normal";break;
         }
         switch(v.getNaturaleza1J2().getSelectedIndex()){
-            case 0: nat1J2 = "Carretero";break;
-            case 1: nat1J2 = "Deportista";break;
-            case 2: nat1J2 = "Deprimido";break;
-            case 3: nat1J2 = "Estudioso";break;
-            case 4: nat1J2 = "Incoherente";break;
-            case 5: nat1J2 = "Normal";break;
-            case 6: nat1J2 = "Tortuga";break;    
+            case 0: nat1J2 = "Deportista";break;
+            case 1: nat1J2 = "Estudioso";break;
+            case 2: nat1J2 = "Incoherente";break;
+            case 3: nat1J2 = "Normal";break;
         }
         switch(v.getNaturaleza2J2().getSelectedIndex()){
-            case 0: nat2J2 = "Carretero";break;
-            case 1: nat2J2 = "Deportista";break;
-            case 2: nat2J2 = "Deprimido";break;
-            case 3: nat2J2 = "Estudioso";break;
-            case 4: nat2J2 = "Incoherente";break;
-            case 5: nat2J2 = "Normal";break;
-            case 6: nat2J2 = "Tortuga";break;    
+            case 0: nat2J2 = "Deportista";break;
+            case 1: nat2J2 = "Estudioso";break;
+            case 2: nat2J2 = "Incoherente";break;
+            case 3: nat2J2 = "Normal";break;
         }
         
         
         // Se prepara el objeto Batalla
-        Jugador jug1=new Jugador(j1,v.j1Cpu()), jug2 = new Jugador(j2,v.j2Cpu());
+        Jugador jug1=new Jugador(j1,true), jug2 = new Jugador(j2,true);
         Mapa mapa1 = new Mapa(valorMapa);
 
         // estos datos se sacan de login, preJugar y configuracion profesor
