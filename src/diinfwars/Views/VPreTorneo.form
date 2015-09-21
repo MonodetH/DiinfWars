@@ -34,7 +34,7 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Component id="bVolver" min="-2" pref="144" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="bComenzar" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -210,7 +210,7 @@
               </Group>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
+                  <Component id="bComenzar" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
                   <Component id="bVolver" alignment="3" min="-2" pref="63" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -252,7 +252,7 @@
         <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="bComenzar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Comenzar"/>
       </Properties>

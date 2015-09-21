@@ -32,7 +32,7 @@ public class VPreTorneo extends javax.swing.JFrame {
     }
     
     public JButton getBVolver(){return this.bVolver;}
-    public JButton getBComenza(){return this.bComenzar;}
+    public JButton getBComenzar(){return this.bComenzar;}
     public String getJugador1(){return this.jugador1.getText();}
     public String getJugador2(){return this.jugador2.getText();}
     public String getJugador3(){return this.jugador3.getText();}
@@ -63,7 +63,7 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         bVolver = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        bComenzar = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -109,7 +109,7 @@ public class VPreTorneo extends javax.swing.JFrame {
         bVolver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         bVolver.setText("Volver");
 
-        jButton1.setText("Comenzar");
+        bComenzar.setText("Comenzar");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setText("Oro inicial");
@@ -232,7 +232,7 @@ public class VPreTorneo extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
@@ -368,7 +368,7 @@ public class VPreTorneo extends javax.swing.JFrame {
                     .addComponent(boxTipoMapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bComenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -443,6 +443,7 @@ public class VPreTorneo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bComenzar;
     private javax.swing.JButton bVolver;
     private javax.swing.JComboBox boxTipoMapa;
     private javax.swing.JCheckBox checkCpu1;
@@ -453,7 +454,6 @@ public class VPreTorneo extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkCpu6;
     private javax.swing.JCheckBox checkCpu7;
     private javax.swing.JCheckBox checkCpu8;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
