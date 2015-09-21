@@ -39,4 +39,5 @@ public class Torneo {
         return (Jugador[]) lista.toArray();
     }
     
+    public String getJugador(int index){return jugadores[index].getNombre();}
 }

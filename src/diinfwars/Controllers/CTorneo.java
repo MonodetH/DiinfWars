@@ -8,7 +8,9 @@ package diinfwars.Controllers;
 import diinfwars.Models.Jugador;
 import diinfwars.Models.Torneo;
 import diinfwars.Views.VTorneo;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -25,13 +27,35 @@ public class CTorneo implements ActionListener{
     public CTorneo(CPreTorneo parent,Jugador[] jugadores, int oroi, int orok, int mapa){
         p=parent;
         datoTorneo=new Torneo(jugadores,oroi,orok,mapa);
+        
+        /*
+        v.setText10(datoTorneo.getJugador(0));
+        v.setText9(datoTorneo.getJugador(1));
+        v.setText11(datoTorneo.getJugador(2));
+        v.setText12(datoTorneo.getJugador(3));
+        v.setText14(datoTorneo.getJugador(4));
+        v.setText13(datoTorneo.getJugador(5));
+        v.setText15(datoTorneo.getJugador(6));
+        v.setText16(datoTorneo.getJugador(7));
+        */
     }
     
     public void run(){
         if (this.v == null){this.v = new VTorneo(this);}
         this.v.setVisible(true);
-        //Seteada de botones como corresponde
-        v.setText9(datosTorneo.getJugador(9));
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(v.getVolver()== (JButton)ae.getSource()){
+            v.dispose();
+            p.run();
+        }
+        /*
+        if(v.getSiguiente()){
+            
+        }
+        */
     }
     
     

@@ -35,12 +35,26 @@ public class VPreTorneo extends javax.swing.JFrame {
     public JButton getBVolver(){return this.bVolver;}
     public JButton getBComenzar(){return this.bComenzar;}
     public String getJugador1(){return this.jugador1.getText();}
-    
+    public String getJugador2(){return this.jugador2.getText();}
+    public String getJugador3(){return this.jugador3.getText();}
+    public String getJugador4(){return this.jugador4.getText();}
+    public String getJugador5(){return this.jugador5.getText();}
+    public String getJugador6(){return this.jugador6.getText();}
+    public String getJugador7(){return this.jugador7.getText();}
+    public String getJugador8(){return this.jugador8.getText();}
     public boolean getCheckCpu1(){return this.checkCpu1.isSelected();}
+    public boolean getCheckCpu2(){return this.checkCpu2.isSelected();}
+    public boolean getCheckCpu3(){return this.checkCpu3.isSelected();}
+    public boolean getCheckCpu4(){return this.checkCpu4.isSelected();}
+    public boolean getCheckCpu5(){return this.checkCpu5.isSelected();}
+    public boolean getCheckCpu6(){return this.checkCpu6.isSelected();}
+    public boolean getCheckCpu7(){return this.checkCpu7.isSelected();}
+    public boolean getCheckCpu8(){return this.checkCpu8.isSelected();}
     
-    public int getMapa(){return boxTipoMapa.getSelectedIndex();}
     public int getOroi(){return (int)oroInicio.getValue();}
     public int getOrok(){return (int)oroInicioKiosco.getValue();}
+    public int getMapa(){return boxTipoMapa.getSelectedIndex();}
+    
     
 
     /**
@@ -60,26 +74,26 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        nombre2 = new javax.swing.JTextField();
+        jugador5 = new javax.swing.JTextField();
         jugador1 = new javax.swing.JTextField();
         checkCpu1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        nombre3 = new javax.swing.JTextField();
-        nombre4 = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        checkCpu5 = new javax.swing.JCheckBox();
+        jugador4 = new javax.swing.JTextField();
+        jugador3 = new javax.swing.JTextField();
+        checkCpu3 = new javax.swing.JCheckBox();
+        checkCpu4 = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        nombre5 = new javax.swing.JTextField();
-        nombre6 = new javax.swing.JTextField();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
+        jugador2 = new javax.swing.JTextField();
+        jugador7 = new javax.swing.JTextField();
+        checkCpu7 = new javax.swing.JCheckBox();
+        checkCpu2 = new javax.swing.JCheckBox();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        nombre7 = new javax.swing.JTextField();
-        nombre8 = new javax.swing.JTextField();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
+        jugador8 = new javax.swing.JTextField();
+        jugador6 = new javax.swing.JTextField();
+        checkCpu6 = new javax.swing.JCheckBox();
+        checkCpu8 = new javax.swing.JCheckBox();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         oroInicioKiosco = new javax.swing.JSpinner();
@@ -114,8 +128,8 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setText("Nombre Jugador 3");
 
-        nombre2.setText("Jugador 3");
-        nombre2.setToolTipText("");
+        jugador5.setText("Jugador 3");
+        jugador5.setToolTipText("");
 
         jugador1.setText("Jugador 1");
         jugador1.setToolTipText("");
@@ -127,22 +141,22 @@ public class VPreTorneo extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox2.setText("¿Es IA?");
+        checkCpu5.setText("¿Es IA?");
 
-        nombre3.setText("Jugador 2");
-        nombre3.setToolTipText("");
+        jugador4.setText("Jugador 2");
+        jugador4.setToolTipText("");
 
-        nombre4.setText("Jugador 2");
-        nombre4.setToolTipText("");
+        jugador3.setText("Jugador 2");
+        jugador3.setToolTipText("");
 
-        jCheckBox3.setText("¿Es IA?");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        checkCpu3.setText("¿Es IA?");
+        checkCpu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                checkCpu3ActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setText("¿Es IA?");
+        checkCpu4.setText("¿Es IA?");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Nombre Jugador 2");
@@ -151,25 +165,25 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setText("Nombre Jugador 2");
 
-        nombre5.setText("Jugador 2");
-        nombre5.setToolTipText("");
+        jugador2.setText("Jugador 2");
+        jugador2.setToolTipText("");
 
-        nombre6.setText("Jugador 1");
-        nombre6.setToolTipText("");
-        nombre6.addActionListener(new java.awt.event.ActionListener() {
+        jugador7.setText("Jugador 1");
+        jugador7.setToolTipText("");
+        jugador7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombre6ActionPerformed(evt);
+                jugador7ActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setText("¿Es IA?");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        checkCpu7.setText("¿Es IA?");
+        checkCpu7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                checkCpu7ActionPerformed(evt);
             }
         });
 
-        jCheckBox6.setText("¿Es IA?");
+        checkCpu2.setText("¿Es IA?");
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setText("Nombre Jugador 1");
@@ -178,20 +192,20 @@ public class VPreTorneo extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setText("Nombre Jugador 2");
 
-        nombre7.setText("Jugador 2");
-        nombre7.setToolTipText("");
+        jugador8.setText("Jugador 2");
+        jugador8.setToolTipText("");
 
-        nombre8.setText("Jugador 1");
-        nombre8.setToolTipText("");
+        jugador6.setText("Jugador 1");
+        jugador6.setToolTipText("");
 
-        jCheckBox7.setText("¿Es IA?");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        checkCpu6.setText("¿Es IA?");
+        checkCpu6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                checkCpu6ActionPerformed(evt);
             }
         });
 
-        jCheckBox8.setText("¿Es IA?");
+        checkCpu8.setText("¿Es IA?");
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setText("Nombre Jugador 1");
@@ -236,21 +250,21 @@ public class VPreTorneo extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel23)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(nombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox3))
+                                    .addComponent(checkCpu3))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel22)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jugador5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
-                                    .addComponent(jCheckBox2))
+                                    .addComponent(checkCpu5))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel25)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(nombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jugador7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jCheckBox5)))
+                                    .addComponent(checkCpu7)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -262,31 +276,31 @@ public class VPreTorneo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel26)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox6))
+                                .addComponent(checkCpu2))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel24)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(nombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
-                                    .addComponent(jCheckBox4))
+                                    .addComponent(checkCpu4))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel28)
                                         .addComponent(jLabel27))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(nombre7)
-                                        .addComponent(nombre8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jugador8)
+                                        .addComponent(jugador6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jCheckBox7))
+                                            .addComponent(checkCpu6))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addGap(6, 6, 6)
-                                            .addComponent(jCheckBox8))))))
+                                            .addComponent(checkCpu8))))))
                         .addGap(0, 114, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,39 +328,39 @@ public class VPreTorneo extends javax.swing.JFrame {
                             .addComponent(jLabel21))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox3)
+                            .addComponent(jugador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu3)
                             .addComponent(jLabel23))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox2))
+                            .addComponent(jugador5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu5))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombre6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox5)
+                            .addComponent(jugador7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu7)
                             .addComponent(jLabel25)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(nombre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox6))
+                            .addComponent(jugador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu2))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel24)
-                            .addComponent(nombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox4))
+                            .addComponent(jugador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu4))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombre8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox7)
+                            .addComponent(jugador6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu6)
                             .addComponent(jLabel27))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
-                            .addComponent(nombre7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox8))))
+                            .addComponent(jugador8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkCpu8))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,21 +387,21 @@ public class VPreTorneo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkCpu1ActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void checkCpu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCpu3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_checkCpu3ActionPerformed
 
-    private void nombre6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre6ActionPerformed
+    private void jugador7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugador7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombre6ActionPerformed
+    }//GEN-LAST:event_jugador7ActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void checkCpu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCpu7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_checkCpu7ActionPerformed
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+    private void checkCpu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCpu6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+    }//GEN-LAST:event_checkCpu6ActionPerformed
 
     private void boxTipoMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoMapaActionPerformed
         // TODO add your handling code here:
@@ -440,13 +454,13 @@ public class VPreTorneo extends javax.swing.JFrame {
     private javax.swing.JButton bVolver;
     private javax.swing.JComboBox boxTipoMapa;
     private javax.swing.JCheckBox checkCpu1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
+    private javax.swing.JCheckBox checkCpu2;
+    private javax.swing.JCheckBox checkCpu3;
+    private javax.swing.JCheckBox checkCpu4;
+    private javax.swing.JCheckBox checkCpu5;
+    private javax.swing.JCheckBox checkCpu6;
+    private javax.swing.JCheckBox checkCpu7;
+    private javax.swing.JCheckBox checkCpu8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -460,13 +474,13 @@ public class VPreTorneo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JTextField jugador1;
-    private javax.swing.JTextField nombre2;
-    private javax.swing.JTextField nombre3;
-    private javax.swing.JTextField nombre4;
-    private javax.swing.JTextField nombre5;
-    private javax.swing.JTextField nombre6;
-    private javax.swing.JTextField nombre7;
-    private javax.swing.JTextField nombre8;
+    private javax.swing.JTextField jugador2;
+    private javax.swing.JTextField jugador3;
+    private javax.swing.JTextField jugador4;
+    private javax.swing.JTextField jugador5;
+    private javax.swing.JTextField jugador6;
+    private javax.swing.JTextField jugador7;
+    private javax.swing.JTextField jugador8;
     private javax.swing.JSpinner oroInicio;
     private javax.swing.JSpinner oroInicioKiosco;
     // End of variables declaration//GEN-END:variables
