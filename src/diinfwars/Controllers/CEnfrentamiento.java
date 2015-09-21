@@ -113,6 +113,7 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             }
         this.v.setVisible(true);
         this.v.getBotonSalir().setVisible(false);
+        this.v.getTextoGanador2().setVisible(false);
         try {
             this.rutinaNuevoTurno();
         } catch (IOException ex) {
@@ -196,25 +197,11 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
         this.v.getBotonFinalizarTurno().setEnabled(false);
         this.v.getBotonRendirse().setEnabled(false);
         this.v.getBotonSalir().setVisible(true);
+        this.v.getTextoGanador2().setVisible(true);
         this.v.getBotonRendirse().setVisible(false);
-//        int victoriasJ1 = this.jugador1.getVictorias();
-//        int victoriasJ2 = this.jugador2.getVictorias();
-//        int derrotasJ1 = this.jugador1.getDerrotas();
-//        int derrotasJ2 = this.jugador2.getDerrotas();
-//        if (jugador == jugador1.getNombre()){
-//            victoriasJ1 = victoriasJ1 + 1;
-//            derrotasJ2 = derrotasJ2 +1;
-//        }
-//        else{
-//            victoriasJ2 = victoriasJ2+1;
-//            derrotasJ1 = derrotasJ1+1;
-//        }
-//        System.out.println("VJ1: "+victoriasJ1);
-//        System.out.println("DJ1: "+derrotasJ1);
-//        System.out.println("VJ2: "+victoriasJ2);
-//        System.out.println("DJ2: "+derrotasJ2);
+
         
-        this.v.gettextoGanador().setText("GANADOR: "+(ganador));
+        this.v.getTextoGanador2().setText("GANADOR: "+(ganador));
 
         System.out.println("HA ACABADO LA PARTIDA, EL GANADOR ES "+(ganador));
     }
@@ -459,6 +446,27 @@ public class CEnfrentamiento implements ActionListener,MouseListener,ListSelecti
             this.v.getTextoAtacar().append(System.getProperty("line.separator"));
             this.v.getTextoAtacar().append(System.getProperty("line.separator"));
 
+            this.v.gettextoGanador().append("La unidad ha hecho ");
+            this.v.gettextoGanador().append(String.valueOf(danoA));
+            this.v.gettextoGanador().append(" de daño, fallando ");
+            this.v.gettextoGanador().append(String.valueOf(missA));
+            this.v.gettextoGanador().append(" golpes de ");
+            this.v.gettextoGanador().append(String.valueOf(ataque[2] - golpesA));
+            this.v.gettextoGanador().append(System.getProperty("line.separator"));
+
+            this.v.gettextoGanador().append("Se han producido ");
+            this.v.gettextoGanador().append(String.valueOf(critMissA));
+            this.v.gettextoGanador().append(" fallas criticas, autoinflingiendose ");
+            this.v.gettextoGanador().append(String.valueOf(danoCritMissA));
+            this.v.gettextoGanador().append(" de daño.");
+            this.v.gettextoGanador().append(System.getProperty("line.separator"));
+
+            this.v.gettextoGanador().append("El oponente hizo ");
+            this.v.gettextoGanador().append(String.valueOf(danoD));
+            this.v.gettextoGanador().append(" de daño como contraataque.");
+            this.v.gettextoGanador().append(System.getProperty("line.separator"));
+            this.v.gettextoGanador().append(System.getProperty("line.separator"));
+            
             System.out.print("La unidad ha hecho ");
             System.out.print(danoA);
             System.out.print(" de daño, fallando ");
